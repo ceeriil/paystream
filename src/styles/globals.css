@@ -18,14 +18,14 @@ html,
 body {
   height: 100%;
   scroll-behavior: smooth;
-  background-color: theme('colors.background.primary');
+  background-color: theme("colors.background.primary");
 }
 
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  color: theme('colors.text.primary');
-  accent-color: theme('colors.brand.accent');
+  color: theme("colors.text.primary");
+  accent-color: theme("colors.brand.accent");
 }
 
 img,
@@ -52,6 +52,10 @@ h4,
 h5,
 h6 {
   overflow-wrap: break-word;
+}
+
+.btn-gradient {
+  background-image: linear-gradient(45deg, #1a62ff, #ff00ed);
 }
 
 #root,

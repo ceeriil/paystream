@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["turbopack://[project]/src/app/loading.tsx"],"sourcesContent":["const loading = () => {\n  return <div>loading</div>;\n};\n\nexport default loading;\n"],"names":[],"mappings":";;;;;AAAA,MAAM,UAAU;IACd,qBAAO,8OAAC;kBAAI;;;;;;AACd;uCAEe"}},
+    {"offset": {"line": 22, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}

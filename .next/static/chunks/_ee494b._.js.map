@@ -1,0 +1,9 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["turbopack://[project]/src/app/dashboard/page.tsx"],"sourcesContent":["'use client';\n\nimport Head from 'next/head';\n\nconst page = () => {\n  return (\n    <div>\n      <Head>\n        <title>Dashboard</title>\n      </Head>\n      <h1>Dashboard</h1>\n    </div>\n  );\n};\n\nexport default page;\n"],"names":[],"mappings":";;;;AAEA;AAFA;;;AAIA,MAAM,OAAO;IACX,qBACE,6LAAC;;0BACC,6LAAC,uKAAA,CAAA,UAAI;0BACH,cAAA,6LAAC;8BAAM;;;;;;;;;;;0BAET,6LAAC;0BAAG;;;;;;;;;;;;AAGV;uCAEe"}},
+    {"offset": {"line": 49, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
+    {"offset": {"line": 59, "column": 0}, "map": {"version":3,"sources":["turbopack://[project]/node_modules/next/src/client/components/noop-head.tsx"],"sourcesContent":["export default function NoopHead() {\n  return null\n}\n"],"names":["NoopHead"],"mappings":";;;;+BAAA,WAAA;;;eAAwBA;;;AAAT,SAASA;IACtB,OAAO;AACT"}},
+    {"offset": {"line": 79, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}
