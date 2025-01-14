@@ -206,27 +206,9 @@ var { r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_
 
 var { r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, b: __turbopack_worker_blob_url__, g: global, __dirname, x: __turbopack_external_require__, y: __turbopack_external_import__, m: module, e: exports, t: require } = __turbopack_context__;
 {
-"use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-Object.defineProperty(exports, "getSegmentValue", {
-    enumerable: true,
-    get: function() {
-        return getSegmentValue;
-    }
-});
-function getSegmentValue(segment) {
-    return Array.isArray(segment) ? segment[1] : segment;
-}
-if ((typeof exports.default === 'function' || typeof exports.default === 'object' && exports.default !== null) && typeof exports.default.__esModule === 'undefined') {
-    Object.defineProperty(exports.default, '__esModule', {
-        value: true
-    });
-    Object.assign(exports.default, exports);
-    module.exports = exports.default;
-} //# sourceMappingURL=get-segment-value.js.map
-}}),
+const e = new Error("Could not parse module '[project]/node_modules/next/dist/client/components/router-reducer/reducers/get-segment-value.js'");
+e.code = 'MODULE_UNPARSEABLE';
+throw e;}}),
 "[project]/node_modules/next/dist/shared/lib/segment.js [app-ssr] (ecmascript)": (function(__turbopack_context__) {
 
 var { r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, b: __turbopack_worker_blob_url__, g: global, __dirname, x: __turbopack_external_require__, y: __turbopack_external_import__, m: module, e: exports, t: require } = __turbopack_context__;
@@ -370,119 +352,23 @@ function isBailoutToCSRError(err) {
 
 var { r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, b: __turbopack_worker_blob_url__, g: global, __dirname, x: __turbopack_external_require__, y: __turbopack_external_import__, m: module, e: exports, t: require } = __turbopack_context__;
 {
-"use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-0 && (module.exports = {
-    StaticGenBailoutError: null,
-    isStaticGenBailoutError: null
-});
-function _export(target, all) {
-    for(var name in all)Object.defineProperty(target, name, {
-        enumerable: true,
-        get: all[name]
-    });
-}
-_export(exports, {
-    StaticGenBailoutError: function() {
-        return StaticGenBailoutError;
-    },
-    isStaticGenBailoutError: function() {
-        return isStaticGenBailoutError;
-    }
-});
-const NEXT_STATIC_GEN_BAILOUT = 'NEXT_STATIC_GEN_BAILOUT';
-class StaticGenBailoutError extends Error {
-    constructor(...args){
-        super(...args);
-        this.code = NEXT_STATIC_GEN_BAILOUT;
-    }
-}
-function isStaticGenBailoutError(error) {
-    if (typeof error !== 'object' || error === null || !('code' in error)) {
-        return false;
-    }
-    return error.code === NEXT_STATIC_GEN_BAILOUT;
-}
-if ((typeof exports.default === 'function' || typeof exports.default === 'object' && exports.default !== null) && typeof exports.default.__esModule === 'undefined') {
-    Object.defineProperty(exports.default, '__esModule', {
-        value: true
-    });
-    Object.assign(exports.default, exports);
-    module.exports = exports.default;
-} //# sourceMappingURL=static-generation-bailout.js.map
-}}),
+const e = new Error("Could not parse module '[project]/node_modules/next/dist/client/components/static-generation-bailout.js'");
+e.code = 'MODULE_UNPARSEABLE';
+throw e;}}),
 "[project]/node_modules/next/dist/server/dynamic-rendering-utils.js [app-ssr] (ecmascript)": (function(__turbopack_context__) {
 
 var { r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, b: __turbopack_worker_blob_url__, g: global, __dirname, x: __turbopack_external_require__, y: __turbopack_external_import__, m: module, e: exports, t: require } = __turbopack_context__;
 {
-/**
- * This function constructs a promise that will never resolve. This is primarily
- * useful for dynamicIO where we use promise resolution timing to determine which
- * parts of a render can be included in a prerender.
- *
- * @internal
- */ "use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-Object.defineProperty(exports, "makeHangingPromise", {
-    enumerable: true,
-    get: function() {
-        return makeHangingPromise;
-    }
-});
-function makeHangingPromise(signal, expression) {
-    const hangingPromise = new Promise((_, reject)=>{
-        signal.addEventListener('abort', ()=>{
-            reject(new Error(`During prerendering, ${expression} rejects when the prerender is complete. Typically these errors are handled by React but if you move ${expression} to a different context by using \`setTimeout\`, \`unstable_after\`, or similar functions you may observe this error and you should handle it in that context.`));
-        }, {
-            once: true
-        });
-    });
-    // We are fine if no one actually awaits this promise. We shouldn't consider this an unhandled rejection so
-    // we attach a noop catch handler here to suppress this warning. If you actually await somewhere or construct
-    // your own promise out of it you'll need to ensure you handle the error when it rejects.
-    hangingPromise.catch(ignoreReject);
-    return hangingPromise;
-}
-function ignoreReject() {} //# sourceMappingURL=dynamic-rendering-utils.js.map
-}}),
+const e = new Error("Could not parse module '[project]/node_modules/next/dist/server/dynamic-rendering-utils.js'");
+e.code = 'MODULE_UNPARSEABLE';
+throw e;}}),
 "[project]/node_modules/next/dist/lib/metadata/metadata-constants.js [app-ssr] (ecmascript)": (function(__turbopack_context__) {
 
 var { r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, b: __turbopack_worker_blob_url__, g: global, __dirname, x: __turbopack_external_require__, y: __turbopack_external_import__, m: module, e: exports, t: require } = __turbopack_context__;
 {
-"use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-0 && (module.exports = {
-    METADATA_BOUNDARY_NAME: null,
-    OUTLET_BOUNDARY_NAME: null,
-    VIEWPORT_BOUNDARY_NAME: null
-});
-function _export(target, all) {
-    for(var name in all)Object.defineProperty(target, name, {
-        enumerable: true,
-        get: all[name]
-    });
-}
-_export(exports, {
-    METADATA_BOUNDARY_NAME: function() {
-        return METADATA_BOUNDARY_NAME;
-    },
-    OUTLET_BOUNDARY_NAME: function() {
-        return OUTLET_BOUNDARY_NAME;
-    },
-    VIEWPORT_BOUNDARY_NAME: function() {
-        return VIEWPORT_BOUNDARY_NAME;
-    }
-});
-const METADATA_BOUNDARY_NAME = '__next_metadata_boundary__';
-const VIEWPORT_BOUNDARY_NAME = '__next_viewport_boundary__';
-const OUTLET_BOUNDARY_NAME = '__next_outlet_boundary__'; //# sourceMappingURL=metadata-constants.js.map
-}}),
+const e = new Error("Could not parse module '[project]/node_modules/next/dist/lib/metadata/metadata-constants.js'");
+e.code = 'MODULE_UNPARSEABLE';
+throw e;}}),
 "[project]/node_modules/next/dist/server/app-render/dynamic-rendering.js [app-ssr] (ecmascript)": (function(__turbopack_context__) {
 
 var { r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, b: __turbopack_worker_blob_url__, g: global, __dirname, x: __turbopack_external_require__, y: __turbopack_external_import__, m: module, e: exports, t: require } = __turbopack_context__;
@@ -614,11 +500,23 @@ _export(exports, {
     }
 });
 const _react = /*#__PURE__*/ _interop_require_default(__turbopack_require__("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)"));
-const _hooksservercontext = __turbopack_require__("[project]/node_modules/next/dist/client/components/hooks-server-context.js [app-ssr] (ecmascript)");
-const _staticgenerationbailout = __turbopack_require__("[project]/node_modules/next/dist/client/components/static-generation-bailout.js [app-ssr] (ecmascript)");
+const _hooksservercontext = (()=>{
+    const e = new Error("Cannot find module '../../client/components/hooks-server-context'");
+    e.code = 'MODULE_NOT_FOUND';
+    throw e;
+})();
+const _staticgenerationbailout = (()=>{
+    const e = new Error("Cannot find module '../../client/components/static-generation-bailout'");
+    e.code = 'MODULE_NOT_FOUND';
+    throw e;
+})();
 const _workunitasyncstorageexternal = __turbopack_require__("[externals]/ [external] (next/dist/server/app-render/work-unit-async-storage.external.js, cjs)");
 const _workasyncstorageexternal = __turbopack_require__("[externals]/ [external] (next/dist/server/app-render/work-async-storage.external.js, cjs)");
-const _dynamicrenderingutils = __turbopack_require__("[project]/node_modules/next/dist/server/dynamic-rendering-utils.js [app-ssr] (ecmascript)");
+const _dynamicrenderingutils = (()=>{
+    const e = new Error("Cannot find module '../dynamic-rendering-utils'");
+    e.code = 'MODULE_NOT_FOUND';
+    throw e;
+})();
 const _metadataconstants = __turbopack_require__("[project]/node_modules/next/dist/lib/metadata/metadata-constants.js [app-ssr] (ecmascript)");
 function _interop_require_default(obj) {
     return obj && obj.__esModule ? obj : {
@@ -969,41 +867,16 @@ function throwIfDisallowedDynamic(route, dynamicValidation, serverDynamic, clien
 
 var { r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, b: __turbopack_worker_blob_url__, g: global, __dirname, x: __turbopack_external_require__, y: __turbopack_external_import__, m: module, e: exports, t: require } = __turbopack_context__;
 {
-"use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-Object.defineProperty(exports, "isDynamicUsageError", {
-    enumerable: true,
-    get: function() {
-        return isDynamicUsageError;
-    }
-});
-const _hooksservercontext = __turbopack_require__("[project]/node_modules/next/dist/client/components/hooks-server-context.js [app-ssr] (ecmascript)");
-const _bailouttocsr = __turbopack_require__("[project]/node_modules/next/dist/shared/lib/lazy-dynamic/bailout-to-csr.js [app-ssr] (ecmascript)");
-const _isnextroutererror = __turbopack_require__("[project]/node_modules/next/dist/client/components/is-next-router-error.js [app-ssr] (ecmascript)");
-const _dynamicrendering = __turbopack_require__("[project]/node_modules/next/dist/server/app-render/dynamic-rendering.js [app-ssr] (ecmascript)");
-const isDynamicUsageError = (err)=>(0, _hooksservercontext.isDynamicServerError)(err) || (0, _bailouttocsr.isBailoutToCSRError)(err) || (0, _isnextroutererror.isNextRouterError)(err) || (0, _dynamicrendering.isDynamicPostpone)(err); //# sourceMappingURL=is-dynamic-usage-error.js.map
-}}),
+const e = new Error("Could not parse module '[project]/node_modules/next/dist/export/helpers/is-dynamic-usage-error.js'");
+e.code = 'MODULE_UNPARSEABLE';
+throw e;}}),
 "[project]/node_modules/next/dist/server/lib/router-utils/is-postpone.js [app-ssr] (ecmascript)": (function(__turbopack_context__) {
 
 var { r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, b: __turbopack_worker_blob_url__, g: global, __dirname, x: __turbopack_external_require__, y: __turbopack_external_import__, m: module, e: exports, t: require } = __turbopack_context__;
 {
-"use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-Object.defineProperty(exports, "isPostpone", {
-    enumerable: true,
-    get: function() {
-        return isPostpone;
-    }
-});
-const REACT_POSTPONE_TYPE = Symbol.for('react.postpone');
-function isPostpone(error) {
-    return typeof error === 'object' && error !== null && error.$$typeof === REACT_POSTPONE_TYPE;
-} //# sourceMappingURL=is-postpone.js.map
-}}),
+const e = new Error("Could not parse module '[project]/node_modules/next/dist/server/lib/router-utils/is-postpone.js'");
+e.code = 'MODULE_UNPARSEABLE';
+throw e;}}),
 "[project]/node_modules/next/dist/client/components/unstable-rethrow.js [app-ssr] (ecmascript)": (function(__turbopack_context__) {
 
 var { r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, b: __turbopack_worker_blob_url__, g: global, __dirname, x: __turbopack_external_require__, y: __turbopack_external_import__, m: module, e: exports, t: require } = __turbopack_context__;
@@ -1019,9 +892,17 @@ Object.defineProperty(exports, "unstable_rethrow", {
     }
 });
 const _isdynamicusageerror = __turbopack_require__("[project]/node_modules/next/dist/export/helpers/is-dynamic-usage-error.js [app-ssr] (ecmascript)");
-const _ispostpone = __turbopack_require__("[project]/node_modules/next/dist/server/lib/router-utils/is-postpone.js [app-ssr] (ecmascript)");
+const _ispostpone = (()=>{
+    const e = new Error("Cannot find module '../../server/lib/router-utils/is-postpone'");
+    e.code = 'MODULE_NOT_FOUND';
+    throw e;
+})();
 const _bailouttocsr = __turbopack_require__("[project]/node_modules/next/dist/shared/lib/lazy-dynamic/bailout-to-csr.js [app-ssr] (ecmascript)");
-const _isnextroutererror = __turbopack_require__("[project]/node_modules/next/dist/client/components/is-next-router-error.js [app-ssr] (ecmascript)");
+const _isnextroutererror = (()=>{
+    const e = new Error("Cannot find module './is-next-router-error'");
+    e.code = 'MODULE_NOT_FOUND';
+    throw e;
+})();
 function unstable_rethrow(error) {
     if ((0, _isnextroutererror.isNextRouterError)(error) || (0, _bailouttocsr.isBailoutToCSRError)(error) || (0, _isdynamicusageerror.isDynamicUsageError)(error) || (0, _ispostpone.isPostpone)(error)) {
         throw error;
@@ -1042,103 +923,16 @@ if ((typeof exports.default === 'function' || typeof exports.default === 'object
 
 var { r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, b: __turbopack_worker_blob_url__, g: global, __dirname, x: __turbopack_external_require__, y: __turbopack_external_import__, m: module, e: exports, t: require } = __turbopack_context__;
 {
-/** @internal */ "use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-0 && (module.exports = {
-    ReadonlyURLSearchParams: null,
-    RedirectType: null,
-    notFound: null,
-    permanentRedirect: null,
-    redirect: null,
-    unstable_rethrow: null
-});
-function _export(target, all) {
-    for(var name in all)Object.defineProperty(target, name, {
-        enumerable: true,
-        get: all[name]
-    });
-}
-_export(exports, {
-    ReadonlyURLSearchParams: function() {
-        return ReadonlyURLSearchParams;
-    },
-    RedirectType: function() {
-        return _redirect.RedirectType;
-    },
-    notFound: function() {
-        return _notfound.notFound;
-    },
-    permanentRedirect: function() {
-        return _redirect.permanentRedirect;
-    },
-    redirect: function() {
-        return _redirect.redirect;
-    },
-    unstable_rethrow: function() {
-        return _unstablerethrow.unstable_rethrow;
-    }
-});
-const _redirect = __turbopack_require__("[project]/node_modules/next/dist/client/components/redirect.js [app-ssr] (ecmascript)");
-const _notfound = __turbopack_require__("[project]/node_modules/next/dist/client/components/not-found.js [app-ssr] (ecmascript)");
-const _unstablerethrow = __turbopack_require__("[project]/node_modules/next/dist/client/components/unstable-rethrow.js [app-ssr] (ecmascript)");
-class ReadonlyURLSearchParamsError extends Error {
-    constructor(){
-        super('Method unavailable on `ReadonlyURLSearchParams`. Read more: https://nextjs.org/docs/app/api-reference/functions/use-search-params#updating-searchparams');
-    }
-}
-class ReadonlyURLSearchParams extends URLSearchParams {
-    /** @deprecated Method unavailable on `ReadonlyURLSearchParams`. Read more: https://nextjs.org/docs/app/api-reference/functions/use-search-params#updating-searchparams */ append() {
-        throw new ReadonlyURLSearchParamsError();
-    }
-    /** @deprecated Method unavailable on `ReadonlyURLSearchParams`. Read more: https://nextjs.org/docs/app/api-reference/functions/use-search-params#updating-searchparams */ delete() {
-        throw new ReadonlyURLSearchParamsError();
-    }
-    /** @deprecated Method unavailable on `ReadonlyURLSearchParams`. Read more: https://nextjs.org/docs/app/api-reference/functions/use-search-params#updating-searchparams */ set() {
-        throw new ReadonlyURLSearchParamsError();
-    }
-    /** @deprecated Method unavailable on `ReadonlyURLSearchParams`. Read more: https://nextjs.org/docs/app/api-reference/functions/use-search-params#updating-searchparams */ sort() {
-        throw new ReadonlyURLSearchParamsError();
-    }
-}
-if ((typeof exports.default === 'function' || typeof exports.default === 'object' && exports.default !== null) && typeof exports.default.__esModule === 'undefined') {
-    Object.defineProperty(exports.default, '__esModule', {
-        value: true
-    });
-    Object.assign(exports.default, exports);
-    module.exports = exports.default;
-} //# sourceMappingURL=navigation.react-server.js.map
-}}),
+const e = new Error("Could not parse module '[project]/node_modules/next/dist/client/components/navigation.react-server.js'");
+e.code = 'MODULE_UNPARSEABLE';
+throw e;}}),
 "[project]/node_modules/next/dist/client/components/bailout-to-client-rendering.js [app-ssr] (ecmascript)": (function(__turbopack_context__) {
 
 var { r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, b: __turbopack_worker_blob_url__, g: global, __dirname, x: __turbopack_external_require__, y: __turbopack_external_import__, m: module, e: exports, t: require } = __turbopack_context__;
 {
-"use strict";
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-Object.defineProperty(exports, "bailoutToClientRendering", {
-    enumerable: true,
-    get: function() {
-        return bailoutToClientRendering;
-    }
-});
-const _bailouttocsr = __turbopack_require__("[project]/node_modules/next/dist/shared/lib/lazy-dynamic/bailout-to-csr.js [app-ssr] (ecmascript)");
-const _workasyncstorageexternal = __turbopack_require__("[externals]/ [external] (next/dist/server/app-render/work-async-storage.external.js, cjs)");
-function bailoutToClientRendering(reason) {
-    const workStore = _workasyncstorageexternal.workAsyncStorage.getStore();
-    if (workStore == null ? void 0 : workStore.forceStatic) return;
-    if (workStore == null ? void 0 : workStore.isStaticGeneration) throw new _bailouttocsr.BailoutToCSRError(reason);
-}
-if ((typeof exports.default === 'function' || typeof exports.default === 'object' && exports.default !== null) && typeof exports.default.__esModule === 'undefined') {
-    Object.defineProperty(exports.default, '__esModule', {
-        value: true
-    });
-    Object.assign(exports.default, exports);
-    module.exports = exports.default;
-} //# sourceMappingURL=bailout-to-client-rendering.js.map
-}}),
+const e = new Error("Could not parse module '[project]/node_modules/next/dist/client/components/bailout-to-client-rendering.js'");
+e.code = 'MODULE_UNPARSEABLE';
+throw e;}}),
 "[project]/node_modules/next/dist/client/components/navigation.js [app-ssr] (ecmascript)": (function(__turbopack_context__) {
 
 var { r: __turbopack_require__, f: __turbopack_module_context__, i: __turbopack_import__, s: __turbopack_esm__, v: __turbopack_export_value__, n: __turbopack_export_namespace__, c: __turbopack_cache__, M: __turbopack_modules__, l: __turbopack_load__, j: __turbopack_dynamic__, P: __turbopack_resolve_absolute_path__, U: __turbopack_relative_url__, R: __turbopack_resolve_module_id_path__, b: __turbopack_worker_blob_url__, g: global, __dirname, x: __turbopack_external_require__, y: __turbopack_external_import__, m: module, e: exports, t: require } = __turbopack_context__;
