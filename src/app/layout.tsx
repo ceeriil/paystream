@@ -22,9 +22,9 @@ const urbanist = Urbanist({
 
 export default async function RootLayout({ children }: ChildrenProps) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
-        className={`${urbanist.className} h-full flex flex-col justify-between`}
+        className={`${urbanist.className} h-full flex flex-col justify-between bg-background text-foreground`}
       >
         <section className="flex-1">
           <QueryProvider>{children}</QueryProvider>
