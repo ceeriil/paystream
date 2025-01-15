@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { usePathname } from "next/navigation";
 import {
   LucideIcon,
   Home,
@@ -33,13 +34,18 @@ const navItems: NavItem[] = [
     icon: LayoutDashboard,
   },
   {
-    title: "Home",
-    href: "/",
+    title: "Contracts",
+    href: "/contracts",
     icon: Home,
   },
   {
-    title: "Users",
-    href: "/users",
+    title: "Payments",
+    href: "/payments",
+    icon: Users,
+  },
+  {
+    title: "Employee",
+    href: "/Employees",
     icon: Users,
   },
   {
@@ -56,20 +62,27 @@ interface DashboardLayoutProps {
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
     <SidebarProvider>
-      <div className="flex min-h-screen ">
-        <Sidebar>
-          <SidebarHeader className="">
-            <div className="flex h-14 items-center px-4">
-              <span className="font-semibold">PayStream</span>
+      <div className="flex min-h-screen  w-full ">
+        <Sidebar className="bg-black   border-[#272727]">
+          <SidebarHeader>
+            <div className="flex h-16 items-center px-6">
+              <span className="text-xl font-semibold">PayStream</span>
             </div>
           </SidebarHeader>
           <SidebarContent>
-            <SidebarMenu>
+            <SidebarMenu className="space-y-4 p-4">
               {navItems.map((item) => (
-                <SidebarMenuItem key={item.href}>
+                <SidebarMenuItem key={item.href} className="px-2 ">
                   <SidebarMenuButton asChild tooltip={item.title}>
-                    <a href={item.href} className="flex items-center">
-                      <item.icon className="mr-2" />
+                    <a
+                      href={item.href}
+                      className={`flex items-center text-base font-medium p-2 rounded-md transition-all py-5 ${
+                        usePathname() === item.href
+                          ? "btn-gradient text-white"
+                          : "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                      }`}
+                    >
+                      <item.icon className="mr-4 h-5 w-5" />
                       <span>{item.title}</span>
                     </a>
                   </SidebarMenuButton>
@@ -77,21 +90,21 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               ))}
             </SidebarMenu>
           </SidebarContent>
-          <SidebarFooter className="border-t border-border/50">
+          <SidebarFooter>
             <div className="p-4">
               <p className="text-sm text-muted-foreground">© 2024 PayStream</p>
             </div>
           </SidebarFooter>
         </Sidebar>
         <main className="flex-1 overflow-y-auto ">
-          <header className="sticky top-0 z-10 border-b bg-background/95 backdrop-blur">
+          <header className="sticky top-0 z-10 border-b border-[#272727]">
             <div className="flex h-14 items-center gap-4 px-6">
               <SidebarTrigger />
               <div className="flex-1" />
               {/* Add any header actions here */}
             </div>
           </header>
-          <div className="container mx-auto p-6">{children}</div>
+          <div className="container mx-auto p-6 px-12">{children}</div>
         </main>
       </div>
     </SidebarProvider>

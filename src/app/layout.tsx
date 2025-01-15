@@ -24,9 +24,9 @@ export default async function RootLayout({ children }: ChildrenProps) {
   return (
     <html lang="en" className="dark">
       <body
-        className={`${urbanist.className} h-full flex flex-col justify-between bg-background text-foreground`}
+        className={`${urbanist.className} h-full flex flex-col justify-between bg-[#000] text-foreground`}
       >
-        <section className="flex-1">
+        <section className="w-full">
           <QueryProvider>{children}</QueryProvider>
         </section>
         <MainFooter />

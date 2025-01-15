@@ -67,23 +67,53 @@ h6 {
 @layer base {
   :root {
     --radius: 0.5rem;
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: #000000;
+    --sidebar-foreground: #424458;
+    --sidebar-primary: #1a1b1e;
+    --sidebar-primary-foreground: #fafafa;
+    --sidebar-accent: #f4f4f5;
+    --sidebar-accent-foreground: #1a1b1e;
+    --sidebar-border: #272727;
+    --sidebar-ring: #3b82f6;
   }
   .dark {
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: #000000;
+    --sidebar-foreground: #f4f4f5;
+    --sidebar-primary: #2563eb;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #27272a;
+    --sidebar-accent-foreground: #f4f4f5;
+    --sidebar-border: #272727;
+    --sidebar-ring: #3b82f6;
   }
+}
+
+/*  */
+.card {
+  position: relative;
+  backdrop-filter: blur(2rem);
+}
+
+.card::before {
+  position: absolute;
+  content: "";
+  left: -0.1rem;
+  top: 0;
+  bottom: 0;
+  width: 0.6rem;
+  z-index: -4;
+  background-image: linear-gradient(45deg, #1a62ff, #ff00ed);
+}
+
+.card::after {
+  position: absolute;
+  content: "";
+  right: -2rem;
+  top: -20%;
+  width: 8rem;
+  height: 8rem;
+  background: #cf1a2c;
+  opacity: 15%;
+  filter: blur(3rem);
+  z-index: -5;
 }
