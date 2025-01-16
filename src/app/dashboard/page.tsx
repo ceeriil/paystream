@@ -1,9 +1,7 @@
 "use client";
 
-import { ArrowLink } from "@/components/assets/ArrowLink";
-import { Card } from "@/components/ui/card";
-import { BarChart3, Users, CreditCard, Activity } from "lucide-react";
-import Link from "next/link";
+import { DashboardCard } from "@/components/ui/dashboard-card";
+import { BarChart3, Users, CreditCard } from "lucide-react";
 
 export default function DashboardPage() {
   return (
@@ -13,56 +11,29 @@ export default function DashboardPage() {
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <Card className="p-6">
-          <div className="flex items-center gap-4">
-            <div className="rounded-lg bg-primary/10 p-2">
-              <BarChart3 className="h-6 w-6 text-primary" />
-            </div>
-            <div>
-              <p className="text-sm font-medium text-muted-foreground">
-                Last Month's Payou
-              </p>
-              <h2 className="text-2xl font-bold">$45,231.89</h2>
-              <p className="text-xs text-green-500">+20.1% from last month</p>
-            </div>
-          </div>
-        </Card>
+        <DashboardCard
+          icon={BarChart3}
+          label="Last Month's Payout"
+          value="12.33 Sol"
+          percentageChange={20.1}
+        />
 
-        <Card className="p-6 py-8 card before:bg-[#CF1A2C] rounded-2xl z-[10] overflow-hidden ">
-          <Link
-            href="/contracts"
-            className="absolute rounded-full bg-[#ffffff16] w-12 h-12 flex items-center justify-center right-4 top-4"
-          >
-            <ArrowLink />
-          </Link>
-          <div className="flex items-center gap-4">
-            <div className="rounded-lg bg-primary/10 p-2">
-              <Users className="h-6 w-6 text-primary" />
-            </div>
-            <div>
-              <p className="text-base font-medium text-muted-foreground">
-                Active Contracts
-              </p>
-              <h2 className="text-4xl font-bold mt-4 mb-1">2,350</h2>
-              <p className="text-xs text-[#00B85E]">+12.3% from last month</p>
-            </div>
-          </div>
-        </Card>
+        <DashboardCard
+          icon={Users}
+          label="Active Contracts"
+          value="234"
+          percentageChange={12.3}
+          href="/contracts"
+          color="#29C5EE"
+        />
 
-        <Card className="p-6">
-          <div className="flex items-center gap-4">
-            <div className="rounded-lg bg-primary/10 p-2">
-              <CreditCard className="h-6 w-6 text-primary" />
-            </div>
-            <div>
-              <p className="text-sm font-medium text-muted-foreground">
-                Total Transactions
-              </p>
-              <h2 className="text-2xl font-bold">12,234</h2>
-              <p className="text-xs text-green-500">+19% from last month</p>
-            </div>
-          </div>
-        </Card>
+        <DashboardCard
+          icon={CreditCard}
+          label="Total Employess"
+          value="34"
+          color="#CF1A2C"
+          percentageChange={19}
+        />
       </div>
     </div>
   );
