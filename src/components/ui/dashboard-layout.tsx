@@ -20,6 +20,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { ConnectButton } from "../ConnectButton";
 
 interface NavItem {
   title: string;
@@ -45,7 +46,7 @@ const navItems: NavItem[] = [
   },
   {
     title: "Employee",
-    href: "/Employees",
+    href: "/dashboard/employees",
     icon: Users,
   },
   {
@@ -101,7 +102,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             <div className="flex h-14 items-center gap-4 px-6">
               <SidebarTrigger />
               <div className="flex-1" />
-              {/* Add any header actions here */}
+              <ConnectButton />
             </div>
           </header>
           <div className="container mx-auto p-6 px-12">{children}</div>
