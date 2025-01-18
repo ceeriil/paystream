@@ -9,6 +9,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import {
+  unlockScheduleOptions,
+  vestingDurationOptions,
+  transferableRights,
+  cancellationRights,
+} from "@/constants";
 
 const Configuration = () => {
   const {

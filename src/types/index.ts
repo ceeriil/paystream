@@ -1,6 +1,6 @@
-import type { NextPage } from 'next';
-import type { AppProps } from 'next/app';
-import type { ReactNode } from 'react';
+import type { NextPage } from "next";
+import type { AppProps } from "next/app";
+import type { ReactNode } from "react";
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: () => ReactNode;
@@ -32,3 +32,16 @@ export interface CurrentUserProps {
     isAdmin: boolean;
   } | null;
 }
+
+export type PermissionRole = "Recipient" | "Sender" | "Both" | "Neither";
+
+export type TimeUnit =
+  | "Second"
+  | "Minute"
+  | "Hour"
+  | "Day"
+  | "Week"
+  | "Bi-week"
+  | "Month"
+  | "Quarter"
+  | "Year";
