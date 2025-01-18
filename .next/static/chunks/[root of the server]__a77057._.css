@@ -629,6 +629,10 @@ img, video {
   margin-right: 1rem;
 }
 
+.mt-12 {
+  margin-top: 3rem;
+}
+
 .mt-2 {
   margin-top: .5rem;
 }
@@ -1058,12 +1062,6 @@ img, video {
   --tw-space-x-reverse: 0;
   margin-right: calc(.5rem * var(--tw-space-x-reverse));
   margin-left: calc(.5rem * calc(1 - var(--tw-space-x-reverse)));
-}
-
-.space-x-\[20px\] > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(20px * var(--tw-space-x-reverse));
-  margin-left: calc(20px * calc(1 - var(--tw-space-x-reverse)));
 }
 
 .space-y-1 > :not([hidden]) ~ :not([hidden]) {
@@ -1923,6 +1921,11 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .btn-gradient {
   background-image: linear-gradient(45deg, #1a62ff, #ff00ed);
+  color: #fff;
+}
+
+.btn-gradient > * {
+  color: #fff;
 }
 
 #root, #__next {

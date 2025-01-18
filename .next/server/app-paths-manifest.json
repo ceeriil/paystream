@@ -1,3 +1,6 @@
 {
-  "/dashboard/contracts/page": "app/dashboard/contracts/page.js"
+  "/dashboard/contracts/page": "app/dashboard/contracts/page.js",
+  "/dashboard/contracts/create/page": "app/dashboard/contracts/create/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/_not-found/page": "app/_not-found/page.js"
 }

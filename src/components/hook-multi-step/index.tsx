@@ -124,7 +124,7 @@ const HookMultiStepForm = () => {
       <FormProvider {...methods}>
         <form noValidate>
           {getStepContent(activeStep)}
-          <div className="flex justify-center space-x-[20px]">
+          <div className="flex justify-between mt-12">
             <Button
               type="button"
               className="w-[100px]"
@@ -136,7 +136,7 @@ const HookMultiStepForm = () => {
             </Button>
             {activeStep === 3 ? (
               <Button
-                className="w-[100px]"
+                className="w-[100px] btn-gradient"
                 type="button"
                 onClick={handleSubmit(onSubmit)}
                 disabled={isSubmitting}
@@ -144,7 +144,11 @@ const HookMultiStepForm = () => {
                 Submit
               </Button>
             ) : (
-              <Button type="button" className="w-[100px]" onClick={handleNext}>
+              <Button
+                type="button"
+                className="w-[100px] btn-gradient "
+                onClick={handleNext}
+              >
                 Next
               </Button>
             )}

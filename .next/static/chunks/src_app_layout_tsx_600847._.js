@@ -9,9 +9,10 @@
     "static/chunks/node_modules_next_dist_68fe11._.js",
     "static/chunks/node_modules_@tanstack_query-devtools_build_5438bf._.js",
     "static/chunks/node_modules_@reown_appkit_dist_esm_7383d5._.js",
-    "static/chunks/node_modules_adc998._.js",
+    "static/chunks/node_modules_a5aaab._.js",
     "static/chunks/node_modules_@noble_curves_esm_52df29._.js",
     "static/chunks/node_modules_@solana_web3_js_lib_index_browser_esm_88d65e.js",
+    "static/chunks/90612_@solana_web3_js_lib_index_browser_esm_b3c2ff.js",
     "static/chunks/node_modules_@reown_appkit-core_dist_esm_0faa2f._.js",
     "static/chunks/node_modules_@reown_appkit-wallet_dist_esm_f1d954._.js",
     "static/chunks/node_modules_zod_lib_index_mjs_ee760a._.js",
@@ -23,14 +24,14 @@
     "static/chunks/node_modules_@reown_appkit-scaffold-ui_dist_esm_src_partials_e7b68e._.js",
     "static/chunks/node_modules_@reown_appkit-scaffold-ui_dist_esm_src_091ebb._.js",
     "static/chunks/node_modules_@reown_appkit-scaffold-ui_dist_esm_exports_b1f862._.js",
-    "static/chunks/node_modules_@reown_f588ad._.js",
-    "static/chunks/node_modules_@solana_2b8b6b._.js",
-    "static/chunks/node_modules_@walletconnect_fa746d._.js",
+    "static/chunks/node_modules_@reown_d8dbbf._.js",
+    "static/chunks/node_modules_@solana_63e0ab._.js",
+    "static/chunks/node_modules_@walletconnect_a1dba1._.js",
     "static/chunks/node_modules_@stablelib_e81ff8._.js",
     "static/chunks/node_modules_@ethersproject_294fd3._.js",
-    "static/chunks/node_modules_28042a._.js",
+    "static/chunks/node_modules_9150cd._.js",
     "static/chunks/src_d0446f._.js",
-    "static/chunks/node_modules_d016a5._.js"
+    "static/chunks/node_modules_5321b6._.js"
   ],
   "source": "dynamic"
 });
