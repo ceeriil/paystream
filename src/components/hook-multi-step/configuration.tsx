@@ -15,13 +15,17 @@ import {
   transferableRights,
   cancellationRights,
 } from "@/constants";
+import useSolanaTokens from "@/hooks/useSolanaTokens";
 
 const Configuration = () => {
+  const { tokens } = useSolanaTokens();
   const {
     control,
     formState: { errors },
     register,
   } = useFormContext<StepperFormValues>();
+
+  console.log(tokens, "lol");
 
   return (
     <div>

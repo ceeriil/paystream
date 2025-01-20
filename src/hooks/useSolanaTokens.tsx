@@ -3,6 +3,11 @@ import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { TokenListProvider, TokenInfo } from "@solana/spl-token-registry";
+import { useAppKitAccount, useAppKitProvider } from "@reown/appkit/react";
+import {
+  useAppKitConnection,
+  type Provider,
+} from "@reown/appkit-adapter-solana/react";
 
 interface TokenBalance {
   mint: string | null;
@@ -27,11 +32,18 @@ interface UseSolanaTokensResult {
 function useSolanaTokens(): UseSolanaTokensResult {
   const [tokens, setTokens] = useState<TokenBalance[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const { connection } = useConnection();
-  const { publicKey } = useWallet();
+  const { connection } = useAppKitConnection();
+  const { walletProvider } = useAppKitProvider<Provider>("solana");
+  const publicKey = walletProvider?.publicKey;
+
+  console.log("Connection status:", {
+    hasProvider: !!walletProvider,
+    hasPublicKey: !!publicKey,
+    hasConnection: !!connection,
+  });
 
   useEffect(() => {
-    if (!connection || !publicKey) {
+    if (!connection || !walletProvider || !publicKey) {
       setTokens([]);
       setLoading(false);
       return;

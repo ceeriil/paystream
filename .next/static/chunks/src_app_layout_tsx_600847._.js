@@ -24,14 +24,14 @@
     "static/chunks/node_modules_@reown_appkit-scaffold-ui_dist_esm_src_partials_e7b68e._.js",
     "static/chunks/node_modules_@reown_appkit-scaffold-ui_dist_esm_src_091ebb._.js",
     "static/chunks/node_modules_@reown_appkit-scaffold-ui_dist_esm_exports_b1f862._.js",
-    "static/chunks/node_modules_@reown_d8dbbf._.js",
-    "static/chunks/node_modules_@solana_63e0ab._.js",
+    "static/chunks/node_modules_@reown_d8eb1d._.js",
+    "static/chunks/node_modules_@solana_6ac322._.js",
     "static/chunks/node_modules_@walletconnect_a1dba1._.js",
     "static/chunks/node_modules_@stablelib_e81ff8._.js",
     "static/chunks/node_modules_@ethersproject_294fd3._.js",
     "static/chunks/node_modules_9150cd._.js",
     "static/chunks/src_d0446f._.js",
-    "static/chunks/node_modules_5321b6._.js"
+    "static/chunks/node_modules_ab5442._.js"
   ],
   "source": "dynamic"
 });
