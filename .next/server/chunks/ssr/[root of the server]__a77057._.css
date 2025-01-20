@@ -653,6 +653,14 @@ img, video {
   margin-top: 28px;
 }
 
+.ml-3 {
+  margin-left: .75rem;
+}
+
+.mr-3 {
+  margin-right: .75rem;
+}
+
 .block {
   display: block;
 }

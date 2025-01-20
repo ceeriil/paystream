@@ -36,12 +36,6 @@ function useSolanaTokens(): UseSolanaTokensResult {
   const { walletProvider } = useAppKitProvider<Provider>("solana");
   const publicKey = walletProvider?.publicKey;
 
-  console.log("Connection status:", {
-    hasProvider: !!walletProvider,
-    hasPublicKey: !!publicKey,
-    hasConnection: !!connection,
-  });
-
   useEffect(() => {
     if (!connection || !walletProvider || !publicKey) {
       setTokens([]);

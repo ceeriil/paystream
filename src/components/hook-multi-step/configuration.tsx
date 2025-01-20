@@ -9,12 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import {
-  unlockScheduleOptions,
-  vestingDurationOptions,
-  transferableRights,
-  cancellationRights,
-} from "@/constants";
+import { unlockScheduleOptions, vestingDurationOptions } from "@/constants";
 import useSolanaTokens from "@/hooks/useSolanaTokens";
 
 const Configuration = () => {
@@ -24,8 +19,6 @@ const Configuration = () => {
     formState: { errors },
     register,
   } = useFormContext<StepperFormValues>();
-
-  console.log(tokens, "lol");
 
   return (
     <div>
@@ -43,9 +36,18 @@ const Configuration = () => {
                   <SelectValue placeholder="Select token" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="SOL">SOL</SelectItem>
-                  <SelectItem value="USDC">USDC</SelectItem>
-                  <SelectItem value="USDT">USDT</SelectItem>
+                  {tokens.map((token) => (
+                    <SelectItem key={token.mint} value={token.mint || ""}>
+                      <div className="flex items-center justify-between w-full">
+                        <span className="mr-3">
+                          {token.name || token.symbol}
+                        </span>
+                        <span className="text-muted-foreground ">
+                          {token.balance.toFixed(4)}
+                        </span>
+                      </div>
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
               {error && (
@@ -77,10 +79,11 @@ const Configuration = () => {
                     <SelectValue placeholder="Select unit" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="hour">Hour</SelectItem>
-                    <SelectItem value="day">Day</SelectItem>
-                    <SelectItem value="week">Week</SelectItem>
-                    <SelectItem value="month">Month</SelectItem>
+                    {vestingDurationOptions.map((option, index) => (
+                      <SelectItem key={index} value={option}>
+                        {option}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
                 {error && (
@@ -104,9 +107,11 @@ const Configuration = () => {
                   <SelectValue placeholder="Select unlock schedule" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="linear">Linear</SelectItem>
-                  <SelectItem value="cliff">Cliff</SelectItem>
-                  <SelectItem value="hybrid">Hybrid</SelectItem>
+                  {unlockScheduleOptions.map((option, index) => (
+                    <SelectItem key={index} value={option.value}>
+                      {option.label}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
               {error && (
