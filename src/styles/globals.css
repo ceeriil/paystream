@@ -102,6 +102,151 @@ h6 {
   }
 }
 
+.hero {
+  background: url("/images/bg-blur.png");
+
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position-y: -10%;
+}
+
+.gradient-text {
+  background-color: #fff;
+  background: linear-gradient(to bottom, #f6f6f7 0%, #f6f6f7 30%, #7e808f 100%);
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow-text-animation-rev 0.5s ease forwards;
+  cursor: pointer;
+}
+
+.btn-hover {
+  min-width: 200px;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 20px;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  border: none;
+  background-size: 300% 100%;
+  text-align: center;
+  border-radius: 50px;
+  moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  display: inline-block;
+}
+
+@media (max-width: 600px) {
+  .btn-hover {
+    padding: 0.6rem 0.8rem;
+    min-width: 140px;
+    margin: 10px;
+  }
+}
+
+.btn-gradient {
+  background-image: linear-gradient(45deg, #1a62ff, #ff00ed);
+}
+
+.btn-hover:hover {
+  background-position: 100% 0;
+  moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.btn-hover:focus {
+  outline: none;
+}
+
+.btn-border {
+  border: 1px solid #ffffff90;
+  background: #ffffff06;
+}
+
+.btn-hover.color-6 {
+  background-image: linear-gradient(
+    to right,
+    #ff00ed,
+    #1a62ff,
+    #1a62ff,
+    #ff00ed
+  );
+  /*  box-shadow: 0 4px 15px 0 #02eeff90; */
+}
+
+/* --- gradient border ---- */
+.gradient-border {
+  --borderWidth: 3px;
+  /*   background: #1d1f20;
+ */
+  cursor: pointer;
+  background: #000;
+  background-color: #000000;
+  position: relative;
+  border-radius: var(--borderWidth);
+  z-index: 4;
+}
+
+.gradient-border > * {
+  z-index: 10;
+}
+.gradient-border:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0a053a;
+  background: linear-gradient(92.38deg, #000, #0a053a);
+  border-radius: calc(2 * var(--borderWidth));
+  z-index: -1;
+}
+.gradient-border:after {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--borderWidth));
+  left: calc(-1 * var(--borderWidth));
+  height: calc(100% + var(--borderWidth) * 2);
+  width: calc(100% + var(--borderWidth) * 2);
+  background: linear-gradient(
+    60deg,
+    #f79533,
+    #f37055,
+    #ff00ed,
+    #a166ab,
+    #1a62ff,
+    #1098ad,
+    #07b39b,
+    #6fba82
+  );
+  border-radius: calc(2 * var(--borderWidth));
+  z-index: -2;
+  animation: animatedgradient 3s ease alternate infinite;
+  -webkit-animation: animatedgradient 3s ease alternate infinite;
+  background-size: 300% 300%;
+  transform: 0.4s ease-in;
+}
+
+.gradient-border:hover {
+  animation-play-state: running;
+  background: #1d1f20;
+}
+
+.card-gradient-2 {
+  border: 1px solid #3968f4;
+  background: linear-gradient(
+    92.38deg,
+    rgba(13, 21, 46, 0.1) -3%,
+    rgba(62, 74, 244, 0.1) 101.4%
+  );
+  border-radius: 0.4rem;
+}
+
 /*  */
 .card {
   position: relative;
@@ -129,4 +274,154 @@ h6 {
   opacity: 15%;
   filter: blur(3rem);
   z-index: -5;
+}
+
+/* --- Timeline --- */
+.roadmap {
+  padding-top: 6rem;
+  padding-bottom: 10rem;
+  background-attachment: fixed;
+}
+
+.phases {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 6rem 0 2rem;
+}
+.phases .arrow {
+  position: absolute;
+  left: 50%;
+  margin-left: 0;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+.phases .arrow.top {
+  top: -1rem;
+}
+.phases .arrow.bottom {
+  bottom: -3rem;
+}
+.phases > h3 {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  margin-left: -1px;
+  padding: 0.3rem 0.6rem;
+  background: linear-gradient(
+    85.52deg,
+    rgba(13, 21, 46, 0.1) -4.48%,
+    rgba(62, 74, 244, 0.1) 105.72%
+  );
+  border: 2px solid #1a62ff;
+  backdrop-filter: blur(80px);
+  border-radius: 0.4rem;
+  transform: translateX(-50%);
+  z-index: 2;
+  font-size: 1rem;
+}
+.phases::after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  background: linear-gradient(
+    270deg,
+    #1a62ff -50%,
+    #1a62ff 44.83%,
+    #1a62ff 137.5%
+  );
+  top: 0;
+  bottom: -2rem;
+  left: 50%;
+  margin-left: -1px;
+}
+.container-t {
+  padding: 0rem 4.5rem 0rem 0rem;
+  position: relative;
+  background: inherit;
+  width: 50%;
+}
+.container-t.left {
+  left: 0;
+}
+.container-t.right {
+  left: 50%;
+  padding: 0rem 0rem 0rem 4.5rem;
+}
+.container-t::after {
+  content: "";
+  position: absolute;
+  width: 0.8rem;
+  height: 0.8rem;
+  top: calc(50% - 0.4rem);
+  right: -0.4rem;
+  background: #1a62ff;
+  border-radius: 0.8rem;
+  z-index: 1;
+  box-shadow: 0 0 0.8rem #1a62ff;
+}
+.container-t.right::after {
+  left: -8px;
+}
+.container-t::before {
+  content: "";
+  position: absolute;
+  width: 5rem;
+  height: 1px;
+  top: calc(50% - 1px);
+  right: 8px;
+  background: #1a62ff;
+  z-index: 1;
+}
+.container-t.right::before {
+  left: 8px;
+}
+.container-t .content {
+  padding: 1rem 1rem;
+  background: linear-gradient(
+    92.38deg,
+    rgba(13, 21, 46, 0.1) -3%,
+    rgba(62, 74, 244, 0.1) 101.4%
+  );
+  backdrop-filter: blur(80px);
+  position: relative;
+  border-radius: 0.5rem;
+  z-index: 2;
+  border: 1px solid #1a62ff;
+  /*   box-shadow: 0px 0px 3px 1px #12a0a0, inset 0px 0px 3px 1px #12a0a0; */
+}
+.content h3 {
+  font-size: 1.05rem;
+  text-align: center;
+}
+.content p {
+  font-size: 0.95rem;
+  color: #d2d2d2;
+  margin-top: 0.8rem;
+}
+/* .container-t.right .content {
+  box-shadow: #f4593e 70 -1px -1px 1px 0px, #f4593e 50 0 1px 1px 0px;
+}
+.container-t.left .content {
+  box-shadow: #f4593e 70 1px -1px 1px 0px, #f4593e 50 0 1px 1px 0px;
+} */
+@media only screen and (max-width: 767px) {
+  .roadmap {
+    padding-top: 6rem;
+    padding-bottom: 10rem;
+    background-attachment: fixed;
+  }
+  .container-t.left {
+    padding: 1rem 1rem 1rem 0;
+  }
+  .container-t.right {
+    padding: 1rem 0rem 1rem 1rem;
+  }
+  .container-t .content {
+    padding: 1rem 1rem;
+  }
+  .content h3 {
+    font-size: 0.95rem;
+  }
 }

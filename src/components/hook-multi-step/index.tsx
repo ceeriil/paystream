@@ -83,17 +83,16 @@ const HookMultiStepForm = () => {
     }
     const isValid = await methods.trigger();
     if (isValid) {
+      console.log("valid");
       setIsTransactionLoading(true);
       const {
         recipient,
-        cancellationRights,
-        transferableRights,
         mint,
         tokenAmount,
         vestingDuration,
         vestingDurationUnit,
         unlockSchedule,
-      } = methods.getValues();
+      } = formData;
 
       const totalAmountInLamports = getBN(tokenAmount, 9);
       const unlockDurationInSeconds = convertDurationToSeconds(
@@ -151,7 +150,10 @@ const HookMultiStepForm = () => {
 
   const handleNext = async () => {
     const isStepValid = await trigger(undefined, { shouldFocus: true });
-    if (isStepValid) setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    if (isStepValid) {
+      console.log("Current Form Values:", methods.getValues());
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    }
   };
 
   const handleBack = () => {

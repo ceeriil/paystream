@@ -15,11 +15,11 @@ const Recipients = () => {
       <h4 className="stepper_step_heading">Recipient Information</h4>
       <div className="stepper_step_container">
         <FloatingLabelInput
-          id="amount"
+          id="tokenAmount"
           label="Amount"
           type="number"
-          {...register("amount", { required: "Required" })}
-          error={errors.amount?.message}
+          {...register("tokenAmount", { required: "Required" })}
+          error={errors.tokenAmount?.message}
         />
 
         <div className="relative">

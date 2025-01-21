@@ -29,7 +29,8 @@ export default async function RootLayout({ children }: ChildrenProps) {
             <ContextProvider>{children}</ContextProvider>
           </QueryProvider>
         </section>
-        <MainFooter />
+        {/*         <MainFooter />
+         */}{" "}
       </body>
     </html>
   );

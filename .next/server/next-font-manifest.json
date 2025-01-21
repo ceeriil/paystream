@@ -11,6 +11,9 @@
     ],
     "[project]/src/app/dashboard/contracts/create/page": [
       "static/media/L0x_DF02iFML4hGCyMqlbS1miXK2-s.p.4e002217.woff2"
+    ],
+    "[project]/src/app/_not-found/page": [
+      "static/media/L0x_DF02iFML4hGCyMqlbS1miXK2-s.p.4e002217.woff2"
     ]
   },
   "appUsingSizeAdjust": true,
