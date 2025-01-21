@@ -14,6 +14,17 @@ import { toast } from "../ui/use-toast";
 import AddressInfo from "./recipients";
 import ApplicantInfo from "./configuration";
 import EmploymentInfo from "./review";
+import { createStream } from "@/services/streamflow";
+import { useWalletInfo } from "@reown/appkit/react";
+import { useAppKitAccount } from "@reown/appkit/react";
+import { getBN } from "@streamflow/stream";
+import {
+  convertDurationToSeconds,
+  getCurrentTimestampInSeconds,
+  returnCancelableBy,
+  returnTransferableBy,
+} from "@/helpers";
+import { BN } from "@streamflow/stream/solana";
 
 function getStepContent(step: number) {
   switch (step) {
@@ -30,10 +41,17 @@ function getStepContent(step: number) {
 
 const HookMultiStepForm = () => {
   const [activeStep, setActiveStep] = useState(1);
+  const { walletInfo } = useWalletInfo();
+  const { address, isConnected, caipAddress, status, embeddedWalletInfo } =
+    useAppKitAccount();
+  const [isTransactionLoading, setIsTransactionLoading] =
+    useState<boolean>(false);
   const [erroredInputName, setErroredInputName] = useState("");
   const methods = useForm<StepperFormValues>({
     mode: "onTouched",
   });
+
+  console.log(useAppKitAccount(), "hii");
 
   const {
     trigger,
@@ -54,52 +72,81 @@ const HookMultiStepForm = () => {
 
   const onSubmit = async (formData: StepperFormValues) => {
     console.log({ formData });
-    // simulate api call
-    await new Promise((resolve, reject) => {
-      setTimeout(() => {
-        // resolve({
-        //   title: "Success",
-        //   description: "Form submitted successfully",
-        // });
-        reject({
-          message: "There was an error submitting form",
-          // message: "Field error",
-          // errorKey: "fullName",
-        });
-      }, 2000);
-    })
-      .then(({ title, description }) => {
-        toast({
-          title,
-          description,
-        });
-      })
-      .catch(({ message: errorMessage, errorKey }) => {
-        if (
-          errorKey &&
-          Object.values(STEPPER_FORM_KEYS)
-            .flatMap((fieldNames) => fieldNames)
-            .includes(errorKey)
-        ) {
-          let erroredStep: number;
-          // get the step number based on input name
-          for (const [key, value] of Object.entries(STEPPER_FORM_KEYS)) {
-            if (value.includes(errorKey as never)) {
-              erroredStep = Number(key);
-            }
-          }
-          // set active step and error
-          setActiveStep(erroredStep);
-          setError(errorKey as StepperFormKeysType, {
-            message: errorMessage,
-          });
-          setErroredInputName(errorKey);
-        } else {
-          setError("root.formError", {
-            message: errorMessage,
-          });
+
+    if (!isConnected) {
+      try {
+        await wallet.connect();
+      } catch (error) {
+        console.error("Wallet connection failed:", error);
+        return;
+      }
+    }
+    const isValid = await methods.trigger();
+    if (isValid) {
+      setIsTransactionLoading(true);
+      const {
+        recipient,
+        cancellationRights,
+        transferableRights,
+        mint,
+        tokenAmount,
+        vestingDuration,
+        vestingDurationUnit,
+        unlockSchedule,
+      } = methods.getValues();
+
+      const totalAmountInLamports = getBN(tokenAmount, 9);
+      const unlockDurationInSeconds = convertDurationToSeconds(
+        1,
+        unlockSchedule
+      );
+      const periodInSeconds = convertDurationToSeconds(
+        vestingDuration,
+        vestingDurationUnit
+      );
+      const numberOfIntervals = periodInSeconds / unlockDurationInSeconds;
+      const amountPerInterval = totalAmountInLamports.div(
+        new BN(numberOfIntervals)
+      );
+      const createStreamParams = {
+        recipient,
+        tokenId:
+          mint !== "Native SOL"
+            ? mint
+            : "So11111111111111111111111111111111111111112",
+        start: getCurrentTimestampInSeconds() + DELAY_IN_SECONDS,
+        amount: totalAmountInLamports,
+        period: unlockDurationInSeconds,
+        cliff: getCurrentTimestampInSeconds() + DELAY_IN_SECONDS,
+        cliffAmount: totalAmountInLamports,
+        amountPerPeriod: totalAmountInLamports,
+        name: "TEST TOKEN LOCK",
+        canTopup: false,
+        cancelableBySender: false,
+        cancelableByRecipient: false,
+        transferableBySender: false,
+        transferableByRecipient: false,
+        automaticWithdrawal: false,
+        withdrawalFrequency: 0,
+        partner: undefined,
+      };
+
+      await createStream(
+        createStreamParams,
+        {
+          sender: wallet as unknown as Keypair,
+          isNative: true,
+        },
+        (stream) => {
+          showMessage(`${stream.txId} created successfully.`, "success");
+          router.push("/");
+        },
+        (error) => {
+          showMessage(`${error}`, "error");
         }
-      });
+      );
+      setIsTransactionLoading(false);
+    }
   };
 
   const handleNext = async () => {
@@ -110,6 +157,10 @@ const HookMultiStepForm = () => {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
+
+  if (isTransactionLoading) {
+    return <div>Loading</div>;
+  }
 
   return (
     <div>
