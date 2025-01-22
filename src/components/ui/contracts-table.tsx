@@ -1,5 +1,6 @@
 import React from "react";
 import { Table } from "./table";
+import { Stream } from "@streamflow/stream";
 
 const dummyData = [
   {
@@ -25,7 +26,7 @@ const dummyData = [
   },
 ];
 
-export const ContractsTable = () => {
+export const ContractsTable = ({ streams }) => {
   return (
     <Table>
       <thead className="uppercase border-b border-[#272727] font-bold">
@@ -48,8 +49,8 @@ export const ContractsTable = () => {
         </tr>
       </thead>
       <tbody className="divide-y divide-[#272727]">
-        {dummyData.map((row, index) => (
-          <tr key={index} className="hover:bg-black">
+        {streams.map(([id, stream]: [string, Stream]) => (
+          <tr key={id} className="hover:bg-black">
             <td className="px-6 py-4 whitespace-nowrap text-sm ">
               {row.unlockedTotal}
             </td>

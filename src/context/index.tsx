@@ -12,7 +12,7 @@ if (!projectId) {
 const metadata = {
   name: "paystream",
   description: "paystream for employees",
-  url: "https://github.com/0xonerb/next-reown-appkit-ssr", // origin must match your domain & subdomain
+  url: "https://github.com/0xoned",
   icons: ["https://avatars.githubusercontent.com/u/179229932"],
 };
 

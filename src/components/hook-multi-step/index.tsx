@@ -15,8 +15,12 @@ import AddressInfo from "./recipients";
 import ApplicantInfo from "./configuration";
 import EmploymentInfo from "./review";
 import { createStream } from "@/services/streamflow";
-import { useWalletInfo } from "@reown/appkit/react";
-import { useAppKitAccount } from "@reown/appkit/react";
+import { useAppKitAccount, useAppKitProvider } from "@reown/appkit/react";
+import {
+  useAppKitConnection,
+  type Provider,
+} from "@reown/appkit-adapter-solana/react";
+
 import { getBN } from "@streamflow/stream";
 import {
   convertDurationToSeconds,
@@ -25,6 +29,8 @@ import {
   returnTransferableBy,
 } from "@/helpers";
 import { BN } from "@streamflow/stream/solana";
+import { useWalletInfo } from "@reown/appkit/react";
+import { WalletProvider } from "@solana/wallet-adapter-react";
 
 function getStepContent(step: number) {
   switch (step) {
@@ -50,11 +56,11 @@ const HookMultiStepForm = () => {
   const methods = useForm<StepperFormValues>({
     mode: "onTouched",
   });
+  const { walletProvider } = useAppKitProvider<Provider>("solana");
 
   console.log(useAppKitAccount(), "hii");
 
   const {
-    trigger,
     handleSubmit,
     setError,
     formState: { isSubmitting, errors },
@@ -62,13 +68,16 @@ const HookMultiStepForm = () => {
 
   // focus errored input on submit
   useEffect(() => {
+    if (walletProvider) {
+      console.log("this iswallet info", walletProvider.publicKey);
+    }
     const erroredInputElement =
       document.getElementsByName(erroredInputName)?.[0];
     if (erroredInputElement instanceof HTMLInputElement) {
       erroredInputElement.focus();
       setErroredInputName("");
     }
-  }, [erroredInputName]);
+  }, [erroredInputName, walletProvider]);
 
   const onSubmit = async (formData: StepperFormValues) => {
     console.log({ formData });
@@ -81,79 +90,79 @@ const HookMultiStepForm = () => {
         return;
       }
     }
-    const isValid = await methods.trigger();
-    if (isValid) {
-      console.log("valid");
-      setIsTransactionLoading(true);
-      const {
-        recipient,
-        mint,
-        tokenAmount,
-        vestingDuration,
-        vestingDurationUnit,
-        unlockSchedule,
-      } = formData;
 
-      const totalAmountInLamports = getBN(tokenAmount, 9);
-      const unlockDurationInSeconds = convertDurationToSeconds(
-        1,
-        unlockSchedule
-      );
-      const periodInSeconds = convertDurationToSeconds(
-        vestingDuration,
-        vestingDurationUnit
-      );
-      const numberOfIntervals = periodInSeconds / unlockDurationInSeconds;
-      const amountPerInterval = totalAmountInLamports.div(
-        new BN(numberOfIntervals)
-      );
-      const createStreamParams = {
-        recipient,
-        tokenId:
-          mint !== "Native SOL"
-            ? mint
-            : "So11111111111111111111111111111111111111112",
-        start: getCurrentTimestampInSeconds() + DELAY_IN_SECONDS,
-        amount: totalAmountInLamports,
-        period: unlockDurationInSeconds,
-        cliff: getCurrentTimestampInSeconds() + DELAY_IN_SECONDS,
-        cliffAmount: totalAmountInLamports,
-        amountPerPeriod: totalAmountInLamports,
-        name: "TEST TOKEN LOCK",
-        canTopup: false,
-        cancelableBySender: false,
-        cancelableByRecipient: false,
-        transferableBySender: false,
-        transferableByRecipient: false,
-        automaticWithdrawal: false,
-        withdrawalFrequency: 0,
-        partner: undefined,
-      };
+    setIsTransactionLoading(true);
+    const {
+      recipient,
+      mint,
+      tokenAmount,
+      vestingDuration,
+      vestingDurationUnit,
+      unlockSchedule,
+    } = formData;
 
-      await createStream(
-        createStreamParams,
-        {
-          sender: wallet as unknown as Keypair,
-          isNative: true,
-        },
-        (stream) => {
-          showMessage(`${stream.txId} created successfully.`, "success");
-          router.push("/");
-        },
-        (error) => {
-          showMessage(`${error}`, "error");
-        }
-      );
-      setIsTransactionLoading(false);
-    }
+    console.log(
+      "hmm",
+      recipient,
+      mint,
+      tokenAmount,
+      vestingDuration,
+      vestingDurationUnit,
+      unlockSchedule
+    );
+
+    const totalAmountInLamports = getBN(tokenAmount, 9);
+    const unlockDurationInSeconds = convertDurationToSeconds(1, unlockSchedule);
+    const periodInSeconds = convertDurationToSeconds(
+      vestingDuration,
+      vestingDurationUnit
+    );
+    const numberOfIntervals = periodInSeconds / unlockDurationInSeconds;
+    const amountPerInterval = totalAmountInLamports.div(
+      new BN(numberOfIntervals)
+    );
+    const createStreamParams = {
+      recipient,
+      tokenId:
+        mint !== "Native SOL"
+          ? mint
+          : "So11111111111111111111111111111111111111112",
+      start: getCurrentTimestampInSeconds() + DELAY_IN_SECONDS,
+      amount: totalAmountInLamports,
+      period: unlockDurationInSeconds,
+      cliff: getCurrentTimestampInSeconds() + DELAY_IN_SECONDS,
+      cliffAmount: totalAmountInLamports,
+      amountPerPeriod: totalAmountInLamports,
+      name: "TEST TOKEN LOCK",
+      canTopup: false,
+      cancelableBySender: false,
+      cancelableByRecipient: false,
+      transferableBySender: false,
+      transferableByRecipient: false,
+      automaticWithdrawal: false,
+      withdrawalFrequency: 0,
+      partner: undefined,
+    };
+
+    await createStream(
+      createStreamParams,
+      {
+        sender: wallet as unknown as Keypair,
+        isNative: true,
+      },
+      (stream) => {
+        showMessage(`${stream.txId} created successfully.`, "success");
+        router.push("/");
+      },
+      (error) => {
+        showMessage(`${error}`, "error");
+      }
+    );
+    setIsTransactionLoading(false);
   };
 
-  const handleNext = async () => {
-    const isStepValid = await trigger(undefined, { shouldFocus: true });
-    if (isStepValid) {
-      console.log("Current Form Values:", methods.getValues());
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    }
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   const handleBack = () => {
