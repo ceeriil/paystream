@@ -1,7 +1,9 @@
 "use client";
 
+import { PaymentChart } from "@/components/Charts/PaymentChart";
 import { DashboardCard } from "@/components/ui/dashboard-card";
 import { BarChart3, Users, CreditCard } from "lucide-react";
+import { Card } from "@/components/ui/card";
 
 export default function DashboardPage() {
   return (
@@ -35,6 +37,10 @@ export default function DashboardPage() {
           percentageChange={19}
         />
       </div>
+
+      <Card>
+        <PaymentChart />
+      </Card>
     </div>
   );
 }

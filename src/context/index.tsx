@@ -26,6 +26,9 @@ export const modal = createAppKit({
   features: {
     analytics: true, // Optional - defaults to your Cloud configuration
   },
+  themeVariables: {
+    "--w3m-font-family": "urbanist",
+  },
 });
 
 function ContextProvider({ children }: { children: ReactNode }) {

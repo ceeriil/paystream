@@ -2,6 +2,7 @@ import React from "react";
 import { Table } from "./table";
 import { useRouter } from "next/navigation";
 import { employees } from "@/data/employees";
+import { Address } from "../Address.tsx";
 
 export const EmployeesTable = () => {
   const router = useRouter();
@@ -48,7 +49,7 @@ export const EmployeesTable = () => {
               {employee.employmentType}
             </td>
             <td className="px-6 py-4 whitespace-nowrap text-sm">
-              {employee.walletAddress}
+              <Address address={employee.walletAddress} type="account" />
             </td>
             <td className="px-6 py-4 whitespace-nowrap text-sm">
               {employee.email}
