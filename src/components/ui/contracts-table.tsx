@@ -2,6 +2,7 @@ import React from "react";
 import { Table } from "./table";
 import { Stream } from "@streamflow/stream";
 import { convertTimestampToFormattedDate, convertBNToNumber } from "@/helpers";
+import { Address } from "../Address.tsx";
 
 const dummyData = [
   {
@@ -60,9 +61,13 @@ export const ContractsTable = ({ streams }) => {
               {convertTimestampToFormattedDate(stream.end)}
             </td>
             <td className="px-6 py-4 whitespace-nowrap text-sm ">
-              {stream.recipient}
+              <Address
+                address={stream.recipient}
+                type="account"
+                length="short"
+              />
             </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm ">Name</td>
+            <td className="px-6 py-4 whitespace-nowrap text-sm ">-</td>
             <td className="px-6 py-4 whitespace-nowrap text-sm ">
               Next Payment
             </td>
