@@ -4,7 +4,7 @@ import { ContractsTable } from "@/components/ui/contracts-table";
 import { useAllStreams } from "@/hooks/useAllStream";
 import { useEffect } from "react";
 
-export default function Contract() {
+export default function Payment() {
   const { streams, fetchStreams, loading, error } = useAllStreams();
   useEffect(() => {
     console.log("stream for account", streams);

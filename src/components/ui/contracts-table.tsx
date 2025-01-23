@@ -3,6 +3,7 @@ import { Table } from "./table";
 import { Stream } from "@streamflow/stream";
 import { convertTimestampToFormattedDate, convertBNToNumber } from "@/helpers";
 import { Address } from "../Address.tsx";
+import Image from "next/image";
 
 const dummyData = [
   {
@@ -54,8 +55,21 @@ export const ContractsTable = ({ streams }) => {
         {streams.map(([id, stream]: [string, Stream]) => (
           <tr key={id} className="hover:bg-black">
             <td className="px-6 py-4 whitespace-nowrap text-sm ">
-              {convertBNToNumber(stream.depositedAmount, 6)}
-              {}
+              <div className="flex ">
+                <Image
+                  src={"/img/token-logo.svg"}
+                  width={20}
+                  height={20}
+                  alt="token logo"
+                />
+                <span className="ml-2">
+                  <span className="font-[600]">
+                    {" "}
+                    {convertBNToNumber(stream.depositedAmount, 6)}
+                  </span>
+                  <span className="text-gray-300"> USDC</span>
+                </span>
+              </div>
             </td>
             <td className="px-6 py-4 whitespace-nowrap text-sm ">
               {convertTimestampToFormattedDate(stream.end)}

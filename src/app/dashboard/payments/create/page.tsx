@@ -41,7 +41,7 @@ export default function CreateContract() {
   return (
     <div className="container mx-auto py-10">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold">Create New Contract</h1>
+        <h1 className="text-2xl font-bold">Create New Payment</h1>
       </div>
 
       <Card className="p-6">

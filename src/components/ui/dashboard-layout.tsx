@@ -8,6 +8,8 @@ import {
   Users,
   Settings,
   LayoutDashboard,
+  BarChart2,
+  CircleDollarSign,
 } from "lucide-react";
 import {
   Sidebar,
@@ -26,6 +28,7 @@ interface NavItem {
   title: string;
   href: string;
   icon: LucideIcon;
+  inactive?: boolean;
 }
 
 const navItems: NavItem[] = [
@@ -35,14 +38,9 @@ const navItems: NavItem[] = [
     icon: LayoutDashboard,
   },
   {
-    title: "Contracts",
-    href: "/dashboard/contracts",
-    icon: Home,
-  },
-  {
     title: "Payments",
-    href: "/payments",
-    icon: Users,
+    href: "/dashboard/payments",
+    icon: CircleDollarSign,
   },
   {
     title: "Employee",
@@ -50,9 +48,15 @@ const navItems: NavItem[] = [
     icon: Users,
   },
   {
+    title: "Stats",
+    href: "/dashboard/stats",
+    icon: BarChart2,
+  },
+  {
     title: "Settings",
     href: "/settings",
     icon: Settings,
+    inactive: true,
   },
 ];
 
@@ -61,10 +65,12 @@ interface DashboardLayoutProps {
 }
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
+  const pathname = usePathname(); // Extracted outside for efficiency
+
   return (
     <SidebarProvider>
-      <div className="flex min-h-screen  w-full ">
-        <Sidebar className="bg-black   border-[#272727]">
+      <div className="flex min-h-screen w-full">
+        <Sidebar className="bg-black border-[#272727]">
           <SidebarHeader>
             <div className="flex h-16 items-center px-6">
               <span className="text-xl font-semibold">PayStream</span>
@@ -73,15 +79,20 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           <SidebarContent>
             <SidebarMenu className="space-y-4 p-4">
               {navItems.map((item) => (
-                <SidebarMenuItem key={item.href} className="px-2 ">
+                <SidebarMenuItem key={item.href} className="px-2">
                   <SidebarMenuButton asChild tooltip={item.title}>
                     <a
-                      href={item.href}
+                      href={item.inactive ? undefined : item.href}
                       className={`flex items-center text-base font-medium p-2 rounded-md transition-all py-5 ${
-                        usePathname() === item.href
-                          ? "btn-gradient text-white"
-                          : "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                        item.inactive
+                          ? "text-gray-500 cursor-not-allowed"
+                          : pathname === item.href
+                            ? "btn-gradient text-white"
+                            : "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
                       }`}
+                      onClick={(e) => {
+                        if (item.inactive) e.preventDefault(); // Disable click for inactive links
+                      }}
                     >
                       <item.icon className="mr-4 h-5 w-5" />
                       <span>{item.title}</span>
@@ -97,7 +108,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             </div>
           </SidebarFooter>
         </Sidebar>
-        <main className="flex-1 overflow-y-auto ">
+        <main className="flex-1 overflow-y-auto">
           <header className="sticky top-0 z-10 border-b border-[#272727]">
             <div className="flex h-14 items-center gap-4 px-6">
               <SidebarTrigger />
