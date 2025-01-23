@@ -3,7 +3,7 @@
 import { useParams, useRouter } from "next/navigation";
 import { DashboardLayout } from "@/components/ui/dashboard-layout";
 import { Card } from "@/components/ui/card";
-import { Avatar } from "@/components/ui/avatar";
+import { DicebearAvatar } from "@/components/ui/dicebear-avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
@@ -46,14 +46,11 @@ export default function EmployeeDetailPage() {
       <Card className="p-6">
         <div className="flex items-start justify-between">
           <div className="flex items-center space-x-4">
-            <Avatar className="h-20 w-20">
-              <div className="font-medium text-xl">
-                {employee.name
-                  .split(" ")
-                  .map((n) => n[0])
-                  .join("")}
-              </div>
-            </Avatar>
+            <DicebearAvatar
+              seed={employee.id}
+              size={80}
+              className="h-20 w-20"
+            />
             <div>
               <h1 className="text-2xl font-bold">{employee.name}</h1>
               <p className="text-gray-500">{employee.email}</p>
