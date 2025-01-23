@@ -1,4 +1,5 @@
 import { PermissionRole, TimeUnit } from "@/types";
+import BN from "bn.js";
 
 export interface TransferPermissions {
   transferableBySender: boolean;
@@ -96,4 +97,29 @@ export const convertDurationToSeconds = (
   };
 
   return duration * (unitToSeconds[unit] || 0);
+};
+
+export const convertTimestampToFormattedDate = (timestamp: number): string => {
+  const date = new Date(timestamp * 1000);
+
+  return date.toLocaleDateString("en-US", {
+    month: "2-digit",
+    day: "2-digit",
+    year: "numeric",
+  });
+};
+
+/**
+ * Convert a BN value to a number with a specified number of decimal places
+ *
+ * @param {BN} bnValue - The BN value to convert
+ * @param {number} decimals - The number of decimal places
+ * @returns {number}
+ */
+export const convertBNToNumber = (bnValue: BN, decimals: number): number => {
+  const divisor = new BN(10).pow(new BN(decimals));
+  const result =
+    bnValue.div(divisor).toNumber() +
+    bnValue.mod(divisor).toNumber() / divisor.toNumber();
+  return Number(result.toFixed(1));
 };

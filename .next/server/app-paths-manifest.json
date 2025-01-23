@@ -3,5 +3,6 @@
   "/_not-found/page": "app/_not-found/page.js",
   "/dashboard/page": "app/dashboard/page.js",
   "/dashboard/contracts/page": "app/dashboard/contracts/page.js",
-  "/dashboard/contracts/create/page": "app/dashboard/contracts/create/page.js"
+  "/dashboard/contracts/create/page": "app/dashboard/contracts/create/page.js",
+  "/dashboard/employees/page": "app/dashboard/employees/page.js"
 }

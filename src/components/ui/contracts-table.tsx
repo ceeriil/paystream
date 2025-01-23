@@ -1,6 +1,7 @@
 import React from "react";
 import { Table } from "./table";
 import { Stream } from "@streamflow/stream";
+import { convertTimestampToFormattedDate, convertBNToNumber } from "@/helpers";
 
 const dummyData = [
   {
@@ -52,19 +53,18 @@ export const ContractsTable = ({ streams }) => {
         {streams.map(([id, stream]: [string, Stream]) => (
           <tr key={id} className="hover:bg-black">
             <td className="px-6 py-4 whitespace-nowrap text-sm ">
-              {row.unlockedTotal}
+              {convertBNToNumber(stream.depositedAmount, 6)}
+              {}
             </td>
             <td className="px-6 py-4 whitespace-nowrap text-sm ">
-              {row.startDate}
+              {convertTimestampToFormattedDate(stream.end)}
             </td>
             <td className="px-6 py-4 whitespace-nowrap text-sm ">
-              {row.recipientAddress}
+              {stream.recipient}
             </td>
+            <td className="px-6 py-4 whitespace-nowrap text-sm ">Name</td>
             <td className="px-6 py-4 whitespace-nowrap text-sm ">
-              {row.recipientName}
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm ">
-              {row.nextPayment}
+              Next Payment
             </td>
           </tr>
         ))}
