@@ -30,9 +30,9 @@ import {
 } from "@/helpers";
 import { BN } from "@streamflow/stream/solana";
 import { WalletProvider } from "@solana/wallet-adapter-react";
-import Recipients from "./recipients";
 import Configuration from "./Configuration";
-import Review from "./review";
+import Review from "./Review";
+import Recipients from "./Recipients";
 
 function getStepContent(step: number) {
   switch (step) {

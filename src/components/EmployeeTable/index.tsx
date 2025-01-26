@@ -1,8 +1,8 @@
 import React from "react";
-import { Table } from "./table";
 import { useRouter } from "next/navigation";
 import { employees } from "@/data/employees";
 import { Address } from "../Address.tsx";
+import { Table } from "../ui/table.jsx";
 
 export const EmployeesTable = () => {
   const router = useRouter();

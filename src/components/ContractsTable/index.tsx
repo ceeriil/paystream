@@ -1,35 +1,11 @@
 import React from "react";
-import { Table } from "./table";
 import { Stream } from "@streamflow/stream";
 import { convertTimestampToFormattedDate, convertBNToNumber } from "@/helpers";
-import { Address } from "../Address.tsx";
 import Image from "next/image";
+import { Address } from "../Address.tsx";
+import { Table } from "../ui/table.jsx";
 
-const dummyData = [
-  {
-    unlockedTotal: "1000 USDC",
-    startDate: "2024-01-15",
-    recipientAddress: "0x1234...5678",
-    recipientName: "John Doe",
-    nextPayment: "2024-02-15",
-  },
-  {
-    unlockedTotal: "2500 USDC",
-    startDate: "2024-01-10",
-    recipientAddress: "0x8765...4321",
-    recipientName: "Jane Smith",
-    nextPayment: "2024-02-10",
-  },
-  {
-    unlockedTotal: "5000 USDC",
-    startDate: "2024-01-01",
-    recipientAddress: "0x9876...1234",
-    recipientName: "Bob Wilson",
-    nextPayment: "2024-02-01",
-  },
-];
-
-export const ContractsTable = ({ streams }) => {
+export const ContractsTable = ({ streams }: { streams: any }) => {
   return (
     <Table>
       <thead className="uppercase border-b border-[#272727] font-bold">

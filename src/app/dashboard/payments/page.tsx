@@ -1,10 +1,10 @@
 "use client";
 import Link from "next/link";
-import { ContractsTable } from "@/components/ui/contracts-table";
 import { useAllStreams } from "@/hooks/useAllStream";
 import { useEffect } from "react";
 import { Spinner } from "@/components/Spinner";
 import { BiError } from "react-icons/bi";
+import { ContractsTable } from "@/components/ContractsTable";
 
 export default function Payment() {
   const { streams, fetchStreams, loading, error } = useAllStreams();

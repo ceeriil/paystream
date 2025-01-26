@@ -1,10 +1,10 @@
 "use client";
 
 import { PaymentChart } from "@/components/Charts/PaymentChart";
-import { DashboardCard } from "@/components/ui/dashboard-card";
 import { BarChart3, Users, CreditCard } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { DashboardCard } from "@/components/DashboardCard";
 
 export default function DashboardPage() {
   return (

@@ -1,7 +1,6 @@
 "use client";
 
 import { useParams, useRouter } from "next/navigation";
-import { DashboardLayout } from "@/components/ui/dashboard-layout";
 import { Card } from "@/components/ui/card";
 import { DicebearAvatar } from "@/components/ui/dicebear-avatar";
 import { Badge } from "@/components/ui/badge";

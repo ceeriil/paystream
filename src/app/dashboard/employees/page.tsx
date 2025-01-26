@@ -1,6 +1,6 @@
 "use client";
-import { AddEmployeeDialog } from "@/components/ui/add-employee-dialog";
-import { EmployeesTable } from "@/components/ui/employees-table";
+import { AddEmployeeDialog } from "@/components/AddEmployeeDialogue";
+import { EmployeesTable } from "@/components/EmployeeTable";
 
 export default function Employees() {
   return (
