@@ -2452,6 +2452,11 @@
     "@json-rpc-tools/types" "^1.7.6"
     "@pedrouid/environment" "^1.0.1"
 
+"@jup-ag/jup-mobile-adapter@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@jup-ag/jup-mobile-adapter/-/jup-mobile-adapter-0.0.1.tgz#1623b3c840d4e4311e89a62850ddf697a6bd87a6"
+  integrity sha512-RdUREyLzwEVry+RQjctxItyqQkRccgJR3d8A+FacEKP8dg6dKOhQzbC6pVXO43uACACTu6GIIIIhZBY1ouT7PQ==
+
 "@keystonehq/alias-sampling@^0.1.1":
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@keystonehq/alias-sampling/-/alias-sampling-0.1.2.tgz#63af931ffe6500aef4c0d87775a5b279189abf8d"
@@ -3367,6 +3372,20 @@
   dependencies:
     "@radix-ui/react-compose-refs" "1.1.1"
 
+"@radix-ui/react-tabs@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-tabs/-/react-tabs-1.1.2.tgz#a72da059593cba30fccb30a226d63af686b32854"
+  integrity sha512-9u/tQJMcC2aGq7KXpGivMm1mgq7oRJKXphDwdypPd/j21j/2znamPU8WkXgnhUaTrSFNIt8XhOyCAupg8/GbwQ==
+  dependencies:
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-direction" "1.1.0"
+    "@radix-ui/react-id" "1.1.0"
+    "@radix-ui/react-presence" "1.1.2"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-roving-focus" "1.1.1"
+    "@radix-ui/react-use-controllable-state" "1.1.0"
+
 "@radix-ui/react-tooltip@^1.1.7":
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-tooltip/-/react-tooltip-1.1.7.tgz#2984dc0374874029b7ea8a1987f23247b3334b2a"
@@ -3485,6 +3504,15 @@
     dayjs "1.11.10"
     viem "2.x"
 
+"@reown/appkit-common@1.6.5":
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/@reown/appkit-common/-/appkit-common-1.6.5.tgz#9a0bd548b3f461225d5128636942969a58f60373"
+  integrity sha512-D/RvPta4O1zxnenRWnWr28JZyvWOUl6ly3WU+CsH7YClAEs064i9BBN5b9h0+tTQ4gmuJZTbF8DPmbdt/MFCKg==
+  dependencies:
+    bignumber.js "9.1.2"
+    dayjs "1.11.10"
+    viem "2.x"
+
 "@reown/appkit-core@1.6.4":
   version "1.6.4"
   resolved "https://registry.yarnpkg.com/@reown/appkit-core/-/appkit-core-1.6.4.tgz#d952113762de5bf998ea74e4e86500c8457483ca"
@@ -3496,10 +3524,28 @@
     valtio "1.11.2"
     viem "2.x"
 
+"@reown/appkit-core@1.6.5":
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/@reown/appkit-core/-/appkit-core-1.6.5.tgz#f770bdb67a54dad52ecea4efddb83a28e173ff5d"
+  integrity sha512-vHuwDqpr0Bj2l+PXE/Kdcv62bEfTuOb+kIGZI2ztwOTBminvxWwi6LlAz5q3pgoCRI72lO+t6gdufETNcadZEw==
+  dependencies:
+    "@reown/appkit-common" "1.6.5"
+    "@reown/appkit-wallet" "1.6.5"
+    "@walletconnect/universal-provider" "2.17.5"
+    valtio "1.11.2"
+    viem "2.x"
+
 "@reown/appkit-polyfills@1.6.4":
   version "1.6.4"
   resolved "https://registry.yarnpkg.com/@reown/appkit-polyfills/-/appkit-polyfills-1.6.4.tgz#f00f772a4ec4247cc3837bf4f6ef65bd40f6b26a"
   integrity sha512-JF4ypel+k6S108xTDwQVzouFqHCHSmItX6OcGf/MU+1VhIEQO9xxZV5ee2IVPtmgdgireNREPXr+VOepMNKBsQ==
+  dependencies:
+    buffer "6.0.3"
+
+"@reown/appkit-polyfills@1.6.5":
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/@reown/appkit-polyfills/-/appkit-polyfills-1.6.5.tgz#488671f2ca15dae3ffe34585a70f5a7eb95c282b"
+  integrity sha512-UsJOeiuRu8zcDo5WojwcOq/sOQLkI00RsJaQu8tWJAd0jt4vhr6TdUkG5hkvbognihRwz4x8EY3UhaJagK2F0w==
   dependencies:
     buffer "6.0.3"
 
@@ -3537,6 +3583,14 @@
     lit "3.1.0"
     qrcode "1.5.3"
 
+"@reown/appkit-ui@1.6.5":
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/@reown/appkit-ui/-/appkit-ui-1.6.5.tgz#7b3bb45b2b496b8b0d8f90e87a6a2c8ee17c0699"
+  integrity sha512-C+3AbmqoTQPinYKS7a6LEX0RdXDtroNVXbsKzo1r6BxFWGzHRBvyWn9CezqxbDLRCMVu3sYnXsNZboXU1L6ycg==
+  dependencies:
+    lit "3.1.0"
+    qrcode "1.5.3"
+
 "@reown/appkit-utils@1.6.4":
   version "1.6.4"
   resolved "https://registry.yarnpkg.com/@reown/appkit-utils/-/appkit-utils-1.6.4.tgz#6f67ad360abdac5e76f5bc17bd78b56c036d6043"
@@ -3551,6 +3605,32 @@
     valtio "1.11.2"
     viem "2.x"
 
+"@reown/appkit-utils@1.6.5":
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/@reown/appkit-utils/-/appkit-utils-1.6.5.tgz#853d26cf3a2b47c5716923362c8bf0ae8ecb1741"
+  integrity sha512-PhiEvogcDqlD/8l7ds9AAZuaPUu62b5PSshQ+RXygXbcZLyJ/rSIYifCHlEPQvkQXOOjV1ZJ4J1eM4TeCMvjrg==
+  dependencies:
+    "@reown/appkit-common" "1.6.5"
+    "@reown/appkit-core" "1.6.5"
+    "@reown/appkit-polyfills" "1.6.5"
+    "@reown/appkit-wallet" "1.6.5"
+    "@walletconnect/logger" "2.1.2"
+    "@walletconnect/universal-provider" "2.17.5"
+    valtio "1.11.2"
+    viem "2.x"
+
+"@reown/appkit-wallet-button@^1.6.5":
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/@reown/appkit-wallet-button/-/appkit-wallet-button-1.6.5.tgz#2b20bc36a5097bf89f17b1ed238d79548741df91"
+  integrity sha512-feCjBtj4YDu8WhKfdL3yfAOHfnhcNoyXTUXHWDsvb6Yc00Ak6U1cK+sSI5ggU3od5EwGbzCz0oLEis4Ez2lICg==
+  dependencies:
+    "@reown/appkit-common" "1.6.5"
+    "@reown/appkit-core" "1.6.5"
+    "@reown/appkit-ui" "1.6.5"
+    "@reown/appkit-utils" "1.6.5"
+    lit "3.1.0"
+    valtio "1.11.2"
+
 "@reown/appkit-wallet@1.6.4":
   version "1.6.4"
   resolved "https://registry.yarnpkg.com/@reown/appkit-wallet/-/appkit-wallet-1.6.4.tgz#cb12f9c673c7ae35b63e0f2e306b119bb9530339"
@@ -3558,6 +3638,16 @@
   dependencies:
     "@reown/appkit-common" "1.6.4"
     "@reown/appkit-polyfills" "1.6.4"
+    "@walletconnect/logger" "2.1.2"
+    zod "3.22.4"
+
+"@reown/appkit-wallet@1.6.5":
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/@reown/appkit-wallet/-/appkit-wallet-1.6.5.tgz#567dd3802b99d33dea6976a6d4d9d0f4d1401feb"
+  integrity sha512-3o0+W/JP4rFpPInp4ScNLvr0N++98ErJIjQYjws6fP2KftQAkjUCGeMvYbVXf7sxh3Xu/WkN94SppOZ/WsBWBg==
+  dependencies:
+    "@reown/appkit-common" "1.6.5"
+    "@reown/appkit-polyfills" "1.6.5"
     "@walletconnect/logger" "2.1.2"
     zod "3.22.4"
 
@@ -5730,6 +5820,29 @@
     lodash.isequal "4.5.0"
     uint8arrays "3.1.0"
 
+"@walletconnect/core@2.17.5":
+  version "2.17.5"
+  resolved "https://registry.yarnpkg.com/@walletconnect/core/-/core-2.17.5.tgz#591e046e876a736beb678dd2648b22688199d60d"
+  integrity sha512-m4rcW7QbO7pTV1C+UwOlTpUT9sjGxMs3DcFQ/QmayGPh1MYCC2S42ZTRswMWWqoHIhRjfxlNpO14UD3j0ya6sg==
+  dependencies:
+    "@walletconnect/heartbeat" "1.2.2"
+    "@walletconnect/jsonrpc-provider" "1.0.14"
+    "@walletconnect/jsonrpc-types" "1.0.4"
+    "@walletconnect/jsonrpc-utils" "1.0.8"
+    "@walletconnect/jsonrpc-ws-connection" "1.0.16"
+    "@walletconnect/keyvaluestorage" "1.1.1"
+    "@walletconnect/logger" "2.1.2"
+    "@walletconnect/relay-api" "1.0.11"
+    "@walletconnect/relay-auth" "1.0.4"
+    "@walletconnect/safe-json" "1.0.2"
+    "@walletconnect/time" "1.0.2"
+    "@walletconnect/types" "2.17.5"
+    "@walletconnect/utils" "2.17.5"
+    "@walletconnect/window-getters" "1.0.1"
+    events "3.3.0"
+    lodash.isequal "4.5.0"
+    uint8arrays "3.1.0"
+
 "@walletconnect/environment@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@walletconnect/environment/-/environment-1.0.1.tgz#1d7f82f0009ab821a2ba5ad5e5a7b8ae3b214cd7"
@@ -5890,6 +6003,21 @@
     "@walletconnect/utils" "2.17.2"
     events "3.3.0"
 
+"@walletconnect/sign-client@2.17.5":
+  version "2.17.5"
+  resolved "https://registry.yarnpkg.com/@walletconnect/sign-client/-/sign-client-2.17.5.tgz#3ceaed06d542b17825a558fef480bc08c49821f9"
+  integrity sha512-5NJ8/BAOlP3runG0++YqWdiNygd0LtHls0LfBa/I+sYpYDMjQaMc18ISqKK9wlIws7rI+UZIGxZphg2N050V7A==
+  dependencies:
+    "@walletconnect/core" "2.17.5"
+    "@walletconnect/events" "1.0.1"
+    "@walletconnect/heartbeat" "1.2.2"
+    "@walletconnect/jsonrpc-utils" "1.0.8"
+    "@walletconnect/logger" "2.1.2"
+    "@walletconnect/time" "1.0.2"
+    "@walletconnect/types" "2.17.5"
+    "@walletconnect/utils" "2.17.5"
+    events "3.3.0"
+
 "@walletconnect/sign-client@^2.7.2":
   version "2.17.4"
   resolved "https://registry.yarnpkg.com/@walletconnect/sign-client/-/sign-client-2.17.4.tgz#0717bbd9730afce09baee570d7fb3518c0bd8314"
@@ -5936,6 +6064,18 @@
     "@walletconnect/logger" "2.1.2"
     events "3.3.0"
 
+"@walletconnect/types@2.17.5":
+  version "2.17.5"
+  resolved "https://registry.yarnpkg.com/@walletconnect/types/-/types-2.17.5.tgz#be0cdfdb0e53d4d9398cf7a55fcd8ab82a509cda"
+  integrity sha512-fFddisuI7B58bY8GKA2e1jZ/o+kh7aQDFohERA1Rot6s9lRepG2w4eR0UDVSldS9hdJS9l7MzCAvEZeHksMaRg==
+  dependencies:
+    "@walletconnect/events" "1.0.1"
+    "@walletconnect/heartbeat" "1.2.2"
+    "@walletconnect/jsonrpc-types" "1.0.4"
+    "@walletconnect/keyvaluestorage" "1.1.1"
+    "@walletconnect/logger" "2.1.2"
+    events "3.3.0"
+
 "@walletconnect/types@^1.8.0":
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/@walletconnect/types/-/types-1.8.0.tgz#3f5e85b2d6b149337f727ab8a71b8471d8d9a195"
@@ -5956,6 +6096,24 @@
     "@walletconnect/sign-client" "2.17.2"
     "@walletconnect/types" "2.17.2"
     "@walletconnect/utils" "2.17.2"
+    events "3.3.0"
+    lodash "4.17.21"
+
+"@walletconnect/universal-provider@2.17.5":
+  version "2.17.5"
+  resolved "https://registry.yarnpkg.com/@walletconnect/universal-provider/-/universal-provider-2.17.5.tgz#ec00bed7b71d5e1b203eaa2b80a3b39352ceac2e"
+  integrity sha512-opxFdJWzOZz6LwKAXk5gxqzPT7kdgNH5fyjQ45Q2cseLr5f9uR1JREAQA2stSNCPY4Yk7bxCxSLN6djzpfykgA==
+  dependencies:
+    "@walletconnect/events" "1.0.1"
+    "@walletconnect/jsonrpc-http-connection" "1.0.8"
+    "@walletconnect/jsonrpc-provider" "1.0.14"
+    "@walletconnect/jsonrpc-types" "1.0.4"
+    "@walletconnect/jsonrpc-utils" "1.0.8"
+    "@walletconnect/keyvaluestorage" "1.1.1"
+    "@walletconnect/logger" "2.1.2"
+    "@walletconnect/sign-client" "2.17.5"
+    "@walletconnect/types" "2.17.5"
+    "@walletconnect/utils" "2.17.5"
     events "3.3.0"
     lodash "4.17.21"
 
@@ -6009,6 +6167,31 @@
     detect-browser "5.3.0"
     elliptic "6.6.1"
     query-string "7.1.3"
+    uint8arrays "3.1.0"
+
+"@walletconnect/utils@2.17.5":
+  version "2.17.5"
+  resolved "https://registry.yarnpkg.com/@walletconnect/utils/-/utils-2.17.5.tgz#4d1eace920dfae51b13f4209a57e77a5eb18774a"
+  integrity sha512-3qBeAuEeYw/xbonhK1wC+j1y5I9Fn5qX3D5jW5SuTd1d4SsRSzgUi7SFCFwU1u4LitkEae16FNmTOk4lrrXY3g==
+  dependencies:
+    "@ethersproject/hash" "5.7.0"
+    "@ethersproject/transactions" "5.7.0"
+    "@stablelib/chacha20poly1305" "1.0.1"
+    "@stablelib/hkdf" "1.0.1"
+    "@stablelib/random" "1.0.2"
+    "@stablelib/sha256" "1.0.1"
+    "@stablelib/x25519" "1.0.3"
+    "@walletconnect/jsonrpc-utils" "1.0.8"
+    "@walletconnect/keyvaluestorage" "1.1.1"
+    "@walletconnect/relay-api" "1.0.11"
+    "@walletconnect/relay-auth" "1.0.4"
+    "@walletconnect/safe-json" "1.0.2"
+    "@walletconnect/time" "1.0.2"
+    "@walletconnect/types" "2.17.5"
+    "@walletconnect/window-getters" "1.0.1"
+    "@walletconnect/window-metadata" "1.0.1"
+    detect-browser "5.3.0"
+    elliptic "6.6.1"
     uint8arrays "3.1.0"
 
 "@walletconnect/window-getters@1.0.0":

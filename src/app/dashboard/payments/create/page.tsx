@@ -1,10 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Stepper } from "@/components/ui/stepper";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import HookMultiStepForm from "@/components/hook-multi-step";
+import PaymentStepperForm from "@/components/PaymentStepperForm";
 
 type StepStatus = "complete" | "current" | "upcoming";
 
@@ -21,23 +19,6 @@ const steps: Step[] = [
 ];
 
 export default function CreateContract() {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [stepStatus, setStepStatus] = useState(steps);
-
-  const updateStepStatus = (step: number) => {
-    const newStatus = stepStatus.map((s) => ({
-      ...s,
-      status:
-        s.id < step
-          ? ("complete" as const)
-          : s.id === step
-            ? ("current" as const)
-            : ("upcoming" as const),
-    }));
-    setStepStatus(newStatus);
-    setCurrentStep(step);
-  };
-
   return (
     <div className="container mx-auto py-10">
       <div className="mb-8">
@@ -45,7 +26,7 @@ export default function CreateContract() {
       </div>
 
       <Card className="p-6">
-        <HookMultiStepForm />
+        <PaymentStepperForm />
       </Card>
     </div>
   );

@@ -46,7 +46,9 @@ export function DashboardCard({
         </div>
         <div>
           <p className="text-base font-medium text-muted-foreground">{label}</p>
-          <h2 className="text-4xl font-bold mt-4 mb-1">{value}</h2>
+          <h2 className="text-4xl font-bold mt-4 mb-1 gradient-text">
+            {value}
+          </h2>
           <p
             className={`text-xs ${percentageChange >= 0 ? "text-[#00B85E]" : "text-red-500"}`}
           >

@@ -11,15 +11,15 @@ import StepperIndicator from "../ui/stepper-indicator";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import { Button } from "../ui/button";
 import { toast } from "../ui/use-toast";
-import AddressInfo from "./recipients";
-import ApplicantInfo from "./configuration";
-import EmploymentInfo from "./review";
+import ApplicantInfo from "./Configuration";
 import { createStream } from "@/services/streamflow";
 import { useAppKitAccount, useAppKitProvider } from "@reown/appkit/react";
 import {
   useAppKitConnection,
   type Provider,
 } from "@reown/appkit-adapter-solana/react";
+import { useWalletInfo } from "@reown/appkit/react";
+import { Keypair } from "@solana/web3.js";
 
 import { getBN } from "@streamflow/stream";
 import {
@@ -29,23 +29,25 @@ import {
   returnTransferableBy,
 } from "@/helpers";
 import { BN } from "@streamflow/stream/solana";
-import { useWalletInfo } from "@reown/appkit/react";
 import { WalletProvider } from "@solana/wallet-adapter-react";
+import Recipients from "./recipients";
+import Configuration from "./Configuration";
+import Review from "./review";
 
 function getStepContent(step: number) {
   switch (step) {
     case 1:
-      return <ApplicantInfo />;
+      return <Configuration />;
     case 2:
-      return <AddressInfo />;
+      return <Recipients />;
     case 3:
-      return <EmploymentInfo />;
+      return <Review />;
     default:
       return "Unknown step";
   }
 }
 
-const HookMultiStepForm = () => {
+const PaymentStepperForm = () => {
   const [activeStep, setActiveStep] = useState(1);
   const { walletInfo } = useWalletInfo();
   const { address, isConnected, caipAddress, status, embeddedWalletInfo } =
@@ -147,7 +149,7 @@ const HookMultiStepForm = () => {
     await createStream(
       createStreamParams,
       {
-        sender: wallet as unknown as Keypair,
+        sender: walletInfo as unknown as Keypair,
         isNative: true,
       },
       (stream) => {
@@ -221,4 +223,4 @@ const HookMultiStepForm = () => {
   );
 };
 
-export default HookMultiStepForm;
+export default PaymentStepperForm;

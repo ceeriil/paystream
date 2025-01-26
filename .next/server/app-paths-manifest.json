@@ -5,5 +5,6 @@
   "/dashboard/employees/[id]/page": "app/dashboard/employees/[id]/page.js",
   "/dashboard/page": "app/dashboard/page.js",
   "/dashboard/payments/page": "app/dashboard/payments/page.js",
-  "/page": "app/page.js"
+  "/page": "app/page.js",
+  "/dashboard/payments/create/page": "app/dashboard/payments/create/page.js"
 }

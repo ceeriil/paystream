@@ -5,7 +5,7 @@ import { Urbanist } from "next/font/google";
 import MainFooter from "@/components/Footer";
 import { QueryProvider } from "@/providers/query";
 import type { ChildrenProps } from "@/types";
-import ContextProvider from "@/context";
+import { ContextProvider } from "@/context";
 
 export const metadata = {
   title: "Paystream",

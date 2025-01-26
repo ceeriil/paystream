@@ -20,9 +20,9 @@ const Review = () => {
 
   // Calculate amount per period
   const amountPerPeriod =
-    typeof formValues.amount === "number" &&
+    typeof formValues.tokenAmount === "number" &&
     typeof formValues.duration === "number"
-      ? formValues.amount / formValues.duration
+      ? formValues.tokenAmount / formValues.duration
       : 0;
 
   function getDurationInMs(unit: string | undefined): number {
@@ -67,8 +67,8 @@ const Review = () => {
               Amount
             </label>
             <p className="text-lg">
-              {typeof formValues.amount === "number"
-                ? `${formValues.amount} ${formValues.token}`
+              {typeof formValues.tokenAmount === "number"
+                ? `${formValues.tokenAmount} ${formValues.token}`
                 : "-"}
             </p>
           </div>
@@ -77,8 +77,8 @@ const Review = () => {
               Total Amount
             </label>
             <p className="text-lg">
-              {typeof formValues.amount === "number"
-                ? `${formValues.amount} ${formValues.token}`
+              {typeof formValues.tokenAmount === "number"
+                ? `${formValues.tokenAmount} ${formValues.token}`
                 : "-"}
             </p>
           </div>

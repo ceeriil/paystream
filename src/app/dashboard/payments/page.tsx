@@ -3,6 +3,8 @@ import Link from "next/link";
 import { ContractsTable } from "@/components/ui/contracts-table";
 import { useAllStreams } from "@/hooks/useAllStream";
 import { useEffect } from "react";
+import { Spinner } from "@/components/Spinner";
+import { BiError } from "react-icons/bi";
 
 export default function Payment() {
   const { streams, fetchStreams, loading, error } = useAllStreams();
@@ -11,7 +13,12 @@ export default function Payment() {
   });
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return (
+      <div className="flex items-center justify-center mt-[4rem] font-bold text-gray-400 flex-col">
+        <BiError className="text-[6rem] mb-3" />
+        Error: {error.message}
+      </div>
+    );
   }
 
   if (loading) {
@@ -19,7 +26,7 @@ export default function Payment() {
       <div
         style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}
       >
-        Loading
+        <Spinner />
       </div>
     );
   }
@@ -33,7 +40,7 @@ export default function Payment() {
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-semibold">Contracts</h1>
         <Link
-          href="/dashboard/contracts/create"
+          href="/dashboard/payments/create"
           className="btn-gradient px-4 py-3 rounded-xl font-medium text-sm"
         >
           Create Contract

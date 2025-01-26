@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import {
-  LineChart,
-  Line,
+  AreaChart,
+  Area,
   XAxis,
   YAxis,
   Tooltip,
@@ -19,6 +19,7 @@ import {
 } from "../ui/tooltip";
 import { RefreshCw, Loader2 } from "lucide-react";
 import numeral from "numeral";
+import { Card } from "../ui/card";
 
 interface SalaryChartProps {
   timerange: "1d" | "1w" | "1m";
@@ -68,12 +69,15 @@ export function PaymentChart({ timerange }: SalaryChartProps) {
       });
 
       return (
-        <div className="bg-black p-2 py-3 rounded shadow-lg border border-[ffffff80]">
-          <p className="text-gray-300 text-xs mb-1">{formattedDate}</p>
-          <p className="text-white font-medium text-xs">{`Total Amount: $${numeral(
-            payload[0].value
-          ).format("0,0")}`}</p>
-        </div>
+        <Card className="bg-black p-3 rounded-lg shadow-lg border border-[ffffff80] items-center text-center">
+          <p className="text-gray-300 text-sm mb-2">{formattedDate}</p>
+          <p className="text-gray-400 font-medium text-sm bg-[#ffffff16] p-3 py-1 rounded-lg">
+            Total Amount
+            <span className="text-white text-lg ml-2">
+              {`$${numeral(payload[0].value).format("0,0")}`}
+            </span>
+          </p>
+        </Card>
       );
     }
     return null;
@@ -103,51 +107,54 @@ export function PaymentChart({ timerange }: SalaryChartProps) {
   };
 
   return (
-    <div className="relative h-[350px] mt-20">
+    <div className="relative h-[320px] mt-4 mb-6">
       {isLoading && (
         <div className="absolute inset-0 bg-[#00000050] backdrop-blur-[2px] flex items-center justify-center z-10">
           <Loader2 className="h-6 w-6 animate-spin text-[#4f46e5]" />
         </div>
       )}
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart
+        <AreaChart
           data={data}
-          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          margin={{ top: 5, right: 10, left: 10, bottom: 5 }}
           onMouseDown={(e) => e && setRefAreaLeft(e.activeLabel || "")}
           onMouseMove={(e) =>
             e && refAreaLeft && setRefAreaRight(e.activeLabel || "")
           }
           onMouseUp={zoomIn}
         >
+          <defs>
+            <linearGradient id="colorAmount" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#4f46e5" stopOpacity={0.3} />
+              <stop offset="95%" stopColor="#4f46e5" stopOpacity={0} />
+            </linearGradient>
+          </defs>
           <XAxis
             dataKey="date"
             allowDataOverflow={true}
             domain={[left, right]}
             type="number"
-            tick={{ fill: "#888", fontSize: 10 }}
-            tickLine={{ stroke: "#888" }}
-            axisLine={{ stroke: "#888" }}
+            tick={{ fill: "#9096A2", fontSize: 12 }}
+            tickLine={{ stroke: "#88800000" }}
+            axisLine={{ stroke: "#88800000" }}
             tickFormatter={formatXAxis}
             interval={0}
           />
           <YAxis
             yAxisId="1"
+            hide={true}
             allowDataOverflow={true}
-            domain={["dataMin", "dataMax"]}
+            domain={[(dataMin: number) => dataMin * 0.01, "dataMax"]}
             type="number"
-            tick={{ fill: "#888", fontSize: 10 }}
-            tickLine={{ stroke: "#888" }}
-            axisLine={{ stroke: "#888" }}
-            tickFormatter={formatYAxis}
           />
           <Tooltip content={<CustomTooltip />} />
-          <Line
+          <Area
             yAxisId="1"
             type="monotone"
             dataKey="amount"
-            stroke="#4f46e5"
-            strokeWidth={1.5}
-            dot={false}
+            stroke="#EA1BEF"
+            strokeWidth={2.5}
+            fill="url(#colorAmount)"
             activeDot={{ r: 6 }}
           />
           {refAreaLeft && refAreaRight ? (
@@ -158,7 +165,7 @@ export function PaymentChart({ timerange }: SalaryChartProps) {
               strokeOpacity={0.3}
             />
           ) : null}
-        </LineChart>
+        </AreaChart>
       </ResponsiveContainer>
     </div>
   );

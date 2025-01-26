@@ -108,7 +108,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             </div>
           </SidebarFooter>
         </Sidebar>
-        <main className="flex-1 overflow-y-auto">
+        <main className="flex-1 overflow-y-auto bg-black">
           <header className="sticky top-0 z-10 border-b border-[#272727]">
             <div className="flex h-14 items-center gap-4 px-6">
               <SidebarTrigger />
@@ -116,7 +116,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               <ConnectButton />
             </div>
           </header>
-          <div className="container mx-auto p-6 px-12">{children}</div>
+          <div className="container mx-auto p-6 px-12 pb-12">{children}</div>
         </main>
       </div>
     </SidebarProvider>

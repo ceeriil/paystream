@@ -276,6 +276,14 @@ h6 {
   z-index: -5;
 }
 
+.card-lg::after {
+  width: 16rem;
+  height: 12rem;
+  right: 50%;
+  filter: blur(4rem);
+  opacity: 10%;
+}
+
 /* --- Timeline --- */
 .roadmap {
   padding-top: 6rem;
@@ -400,12 +408,7 @@ h6 {
   color: #d2d2d2;
   margin-top: 0.8rem;
 }
-/* .container-t.right .content {
-  box-shadow: #f4593e 70 -1px -1px 1px 0px, #f4593e 50 0 1px 1px 0px;
-}
-.container-t.left .content {
-  box-shadow: #f4593e 70 1px -1px 1px 0px, #f4593e 50 0 1px 1px 0px;
-} */
+
 @media only screen and (max-width: 767px) {
   .roadmap {
     padding-top: 6rem;
@@ -424,4 +427,45 @@ h6 {
   .content h3 {
     font-size: 0.95rem;
   }
+}
+
+/* ------Loader ---- */
+
+.lds-ellipsis {
+  color: #9d9dad;
+}
+.lds-ellipsis,
+.lds-ellipsis div {
+  box-sizing: border-box;
+}
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 5rem;
+  height: 1rem;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 0.25rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: currentColor;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 0.5rem;
+  animation: lds-ellipsis1 0.4s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 0.5rem;
+  animation: lds-ellipsis2 0.4s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 2rem;
+  animation: lds-ellipsis2 0.4s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 3.5rem;
+  animation: lds-ellipsis3 0.4s infinite;
 }
