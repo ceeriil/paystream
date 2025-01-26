@@ -3,7 +3,7 @@ import { Stream } from "@streamflow/stream";
 import { convertTimestampToFormattedDate, convertBNToNumber } from "@/helpers";
 import Image from "next/image";
 import { Address } from "../Address.tsx";
-import { Table } from "../ui/table.jsx";
+import { Table } from "../ui/table";
 
 export const ContractsTable = ({ streams }: { streams: any }) => {
   return (

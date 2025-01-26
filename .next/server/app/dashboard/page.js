@@ -7,7 +7,7 @@ runtime.loadChunk("server/chunks/ssr/[root of the server]__d14147._.js");
 runtime.loadChunk("server/chunks/ssr/src_app_error_tsx_2c8330._.js");
 runtime.loadChunk("server/chunks/ssr/src_app_loading_tsx_1f4435._.js");
 runtime.loadChunk("server/chunks/ssr/src_app_not-found_tsx_fff786._.js");
-runtime.loadChunk("server/chunks/ssr/src_927292._.js");
+runtime.loadChunk("server/chunks/ssr/src_de582a._.js");
 runtime.loadChunk("server/chunks/ssr/_88591d._.js");
 runtime.getOrInstantiateRuntimeModule("[project]/.next-internal/server/app/dashboard/page/actions.js [app-rsc] (ecmascript)", CHUNK_PUBLIC_PATH);
 module.exports = runtime.getOrInstantiateRuntimeModule("[project]/node_modules/next/dist/esm/build/templates/app-page.js?page=/dashboard/page { MODULE_0 => \"[project]/src/app/layout.tsx [app-rsc] (ecmascript, Next.js server component)\", MODULE_1 => \"[project]/src/app/error.tsx [app-rsc] (ecmascript, Next.js server component)\", MODULE_2 => \"[project]/src/app/loading.tsx [app-rsc] (ecmascript, Next.js server component)\", MODULE_3 => \"[project]/src/app/not-found.tsx [app-rsc] (ecmascript, Next.js server component)\", MODULE_4 => \"[project]/src/app/dashboard/layout.tsx [app-rsc] (ecmascript, Next.js server component)\", MODULE_5 => \"[project]/src/app/dashboard/page.tsx [app-rsc] (ecmascript, Next.js server component)\" } [app-rsc] (ecmascript)", CHUNK_PUBLIC_PATH).exports;

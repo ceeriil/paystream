@@ -12,26 +12,26 @@ export const ArrowLink = () => {
       <path
         d="M17.3178 17.8335H3.56908"
         stroke="white"
-        stroke-width="1.45575"
-        stroke-miterlimit="10"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.45575"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M16.1047 2.87165L4.78219 14.1941"
         stroke="white"
-        stroke-width="1.45575"
-        stroke-miterlimit="10"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.45575"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M16.1047 11.1775V2.87165L7.79883 2.87165"
         stroke="white"
-        stroke-width="1.45575"
-        stroke-miterlimit="10"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.45575"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { employees } from "@/data/employees";
 import { Address } from "../Address.tsx";
-import { Table } from "../ui/table.jsx";
+import { Table } from "../ui/table";
 
 export const EmployeesTable = () => {
   const router = useRouter();
