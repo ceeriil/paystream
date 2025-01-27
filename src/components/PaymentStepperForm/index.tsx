@@ -20,6 +20,8 @@ import {
 } from "@reown/appkit-adapter-solana/react";
 import { useWalletInfo } from "@reown/appkit/react";
 import { Keypair } from "@solana/web3.js";
+import { DELAY_IN_SECONDS } from "@/constants";
+import { TimeUnit } from "@/types";
 
 import { getBN } from "@streamflow/stream";
 import {
@@ -86,7 +88,7 @@ const PaymentStepperForm = () => {
 
     if (!isConnected) {
       try {
-        await wallet.connect();
+        await walletProvider.connect;
       } catch (error) {
         console.error("Wallet connection failed:", error);
         return;
@@ -95,39 +97,42 @@ const PaymentStepperForm = () => {
 
     setIsTransactionLoading(true);
     const {
-      recipient,
-      mint,
+      recipientWallet,
+      token,
       tokenAmount,
-      vestingDuration,
-      vestingDurationUnit,
+      duration,
+      durationUnit,
       unlockSchedule,
     } = formData;
 
     console.log(
       "hmm",
-      recipient,
-      mint,
+      recipientWallet,
+      token,
       tokenAmount,
-      vestingDuration,
-      vestingDurationUnit,
+      duration,
+      durationUnit,
       unlockSchedule
     );
 
-    const totalAmountInLamports = getBN(tokenAmount, 9);
-    const unlockDurationInSeconds = convertDurationToSeconds(1, unlockSchedule);
+    const totalAmountInLamports = getBN(Number(tokenAmount), 9);
+    const unlockDurationInSeconds = convertDurationToSeconds(
+      1,
+      unlockSchedule as TimeUnit
+    );
     const periodInSeconds = convertDurationToSeconds(
-      vestingDuration,
-      vestingDurationUnit
+      duration,
+      durationUnit as TimeUnit
     );
     const numberOfIntervals = periodInSeconds / unlockDurationInSeconds;
     const amountPerInterval = totalAmountInLamports.div(
       new BN(numberOfIntervals)
     );
     const createStreamParams = {
-      recipient,
+      recipient: recipientWallet,
       tokenId:
-        mint !== "Native SOL"
-          ? mint
+        token !== "Native SOL"
+          ? token
           : "So11111111111111111111111111111111111111112",
       start: getCurrentTimestampInSeconds() + DELAY_IN_SECONDS,
       amount: totalAmountInLamports,
@@ -146,10 +151,12 @@ const PaymentStepperForm = () => {
       partner: undefined,
     };
 
+    console.log("createStreamParams", createStreamParams, "stream ready");
+
     await createStream(
       createStreamParams,
       {
-        sender: walletInfo as unknown as Keypair,
+        sender: walletProvider as unknown as Keypair,
         isNative: true,
       },
       (stream) => {

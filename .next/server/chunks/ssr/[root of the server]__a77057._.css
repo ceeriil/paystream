@@ -1353,6 +1353,11 @@ img, video {
   border-color: rgb(26 98 255 / var(--tw-border-opacity, 1));
 }
 
+.border-\[\#262626\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(38 38 38 / var(--tw-border-opacity, 1));
+}
+
 .border-\[\#272727\] {
   --tw-border-opacity: 1;
   border-color: rgb(39 39 39 / var(--tw-border-opacity, 1));

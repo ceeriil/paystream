@@ -43,7 +43,7 @@ const Review = () => {
   return (
     <div>
       <h4 className="stepper_step_heading">Review Contract</h4>
-      <div className="stepper_step_container space-y-6">
+      <div className="stepper_step_container">
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="text-sm font-medium text-muted-foreground">
@@ -64,35 +64,23 @@ const Review = () => {
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="text-sm font-medium text-muted-foreground">
+              Amount per {formValues.durationUnit || "period"}
+            </label>
+            <p className="text-lg">
+              {amountPerPeriod > 0
+                ? `${amountPerPeriod.toFixed(2)} ${formValues.token}`
+                : "-"}
+            </p>
+          </div>
+
+          <div>
+            <label className="text-sm font-medium text-muted-foreground">
               Amount
             </label>
             <p className="text-lg">
-              {typeof formValues.tokenAmount === "number"
-                ? `${formValues.tokenAmount} ${formValues.token}`
-                : "-"}
+              {formValues.tokenAmount ? `${formValues.tokenAmount} USDC` : "-"}
             </p>
           </div>
-          <div>
-            <label className="text-sm font-medium text-muted-foreground">
-              Total Amount
-            </label>
-            <p className="text-lg">
-              {typeof formValues.tokenAmount === "number"
-                ? `${formValues.tokenAmount} ${formValues.token}`
-                : "-"}
-            </p>
-          </div>
-        </div>
-
-        <div>
-          <label className="text-sm font-medium text-muted-foreground">
-            Amount per {formValues.durationUnit || "period"}
-          </label>
-          <p className="text-lg">
-            {amountPerPeriod > 0
-              ? `${amountPerPeriod.toFixed(2)} ${formValues.token}`
-              : "-"}
-          </p>
         </div>
       </div>
     </div>
