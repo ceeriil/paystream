@@ -6,24 +6,24 @@ const Review = () => {
   const { watch } = useFormContext<StepperFormValues>();
   const formValues = watch();
 
-  // Calculate end date based on start date and duration
+  // Convert string values to numbers and calculate dates
   const startDate = formValues.startDate
     ? new Date(formValues.startDate)
     : null;
+  const duration = formValues.duration ? Number(formValues.duration) : 0;
   const endDate =
-    startDate && typeof formValues.duration === "number"
+    startDate && duration
       ? new Date(
           startDate.getTime() +
-            formValues.duration * getDurationInMs(formValues.durationUnit)
+            duration * getDurationInMs(formValues.durationUnit)
         )
       : null;
 
-  // Calculate amount per period
-  const amountPerPeriod =
-    typeof formValues.tokenAmount === "number" &&
-    typeof formValues.duration === "number"
-      ? formValues.tokenAmount / formValues.duration
-      : 0;
+  // Calculate amount per period with number conversion
+  const tokenAmount = formValues.tokenAmount
+    ? Number(formValues.tokenAmount)
+    : 0;
+  const amountPerPeriod = duration ? tokenAmount / duration : 0;
 
   function getDurationInMs(unit: string | undefined): number {
     switch (unit) {
@@ -67,9 +67,7 @@ const Review = () => {
               Amount per {formValues.durationUnit || "period"}
             </label>
             <p className="text-lg">
-              {amountPerPeriod > 0
-                ? `${amountPerPeriod.toFixed(2)} ${formValues.token}`
-                : "-"}
+              {amountPerPeriod > 0 ? `${amountPerPeriod.toFixed(2)} USDC` : "-"}
             </p>
           </div>
 
@@ -78,7 +76,7 @@ const Review = () => {
               Amount
             </label>
             <p className="text-lg">
-              {formValues.tokenAmount ? `${formValues.tokenAmount} USDC` : "-"}
+              {tokenAmount ? `${tokenAmount.toFixed(2)} USDC` : "-"}
             </p>
           </div>
         </div>

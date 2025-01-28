@@ -736,6 +736,10 @@ img, video {
   margin-top: 4rem;
 }
 
+.ml-1 {
+  margin-left: .25rem;
+}
+
 .block {
   display: block;
 }
@@ -877,12 +881,24 @@ img, video {
   height: 100svh;
 }
 
+.h-\[10rem\] {
+  height: 10rem;
+}
+
+.h-\[3rem\] {
+  height: 3rem;
+}
+
 .max-h-96 {
   max-height: 24rem;
 }
 
 .max-h-screen {
   max-height: 100vh;
+}
+
+.max-h-\[10rem\] {
+  max-height: 10rem;
 }
 
 .min-h-0 {
@@ -2698,6 +2714,11 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .hover\:text-sidebar-accent-foreground:hover {
   color: var(--sidebar-accent-foreground);
+}
+
+.hover\:text-gray-400:hover {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity, 1));
 }
 
 .hover\:underline:hover {
