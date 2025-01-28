@@ -5,19 +5,31 @@ import { BarChart3, Users, CreditCard } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DashboardCard } from "@/components/DashboardCard";
+import { DicebearAvatar } from "@/components/ui/dicebear-avatar";
 
 export default function DashboardPage() {
   return (
     <div className="space-y-8">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold">Dashboard</h1>
+        <div className="flex space-x-6 mt-4 mb-6 items-center">
+          <DicebearAvatar className="h-16 w-16" seed="12" size={80} />
+          <div>
+            {" "}
+            <h1 className="text-2xl font-bold">Hello 0x...34b3</h1>
+            <p className="mt-1 text-gray-400 font-bold">
+              We hope you are having a great day
+            </p>
+          </div>
+        </div>
       </div>
+
+      <div className="w-full h-[1px] bg-[#ffffff20] mb-8"></div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-12">
         <DashboardCard
           icon={BarChart3}
           label="Last Month's Payout"
-          value="22374 USDC"
+          value="22,374 USDC"
           percentageChange={20.1}
         />
 

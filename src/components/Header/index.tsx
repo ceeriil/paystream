@@ -1,25 +1,77 @@
-/* eslint-disable simple-import-sort/imports */
+import Link from "next/link";
+import React, { useState } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
+import Image from "next/image";
 
-'use client';
+const Header = () => {
+  const [nav, setNav] = useState(false);
 
-import Link from 'next/link';
-import type { FC } from 'react';
+  const links = [
+    {
+      id: 1,
+      link: "home",
+      href: "/",
+    },
+    {
+      id: 3,
+      link: "FAQS",
+      href: "/#FAQS",
+    },
+    {
+      id: 4,
+      link: "dahsboard",
+      href: "/dashboard",
+    },
+  ];
 
-import type { CurrentUserProps } from '@/types';
-
-const Header: FC<CurrentUserProps> = () => {
   return (
-    <header className="px-8 py-8 flex justify-between bg-gray-900 text-violet-50">
-      <Link href="/">
-        <span>Home</span>
-      </Link>
-      <button
-        className="bg-violet-50 text-gray-900 px-4 py-2 rounded-md"
-        type="button"
+    <div className="flex justify-between items-center w-full h-20 px-4 text-white fixed nav md:px-16 z-20 navbar">
+      <div className="flex items-center">
+        <Image src="/logo.png" width={24} height={24} alt="Paystream Logo" />
+        <h2 className="text-2xl font-signature ml-4">
+          <a
+            className="link-underline link-underline-black"
+            href="/"
+            rel="noreferrer"
+          >
+            PayStream
+          </a>
+        </h2>
+      </div>
+
+      <ul className="hidden md:flex">
+        {links.map(({ id, link, href }) => (
+          <li
+            key={id}
+            className="nav-links px-4 cursor-pointer capitalize font-medium text-white hover:scale-105 hover:text-white duration-200 link-underline"
+          >
+            <Link href={href}>{link}</Link>
+          </li>
+        ))}
+      </ul>
+
+      <div
+        onClick={() => setNav(!nav)}
+        className="cursor-pointer pr-4 z-[100] text-white md:hidden"
       >
-        Login
-      </button>
-    </header>
+        {nav ? <FaTimes size={30} /> : <FaBars size={30} />}
+      </div>
+
+      {nav && (
+        <ul className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen text-white z-[99] bg-black">
+          {links.map(({ id, link }) => (
+            <li
+              key={id}
+              className="px-4 cursor-pointer capitalize py-6 text-4xl"
+            >
+              <Link onClick={() => setNav(!nav)} href={"#" + link}>
+                {link}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 };
 

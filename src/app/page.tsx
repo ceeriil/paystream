@@ -1,40 +1,42 @@
 "use client";
 import MainLayout from "@/layouts/MainLayout/MainLayout";
 import Link from "next/link";
-import { FaCaretRight, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaCaretRight, FaTwitter, FaDiscord, FaGithub } from "react-icons/fa";
 import Image from "next/image";
 import { useState } from "react";
+import Header from "@/components/Header";
 
 const faqs = [
   {
-    question: "Will I work with the same marketing team all the time?",
+    question: "Who can use PayStream?",
     content:
-      "Yes! The same team members will work with you throughout the entire relationship ",
+      "PayStream is designed to support a variety of use cases, including athlete payments, white-collar jobs, construction contracts, and more",
   },
   {
-    question: "How many revisions can I get per funnel?",
+    question: "Can I pay employees in my token?",
     content:
-      "You’re entitled to 2 revisions during the duration that we work together.    ",
+      "Yes, PayStream is designed to support payments with various tokens across multiple chains. However, v1 currently only supports USDC on Solana for easier asset tracking.",
   },
   {
-    question: "How can I talk with the team?",
+    question: "What Network is PayStream built on?",
     content:
-      "You can chat with us over Zoom when we start the project, and once we start the working process, you can reach out to us on Whatsapp or Linkedin anytime you need!",
+      "PayStream v1 is currently built on Solana. Future versions will expand support to all Streamflow-supported networks, including Etherium, Aptos and Sui",
+  },
+
+  {
+    question: "Are my funds secure with PayStream?",
+    content:
+      "Yes, your funds are secure with PayStream. It is built on Streamflow, a platform that has been thoroughly audited for security",
   },
   {
-    question: "How do I know which services are right for my business?",
+    question: "Does PayStream charge any fees?",
     content:
-      "We conduct a thorough analysis of your goals, target audience, and industry to recommend tailored digital marketing services that align with your needs.",
+      "PayStream itself does not charge any fees. However, there is a 0.1% fee applied by Streamflow.",
   },
   {
-    question: "Can you work with businesses of all sizes?",
+    question: "How can I get started with PayStream?",
     content:
-      "Absolutely. We tailor our services to meet the unique needs and budgets of businesses, whether large enterprises or small startups.",
-  },
-  {
-    question: "What sets your services apart from others?",
-    content:
-      "Our approach is client-focused, with personalized strategies, transparent communication, and a commitment to delivering measurable results.",
+      "Getting started with PayStream is simple! Link your wallet and begin creating contracts for your employees. PayStream offers an intuitive user experience, but you can also read our docs to understand each feature in detail. For support or issues, feel free to join our Discord community.",
   },
 ];
 
@@ -43,7 +45,8 @@ export default function Home() {
 
   return (
     <MainLayout>
-      <main>
+      <Header />
+      <main className="bg-black">
         <section className="min-h-screen hero" id="home">
           <div className="container mx-auto flex flex-col items-center pt-32 px-3">
             <h1 className="text-center text-3xl md:text-[4.5rem] leading-[1.5] gradient-text">
@@ -153,8 +156,8 @@ export default function Home() {
             </div>
             <div className="md:ml-24 mt-5 md:mt-0">
               <p className="text-2xl leading-[1.7] ">
-                Here's how we simplify salary management and free you to focus
-                on what matters:
+                Here's how yu can simplify salary management and free yourself
+                to focus on what matters:
               </p>
             </div>
           </div>
@@ -180,9 +183,9 @@ export default function Home() {
               <div className="content">
                 <h3>Phase 1: Setup & Strategy</h3>
                 <p>
-                  We analyze your workforce and payment structure, setting up
-                  customized contracts and payment schedules tailored to your
-                  need
+                  Analyze the workforce and payment structure to set up
+                  customized contracts and payment schedules tailored to
+                  specific needs.
                 </p>
               </div>
             </div>
@@ -300,9 +303,8 @@ export default function Home() {
               <div className="content items-l">
                 <h3>Multi-Chain Support </h3>
                 <p>
-                  Ensure payments are handled securely. PayStreams is built on
-                  Streamflow, which has be thoroughly audited for reliability
-                  and safety.
+                  Pay employees across multiple chains without the hassle of
+                  bridging assets
                 </p>
               </div>
             </div>
@@ -352,11 +354,11 @@ export default function Home() {
               focus on growing your business with confidence.
             </p>
             <Link
-              href="https://luminx-calender.netlify.app/"
+              href="/dashboard"
               className="btn btn-hover color-6 text-xl text-white"
               target="blank_"
             >
-              Book a Demo Now
+              Go to Dahboard
             </Link>
           </div>
         </section>
@@ -367,7 +369,7 @@ export default function Home() {
               Frequently Asked Questions
             </h2>
             <div className="my-12 md:mt-32 grid w-full md:grid-cols-2">
-              <ul className="card-gradient z-10 my-12 rounded-lg p-6 font-bold">
+              <ul className="card-gradient bg-black border-[#ffffff20] z-10 my-12 rounded-lg p-6 font-bold border">
                 {faqs.map((faq, index) => (
                   <li
                     className="tab flex items-center justify-between p-4"
@@ -388,14 +390,14 @@ export default function Home() {
                 ))}
               </ul>
 
-              {/*   <div className="card-gradient-2 md:ml-[-3rem] h-[22rem] md:h-[31rem] p-6 py-12 md:pl-[4rem] text-center">
+              <div className="card-gradient-2 md:ml-[-3rem] h-[22rem] md:h-[31rem] p-6 py-12 md:pl-[4rem] text-center">
                 <h2 className="font-medium text-xl">
                   {faqs[activeTab].question}
                 </h2>
                 <p className="mt-6 text-xl font-light leading-[1.7]">
                   {faqs[activeTab].content}
                 </p>
-              </div> */}
+              </div>
             </div>
           </div>
         </section>
@@ -413,23 +415,26 @@ export default function Home() {
                     <Link href="/dashboard">App</Link>
                   </li>
                   <li className="inline-block">
-                    <Link href="#contact">Contact</Link>
+                    <Link href="#">Documentation</Link>
                   </li>
                 </ul>
               </nav>
             </div>
 
             <div className="mb-10 mt-12 flex items-center justify-between">
-              <p>&copy; Made by Paystream</p>
+              <p> Copyright &copy; 2025 Paystream</p>
               <div className="flex gap-6">
                 <div className="rounded-full border border-[#1a62ff] p-3 text-xl leading-[1]">
                   <a href="#">
-                    <FaInstagram />
+                    <FaDiscord />
                   </a>
                 </div>
                 <div className="rounded-full border border-[#1a62ff] p-3 text-xl leading-[1]">
-                  <a href="#">
-                    <FaLinkedin />
+                  <a
+                    href="https://github.com/ceeriil/paystream"
+                    target="blank_"
+                  >
+                    <FaGithub />
                   </a>
                 </div>
               </div>

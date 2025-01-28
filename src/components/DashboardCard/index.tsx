@@ -23,7 +23,7 @@ export function DashboardCard({
   const CardWrapper = ({ children }: { children: React.ReactNode }) => {
     return (
       <Card
-        className={`p-6 py-8 card before:bg-[${color}] rounded-2xl z-[10] overflow-hidden`}
+        className={`p-6 py-8 card before:bg-[#CF1A2C] rounded-2xl z-[10] overflow-hidden`}
       >
         {href && (
           <Link
