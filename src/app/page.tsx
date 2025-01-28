@@ -50,8 +50,8 @@ export default function Home() {
               Automate Payroll with PayStream
             </h1>
             <p className="text-xl leading-[1.5] md:text-2xl mb-8 text-center mt-3">
-              Experience seamless salary automation and workforce tracking,
-              designed to empower visionary business owners like you.
+              Experience smooth salary automation and tracking, designed to
+              improve payment processes effortlessly
             </p>
 
             <div className="flex">
@@ -78,7 +78,7 @@ export default function Home() {
         <section>
           <div className="container mx-auto flex flex-col items-center px-4 py-32">
             <p className="mb-5 font-[300] uppercase">
-              Addressing Real Challenges
+              Addressing Payment Challenges
             </p>
             <h2 className="md:text-5xl font-[500] text-center text-3xl">
               Ready for some unfiltered truth?
@@ -111,19 +111,20 @@ export default function Home() {
 
             <div className="grid grid-cols-1 gap-8 gap-y-16 md:mx-16 md:grid-cols-2">
               <div className="gradient-border flex flex-col items-center rounded-sm border border-[#ffffff70] px-4 py-10 text-center">
-                <h3 className="text-lg uppercase">Lost Focus</h3>
+                <h3 className="text-lg uppercase">Late Payments</h3>
                 <p className="mt-2 text-[#ffffffcc]">
-                  You started your business for freedom, but manual processes
-                  keep you trapped in administrative tasks.
+                  Delays in payments can disrupt cash flow and upset
+                  relationships with employees and vendors, creating unnecessary
+                  stress and setbacks.
                 </p>
               </div>
 
               <div className="gradient-border flex flex-col items-center rounded-sm border border-[#ffffff70] px-4 py-10 text-center">
-                <h3 className="text-lg uppercase">Optimize Efficiency</h3>
+                <h3 className="text-lg uppercase">Accuracy and Efficiency</h3>
                 <p className="mt-2 text-[#ffffffcc]">
-                  As a visionary business owner, your focus should be on what
-                  you do best—developing your vision, delivering value, and
-                  perfecting your product.
+                  Manual payment processes are prone to errors and
+                  inefficiencies, consuming valuable time that could be spent on
+                  other aspect of business.
                 </p>
               </div>
             </div>
@@ -137,8 +138,8 @@ export default function Home() {
               <br />
             </h2>
             <p className="md:my-16 text-center text-xl leading-[1.8] md:w-[50%] my-8 ">
-              As a forward-thinking job owner, your energy should be devoted to
-              leading your business, not chasing payroll details.
+              As a visionary leader, your energy is better spent building your
+              business, not managing payroll issues.
             </p>
           </div>
         </section>
@@ -267,10 +268,10 @@ export default function Home() {
             </span>
             <div className="container-t right">
               <div className="content items-l">
-                <h3>Notifications & Alerts</h3>
+                <h3>Multi Token Support</h3>
                 <p>
-                  Stay informed with automated reminders about pending
-                  approvals, contract renewals, and upcoming payments.
+                  Pay employees in their preferred tokens — ETH, SOL, USDC, and
+                  more
                 </p>
               </div>
             </div>
@@ -297,15 +298,45 @@ export default function Home() {
             </span>
             <div className="container-t left">
               <div className="content items-l">
-                <h3>Compliance & Security</h3>
+                <h3>Multi-Chain Support </h3>
                 <p>
-                  Ensure worker payments are handled securely and meet all
-                  necessary compliance standards.
+                  Ensure payments are handled securely. PayStreams is built on
+                  Streamflow, which has be thoroughly audited for reliability
+                  and safety.
                 </p>
               </div>
             </div>
           </div>
           {/*  */}
+          <div className="phases">
+            <h3>Phase 6</h3>
+            <span className="arrow bottom">
+              <svg
+                width="12"
+                height="14"
+                viewBox="0 0 12 14"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M0.292894 8.70711C-0.0976307 8.31658 -0.0976306 7.68342 0.292894 7.29289C0.683418 6.90237 1.31658 6.90237 1.70711 7.29289L6 11.5858L10.2929 7.29289C10.6834 6.90237 11.3166 6.90237 11.7071 7.29289C12.0976 7.68342 12.0976 8.31658 11.7071 8.70711L6.70711 13.7071C6.31658 14.0976 5.68342 14.0976 5.29289 13.7071L0.292894 8.70711ZM0.292895 1.70711C-0.0976298 1.31658 -0.0976297 0.683417 0.292895 0.292893C0.683419 -0.097632 1.31658 -0.0976319 1.70711 0.292893L6 4.58579L10.2929 0.292893C10.6834 -0.0976316 11.3166 -0.0976315 11.7071 0.292893C12.0976 0.683417 12.0976 1.31658 11.7071 1.70711L6.70711 6.70711C6.31658 7.09763 5.68342 7.09763 5.29289 6.70711L0.292895 1.70711Z"
+                  fill="#1a62ff"
+                />
+              </svg>
+            </span>
+            <div className="container-t right">
+              <div className="content items-r">
+                <h3>Compliance & Security</h3>
+                <p>
+                  Ensure payments are handled securely. PayStreams is built on
+                  Streamflow, which has be thoroughly audited for reliability
+                  and safety.
+                </p>
+              </div>
+            </div>
+          </div>
           {/*  */}
 
           {/*  */}
