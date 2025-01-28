@@ -1,4 +1,4 @@
-/* "use client";
+"use client";
 
 import { solanaWeb3JsAdapter, projectId, networks } from "@/config";
 import { createAppKit } from "@reown/appkit/react";
@@ -48,46 +48,3 @@ function ContextProvider({ children }: { children: ReactNode }) {
 }
 
 export default ContextProvider;
- */
-
-"use client";
-
-import { useWrappedReownAdapter } from "@/components/useWrapperRewonedAdapter";
-import { WalletProvider } from "@solana/wallet-adapter-react";
-import { useMemo } from "react";
-
-export const ContextProvider = ({ children }: { children: any }) => {
-  // Refer to https://reown.com/appkit
-  const { reownAdapter, jupiterAdapter } = useWrappedReownAdapter({
-    appKitOptions: {
-      metadata: {
-        name: "",
-        description: ``,
-        url: "<YOUR_DOMAIN>", // origin must match your domain & subdomain
-        icons: [
-          // add icons here
-        ],
-      },
-      projectId: "8f9114c699535670c248f7a3c3b0a007",
-      features: {
-        analytics: false,
-      },
-      enableWallets: true,
-    },
-  });
-
-  const wallets = useMemo(
-    () => [
-      reownAdapter,
-      jupiterAdapter,
-      // add more wallets here
-    ],
-    []
-  );
-
-  return (
-    <WalletProvider wallets={wallets} autoConnect>
-      {children}
-    </WalletProvider>
-  );
-};

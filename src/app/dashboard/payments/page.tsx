@@ -32,7 +32,21 @@ export default function Payment() {
   }
 
   if (!streams || streams.length === 0) {
-    return <div>No Payment Contract found.</div>;
+    return (
+      <div>
+        {" "}
+        <div className="flex justify-between items-center">
+          <h1 className="text-2xl font-semibold">Contracts</h1>
+          <Link
+            href="/dashboard/payments/create"
+            className="btn-gradient px-4 py-3 rounded-xl font-medium text-sm"
+          >
+            Create Contract
+          </Link>
+        </div>
+        No Payment Contr act found.
+      </div>
+    );
   }
 
   return (

@@ -26,7 +26,7 @@ const config: Config = {
           secondary: "#0C0F19",
         },
         background: {
-          primary: "#0C0F19",
+          primary: "#000000",
         },
         sidebar: {
           DEFAULT: "var(--sidebar-background)",

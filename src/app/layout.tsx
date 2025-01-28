@@ -5,7 +5,8 @@ import { Urbanist } from "next/font/google";
 import MainFooter from "@/components/Footer";
 import { QueryProvider } from "@/providers/query";
 import type { ChildrenProps } from "@/types";
-import { ContextProvider } from "@/context";
+import { Toaster } from "@/components/ui/toaster";
+import ContextProvider from "@/context";
 
 export const metadata = {
   title: "Paystream",
@@ -29,8 +30,7 @@ export default async function RootLayout({ children }: ChildrenProps) {
             <ContextProvider>{children}</ContextProvider>
           </QueryProvider>
         </section>
-        {/*         <MainFooter />
-         */}{" "}
+        <Toaster />
       </body>
     </html>
   );

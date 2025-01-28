@@ -4,14 +4,11 @@ import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
 import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
-import { STEPPER_FORM_KEYS } from "@/lib/constants/hook-stepper-constants";
-import { StepperFormKeysType, StepperFormValues } from "@/types/hook-stepper";
+import { StepperFormValues } from "@/types/hook-stepper";
 
 import StepperIndicator from "../ui/stepper-indicator";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import { Button } from "../ui/button";
-import { toast } from "../ui/use-toast";
-import ApplicantInfo from "./Configuration";
 import { createStream } from "@/services/streamflow";
 import { useAppKitAccount, useAppKitProvider } from "@reown/appkit/react";
 import {
@@ -22,6 +19,7 @@ import { useWalletInfo } from "@reown/appkit/react";
 import { Keypair } from "@solana/web3.js";
 import { DELAY_IN_SECONDS } from "@/constants";
 import { TimeUnit } from "@/types";
+import { useToast } from "../ui/use-toast";
 
 import { getBN } from "@streamflow/stream";
 import {
@@ -35,6 +33,7 @@ import { WalletProvider } from "@solana/wallet-adapter-react";
 import Configuration from "./Configuration";
 import Review from "./Review";
 import Recipients from "./Recipients";
+import { useRouter } from "next/navigation";
 
 function getStepContent(step: number) {
   switch (step) {
@@ -51,6 +50,8 @@ function getStepContent(step: number) {
 
 const PaymentStepperForm = () => {
   const [activeStep, setActiveStep] = useState(1);
+  const { toast } = useToast();
+  const router = useRouter();
   const { walletInfo } = useWalletInfo();
   const { address, isConnected, caipAddress, status, embeddedWalletInfo } =
     useAppKitAccount();
@@ -140,7 +141,7 @@ const PaymentStepperForm = () => {
       cliff: getCurrentTimestampInSeconds() + DELAY_IN_SECONDS,
       cliffAmount: totalAmountInLamports,
       amountPerPeriod: totalAmountInLamports,
-      name: "TEST TOKEN LOCK",
+      name: "paystream",
       canTopup: false,
       cancelableBySender: false,
       cancelableByRecipient: false,
@@ -160,11 +161,17 @@ const PaymentStepperForm = () => {
         isNative: true,
       },
       (stream) => {
-        showMessage(`${stream.txId} created successfully.`, "success");
+        toast({
+          title: "Success",
+          description: `${stream.txId} created successfully.`,
+        });
         router.push("/");
       },
       (error) => {
-        showMessage(`${error}`, "error");
+        toast({
+          title: "Error",
+          description: `${error} `,
+        });
       }
     );
     setIsTransactionLoading(false);

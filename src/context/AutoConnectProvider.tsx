@@ -1,8 +1,5 @@
-"use client";
-
-import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
-import { createContext, FC, ReactNode, useContext, useEffect } from "react";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { useLocalStorage } from "@solana/wallet-adapter-react";
+import { createContext, FC, ReactNode, useContext } from "react";
 
 export interface AutoConnectContextState {
   autoConnect: boolean;
@@ -20,42 +17,10 @@ export function useAutoConnect(): AutoConnectContextState {
 export const AutoConnectProvider: FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const { open } = useAppKit();
-  const { isConnected, status } = useAppKitAccount();
-
+  // TODO: fix auto connect to actual reconnect on refresh/other.
+  // TODO: make switch/slider settings
+  // const [autoConnect, setAutoConnect] = useLocalStorage('autoConnect', false);
   const [autoConnect, setAutoConnect] = useLocalStorage("autoConnect", true);
-  const [storedConnection, setStoredConnection] = useLocalStorage(
-    "wallet_connection",
-    {
-      isConnected: false,
-    }
-  );
-
-  useEffect(() => {
-    // Store connection state
-    if (isConnected !== storedConnection.isConnected) {
-      setStoredConnection({
-        isConnected,
-      });
-    }
-
-    // Auto reconnect if enabled
-    if (
-      autoConnect &&
-      !isConnected &&
-      storedConnection.isConnected &&
-      status !== "connecting"
-    ) {
-      open();
-    }
-  }, [
-    isConnected,
-    storedConnection,
-    setStoredConnection,
-    autoConnect,
-    open,
-    status,
-  ]);
 
   return (
     <AutoConnectContext.Provider value={{ autoConnect, setAutoConnect }}>

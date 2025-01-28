@@ -14,7 +14,7 @@ const StepperIndicator = ({ activeStep }: StepperIndicatorProps) => {
         <Fragment key={step}>
           <div
             className={clsx(
-              "w-[40px] h-[40px] flex justify-center items-center m-[5px] border-[2px] rounded-full",
+              "w-[40px] h-[40px] flex justify-center items-center m-[5px] border-[2px] rounded-full bg-[#ffffff16] border-[#ffffff21]",
               step < activeStep && "bg-primary text-white",
               step === activeStep && "border-primary text-primary"
             )}
