@@ -2,6 +2,6 @@
   "/dashboard/stats/page": "app/dashboard/stats/page.js",
   "/dashboard/page": "app/dashboard/page.js",
   "/dashboard/payments/page": "app/dashboard/payments/page.js",
-  "/dashboard/employees/page": "app/dashboard/employees/page.js",
-  "/dashboard/payments/create/page": "app/dashboard/payments/create/page.js"
+  "/dashboard/payments/create/page": "app/dashboard/payments/create/page.js",
+  "/dashboard/employees/page": "app/dashboard/employees/page.js"
 }
