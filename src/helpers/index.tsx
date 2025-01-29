@@ -155,3 +155,17 @@ export const calculateUnlockDate = (startDate: Date, duration: number, durationU
       throw new Error("Invalid duration unit");
   }
 };
+
+
+export const convertDateToTimestamp = (dateStr: Date, timeStr: string): number => {
+  if (!dateStr || !timeStr) return 0;
+
+  const date = new Date(dateStr);
+  const [hours, minutes] = timeStr.split(":").map(Number);
+
+  if (isNaN(hours) || isNaN(minutes)) return 0;
+
+  date.setHours(hours, minutes, 0, 0);
+
+  return date.getTime();
+};

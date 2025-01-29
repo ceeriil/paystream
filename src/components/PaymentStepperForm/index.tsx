@@ -25,6 +25,7 @@ import {
   getCurrentTimestampInSeconds,
   returnCancelableBy,
   returnTransferableBy,
+  convertDateToTimestamp
 } from "@/helpers";
 import { BN } from "@streamflow/stream/solana";
 import { WalletProvider } from "@solana/wallet-adapter-react";
@@ -96,25 +97,36 @@ const PaymentStepperForm = () => {
 
     setIsTransactionLoading(true);
     const {
-      recipientWallet,
+      paymentType,
       token,
-      tokenAmount,
+  cliffAmount,
       duration,
       durationUnit,
       unlockSchedule,
+      startDate,
+      startTime,
+      tokenAmount,
+      recipientWallet,
+      recipientEmail
     } = formData;
 
     console.log(
       "hmm",
-      recipientWallet,
+      paymentType,
       token,
-      tokenAmount,
+  cliffAmount,
       duration,
       durationUnit,
-      unlockSchedule
+      unlockSchedule,
+      startDate,
+      startTime,
+      tokenAmount,
+      recipientWallet,
+      recipientEmail
     );
 
-    const totalAmountInLamports = getBN(Number(tokenAmount), 9);
+    const totalAmountInLamports = getBN(Number(tokenAmount), 6);
+    const start =  convertDateToTimestamp(startDate, startTime)
     const unlockDurationInSeconds = convertDurationToSeconds(
       1,
       unlockSchedule as TimeUnit
@@ -133,7 +145,7 @@ const PaymentStepperForm = () => {
         token !== "Native SOL"
           ? token
           : "So11111111111111111111111111111111111111112",
-      start: getCurrentTimestampInSeconds() + DELAY_IN_SECONDS,
+      start: start + DELAY_IN_SECONDS,
       amount: totalAmountInLamports,
       period: unlockDurationInSeconds,
       cliff: getCurrentTimestampInSeconds() + DELAY_IN_SECONDS,

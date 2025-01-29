@@ -1,8 +1,6 @@
 import { Controller, useFormContext } from "react-hook-form";
 import { StepperFormValues } from "@/types/hook-stepper";
-import { DatePickerSingle } from "../ui/date-picker-single";
 import { DatePickerField } from "../DatePickerField";
-import { FloatingLabelInput } from "../ui/floating-input";
 import { Input } from "../ui/input";
 import {
   Select,
@@ -129,7 +127,10 @@ const Configuration = () => {
               min="0"
               max="100"
               value={cliffAmount}
-              onChange={(e) => setCliffAmount(e.target.value)}
+              onChange={(e) => {
+                setCliffAmount(e.target.value);
+                onChange(e); // Call the original onChange to update the form
+              }}
               error={errors.cliffAmount?.message}
               {...register("cliffAmount", {
                 required: "Cliff amount is required for this payment type",
@@ -141,7 +142,6 @@ const Configuration = () => {
             />
           </div>
         )}
-
         {/* Duration and Duration Unit */}
         <div>
           <label
@@ -229,7 +229,7 @@ const Configuration = () => {
           {/* Start Date */}
           <div>
             <label
-              htmlFor="startTime"
+              htmlFor="startDate"
               className="text-sm text-neutral-300 mb-2 inline-block"
             >
               Start Date
