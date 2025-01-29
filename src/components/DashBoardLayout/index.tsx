@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
   LucideIcon,
-  Home,
   Users,
   Settings,
   LayoutDashboard,
@@ -65,15 +65,16 @@ interface DashboardLayoutProps {
 }
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
-  const pathname = usePathname(); // Extracted outside for efficiency
+  const pathname = usePathname();
 
   return (
     <SidebarProvider>
       <div className="flex min-h-screen w-full">
         <Sidebar className="bg-black border-[#272727]">
           <SidebarHeader>
-            <div className="flex h-16 items-center px-6">
-              <span className="text-xl font-semibold">PayStream</span>
+            <div className="flex items-center px-6">
+              <Image alt="app logo" src="/logo.png" width={20} height={20}/>
+              <span className="text-xl font-semibold ml-2">PayStream</span>
             </div>
           </SidebarHeader>
           <SidebarContent>
