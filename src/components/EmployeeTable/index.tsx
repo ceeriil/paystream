@@ -1,10 +1,10 @@
 import React from "react";
 import { useRouter } from "next/navigation";
-import { employees } from "@/data/employees";
+import { Employee } from "@/data/employees";
 import { Address } from "../Address.tsx";
 import { Table } from "../ui/table";
 
-export const EmployeesTable = () => {
+export const EmployeesTable = ({employees}:{employees: Employee[]}) => {
   const router = useRouter();
 
   const handleRowClick = (id: string) => {

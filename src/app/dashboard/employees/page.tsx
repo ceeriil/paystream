@@ -1,6 +1,7 @@
 "use client";
 import { AddEmployeeDialog } from "@/components/AddEmployeeDialogue";
 import { EmployeesTable } from "@/components/EmployeeTable";
+import { employees } from "@/data/employees";
 
 export default function Employees() {
   return (
@@ -10,7 +11,7 @@ export default function Employees() {
         <h1 className="text-2xl font-semibold">Employees</h1>
         <AddEmployeeDialog />
       </div>
-      <EmployeesTable />
+      <EmployeesTable employees={employees} />
     </section>
   );
 }
