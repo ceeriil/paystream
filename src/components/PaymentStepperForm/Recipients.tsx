@@ -3,6 +3,7 @@ import { Wallet } from "lucide-react";
 import { StepperFormValues } from "@/types/hook-stepper";
 import { FloatingLabelInput } from "../ui/floating-input";
 import { Button } from "../ui/button";
+import { Input } from "../ui/input";
 
 const Recipients = () => {
   const {
@@ -14,22 +15,34 @@ const Recipients = () => {
     <div>
       <h4 className="stepper_step_heading">Recipient Information</h4>
       <div className="stepper_step_container">
-        <FloatingLabelInput
+        <div>
+        <label
+            htmlFor="paymentType"
+            className="text-sm text-neutral-300 mb-2 inline-block"
+          >
+            Token Amount
+          </label>
+        <Input
           id="tokenAmount"
-          label="Amount"
           type="number"
           {...register("tokenAmount", { required: "Required" })}
-          error={errors.tokenAmount?.message}
         />
+        </div>
+  
 
-        <div className="relative">
-          <FloatingLabelInput
+<div>
+<label
+            htmlFor="recipientWallet"
+            className="text-sm text-neutral-300 mb-2 inline-block"
+          >
+            Recipient Wallet
+          </label>
+<div className="relative">
+          <Input
             id="recipientWallet"
-            label="Recipient Wallet Address"
             type="text"
             className="pr-12"
             {...register("recipientWallet", { required: "Required" })}
-            error={errors.recipientWallet?.message}
           />
           <Button
             type="button"
@@ -44,14 +57,23 @@ const Recipients = () => {
             <Wallet className="h-5 w-5" />
           </Button>
         </div>
+</div>
+     
 
-        <FloatingLabelInput
+<div>
+<label
+            htmlFor="recipientEmail"
+            className="text-sm text-neutral-300 mb-2 inline-block"
+          >
+            Recipient Email
+          </label>
+          <Input
           id="recipientEmail"
-          label="Recipient Email"
           type="email"
           {...register("recipientEmail", { required: "Required" })}
-          error={errors.recipientEmail?.message}
         />
+</div>
+      
       </div>
     </div>
   );

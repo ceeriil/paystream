@@ -23,7 +23,6 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { ConnectButton } from "../ConnectButton";
-import AppKit from "../reownWallet";
 
 interface NavItem {
   title: string;
@@ -76,7 +75,6 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             <div className="flex h-16 items-center px-6">
               <span className="text-xl font-semibold">PayStream</span>
             </div>
-            <AppKit />
           </SidebarHeader>
           <SidebarContent>
             <SidebarMenu className="space-y-4 p-4">
@@ -112,10 +110,13 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         </Sidebar>
         <main className="flex-1 overflow-y-auto bg-black">
           <header className="sticky top-0 z-10 border-b border-[#272727]">
-            <div className="flex h-14 items-center gap-4 px-6">
+            <div className="flex h-14 items-center gap-4 px-6 justify-between">
               <SidebarTrigger />
               <div className="flex-1" />
+              <ConnectButton/>
+
             </div>
+
           </header>
           <div className="container mx-auto p-6 px-12 pb-12">{children}</div>
         </main>

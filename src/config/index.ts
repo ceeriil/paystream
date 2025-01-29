@@ -1,4 +1,4 @@
-import { solana, solanaTestnet, solanaDevnet } from "@reown/appkit/networks";
+/* import { solana, solanaTestnet, solanaDevnet } from "@reown/appkit/networks";
 import type { AppKitNetwork } from "@reown/appkit/networks";
 import { SolanaAdapter } from "@reown/appkit-adapter-solana/react";
 import {
@@ -21,4 +21,17 @@ export const networks = [solana, solanaTestnet, solanaDevnet] as [
 // Set up Solana Adapter
 export const solanaWeb3JsAdapter = new SolanaAdapter({
   wallets: [new PhantomWalletAdapter(), new SolflareWalletAdapter()],
+}); */
+
+import { SolanaAdapter } from "@reown/appkit-adapter-solana/react";
+import { solana, solanaDevnet } from "@reown/appkit/networks";
+import {
+  PhantomWalletAdapter,
+  SolflareWalletAdapter,
+} from "@solana/wallet-adapter-wallets";
+
+export const solanaAdapter = new SolanaAdapter({
+  wallets: [new PhantomWalletAdapter(), new SolflareWalletAdapter()],
 });
+
+export const solanaNetworks = [solana, solanaDevnet];

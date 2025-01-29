@@ -1,5 +1,6 @@
 import { PermissionRole, TimeUnit } from "@/types";
 import BN from "bn.js";
+import { addSeconds, addMinutes, addHours, addDays, addWeeks, addMonths, addYears } from "date-fns";
 
 export interface TransferPermissions {
   transferableBySender: boolean;
@@ -122,4 +123,35 @@ export const convertBNToNumber = (bnValue: BN, decimals: number): number => {
     bnValue.div(divisor).toNumber() +
     bnValue.mod(divisor).toNumber() / divisor.toNumber();
   return Number(result.toFixed(1));
+};
+
+/**
+ * Convert unlock duration to a formatted date string (e.g., "12th Feb, 2025")
+ *
+ * @param {string} unlockDuration
+ * @returns {string}
+ */
+export const calculateUnlockDate = (startDate: Date, duration: number, durationUnit: string): Date => {
+  switch (durationUnit) {
+    case "Second":
+      return addSeconds(startDate, duration);
+    case "Minute":
+      return addMinutes(startDate, duration);
+    case "Hour":
+      return addHours(startDate, duration);
+    case "Day":
+      return addDays(startDate, duration);
+    case "Week":
+      return addWeeks(startDate, duration);
+    case "Bi-week":
+      return addWeeks(startDate, duration * 2);
+    case "Month":
+      return addMonths(startDate, duration);
+    case "Quarter":
+      return addMonths(startDate, duration * 3);
+    case "Year":
+      return addYears(startDate, duration);
+    default:
+      throw new Error("Invalid duration unit");
+  }
 };

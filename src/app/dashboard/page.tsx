@@ -77,7 +77,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <PaymentChart />
+        <PaymentChart timerange="1w"  />
       </Card>
     </div>
   );

@@ -19,11 +19,11 @@ export const employees: Employee[] = [
     email: "john.doe@example.com",
   },
   {
-    id: "GCqCqmBrXuhsA9QypAXLxcA3GCpcWXnQmajvMah9ZDBD",
+    id: "GCqCqmBrXuhsA9QypAXLxcA3GCpcWXnQmajvMah9ZDBS",
     name: "Jane Smith",
     title: "Product Manager",
     employmentType: "Full Time",
-    walletAddress: "GCqCqmBrXuhsA9QypAXLxcA3GCpcWXnQmajvMah9ZDBD",
+    walletAddress: "GCqCqmBrXuhsA9QypAXLxcA3GCpcWXnQmajvMah9ZDBS",
     additionalWallets: ["6WxofD4zk33GoMdFdPHaDsdyTwhNwJVWJVMTgnqWs6to"],
     email: "jane.smith@example.com",
   },

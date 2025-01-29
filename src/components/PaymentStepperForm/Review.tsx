@@ -1,25 +1,22 @@
 import { useFormContext } from "react-hook-form";
 import { format } from "date-fns";
 import { StepperFormValues } from "@/types/hook-stepper";
+import { calculateUnlockDate } from "@/helpers";
 
 const Review = () => {
   const { watch } = useFormContext<StepperFormValues>();
   const formValues = watch();
 
-  // Convert string values to numbers and calculate dates
   const startDate = formValues.startDate
     ? new Date(formValues.startDate)
     : null;
   const duration = formValues.duration ? Number(formValues.duration) : 0;
   const endDate =
     startDate && duration
-      ? new Date(
-          startDate.getTime() +
-            duration * getDurationInMs(formValues.durationUnit)
+      ? (calculateUnlockDate(startDate, duration, formValues.durationUnit)
         )
       : null;
 
-  // Calculate amount per period with number conversion
   const tokenAmount = formValues.tokenAmount
     ? Number(formValues.tokenAmount)
     : 0;
@@ -57,7 +54,7 @@ const Review = () => {
             <label className="text-sm font-medium text-muted-foreground">
               End Date
             </label>
-            <p className="text-lg">{endDate ? format(endDate, "PPP") : "-"}</p>
+            <p className="text-lg">{endDate ? format(endDate, "PPP"): "_"}</p>
           </div>
         </div>
 

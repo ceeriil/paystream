@@ -3,9 +3,7 @@
 import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
 import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-
 import { StepperFormValues } from "@/types/hook-stepper";
-
 import StepperIndicator from "../ui/stepper-indicator";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import { Button } from "../ui/button";

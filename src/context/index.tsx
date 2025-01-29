@@ -1,50 +1,57 @@
 "use client";
 
-import { solanaWeb3JsAdapter, projectId, networks } from "@/config";
+import { wagmiAdapter, projectId } from "@/config/wagmi";
+import { solanaAdapter } from "@/config";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createAppKit } from "@reown/appkit/react";
-import React, { useMemo, type ReactNode } from "react";
-import { AutoConnectProvider, useAutoConnect } from "./AutoConnectProvider";
-import { UnsafeBurnerWalletAdapter } from "@solana/wallet-adapter-wallets";
-import { WalletProvider } from "@solana/wallet-adapter-react";
+import { base, solana, sepolia, solanaDevnet } from "@reown/appkit/networks";
+import React, { type ReactNode } from "react";
+import { cookieToInitialState, WagmiProvider, type Config } from "wagmi";
+
+const queryClient = new QueryClient();
 
 if (!projectId) {
   throw new Error("Project ID is not defined");
 }
 
-// Set up metadata
 const metadata = {
-  name: "paystream",
-  description: "paystream for employees",
-  url: "https://github.com/0xoned",
-  icons: ["https://avatars.githubusercontent.com/u/179229932"],
+  name: "Paystream",
+  description: "Paystream",
+  url: "https://paystream.io",
+  icons: ["https://paystream.io/favicon.ico"],
 };
 
-// Create the modal
 export const modal = createAppKit({
-  adapters: [solanaWeb3JsAdapter],
+  adapters: [wagmiAdapter, solanaAdapter],
   projectId,
-  networks,
-  metadata,
-  themeMode: "dark",
+  networks: [solana, base, sepolia, solanaDevnet],
+  defaultNetwork: solanaDevnet,
+  metadata: metadata,
   features: {
     analytics: true,
   },
-  themeVariables: {
-    "--w3m-font-family": "urbanist",
-    "--w3m-accent": "#ffffff20",
-  },
 });
 
-function ContextProvider({ children }: { children: ReactNode }) {
-  const wallets = useMemo(() => [new UnsafeBurnerWalletAdapter()], []);
+function AppKitProvider({
+  children,
+  cookies,
+}: {
+  children: ReactNode;
+  cookies: string | null;
+}) {
+  const initialState = cookieToInitialState(
+    wagmiAdapter.wagmiConfig as Config,
+    cookies
+  );
 
   return (
-    <>
-      <WalletProvider wallets={wallets} autoConnect={true}>
-        {children}
-      </WalletProvider>
-    </>
+    <WagmiProvider
+      config={wagmiAdapter.wagmiConfig as Config}
+      initialState={initialState}
+    >
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    </WagmiProvider>
   );
 }
 
-export default ContextProvider;
+export default AppKitProvider;

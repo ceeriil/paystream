@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { Spinner } from "@/components/Spinner";
 import { BiError } from "react-icons/bi";
 import { ContractsTable } from "@/components/ContractsTable";
+import { ConnectButton } from "@/components/ConnectButton";
 
 export default function Payment() {
   const { streams, fetchStreams, loading, error } = useAllStreams();

@@ -1,18 +1,12 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
+import { useEffect } from "react";
+import EmptyState from "@/components/EmptyState";
 
-import EmptyState from '@/components/EmptyState';
-
-interface UnauthorizeStateProps {
-  error: Error;
-}
-
-const UnauthorizeState: React.FC<UnauthorizeStateProps> = ({ error }) => {
+const UnauthorizeState: React.FC = () => {
   useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.error(error);
-  }, [error]);
+    console.error("Unauthorized access attempt detected.");
+  }, []);
 
   return (
     <EmptyState
@@ -25,19 +19,3 @@ const UnauthorizeState: React.FC<UnauthorizeStateProps> = ({ error }) => {
 };
 
 export default UnauthorizeState;
-
-// import ErrorLayout from '@/layouts/ErrorLayout/ErrorLayout';
-
-// function ErrorPage() {
-//   return <h1>There was an error, let me check on that</h1>;
-// }
-
-// ErrorPage.getLayout = (page: any) => <ErrorLayout>{page}</ErrorLayout>;
-
-// export const getStaticProps = () => ({
-//   props: {
-//     title: '🕵🏼 - error',
-//   },
-// });
-
-// export default ErrorPage;
