@@ -27,3 +27,13 @@ export const unlockScheduleOptions = [
 
 export const cancellationRights = ["Recipient", "Sender", "Both", "Neither"];
 export const transferableRights = ["Recipient", "Sender", "Both", "Neither"];
+
+export const DEFAULT_TOKENS = [
+  {
+    mint: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    balance: 0,
+    name: "USDC",
+    symbol: "USDC",
+    logoURI: "/img/token-logo.png",
+  },
+];

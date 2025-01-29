@@ -12,9 +12,10 @@ import {
 import { unlockScheduleOptions, vestingDurationOptions } from "@/constants";
 import useSolanaTokens from "@/hooks/useSolanaTokens";
 import { useState } from "react";
+import { DEFAULT_TOKENS } from "@/constants";
 
 const Configuration = () => {
-  const { tokens } = useSolanaTokens();
+  const tokens = DEFAULT_TOKENS;
   const {
     control,
     formState: { errors },
@@ -70,47 +71,30 @@ const Configuration = () => {
 
         {/* Token Selection */}
         <div>
-          <label
-            htmlFor="token"
-            className="text-sm text-neutral-300 mb-2 inline-block"
-          >
-            Token
-          </label>
-          <Controller
-            name="token"
-            control={control}
-            rules={{ required: "Required" }}
-            defaultValue="SOL"
-            render={({ field: { onChange, value }, fieldState: { error } }) => (
-              <div>
-                <Select value={value} onValueChange={onChange}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select token" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {tokens.map((token) => (
-                      <SelectItem key={token.mint} value={token.mint || ""}>
-                        <div className="flex items-center justify-between w-full">
-                          <span className="mr-3">
-                            {token.name || token.symbol}
-                          </span>
-                          <span className="text-muted-foreground">
-                            {token.balance.toFixed(4)}
-                          </span>
-                        </div>
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                {error && (
-                  <span className="text-destructive block !mt-[5px] text-[12px]">
-                    {error.message}
-                  </span>
-                )}
-              </div>
-            )}
-          />
-        </div>
+  <label htmlFor="token" className="text-sm text-neutral-300 mb-2 inline-block">
+    Token
+  </label>
+  <Controller
+    name="token"
+    control={control}
+    rules={{ required: "Required" }}
+    defaultValue={DEFAULT_TOKENS[0].mint}
+    render={({ field: { value }, fieldState: { error } }) => (
+      <div>
+        <Select value={value || DEFAULT_TOKENS[0].mint} disabled>
+          <SelectTrigger>
+            <SelectValue>{DEFAULT_TOKENS[0].name}</SelectValue> 
+          </SelectTrigger>
+        </Select>
+        {error && (
+          <span className="text-destructive block !mt-[5px] text-[12px]">
+            {error.message}
+          </span>
+        )}
+      </div>
+    )}
+  />
+</div>
 
         {(selectedPaymentType === "contract" ||
           selectedPaymentType === "one-time") && (

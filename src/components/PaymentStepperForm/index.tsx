@@ -18,6 +18,7 @@ import { Keypair } from "@solana/web3.js";
 import { DELAY_IN_SECONDS } from "@/constants";
 import { TimeUnit } from "@/types";
 import { useToast } from "../ui/use-toast";
+import { Spinner } from "../Spinner";
 
 import { getBN } from "@streamflow/stream";
 import {
@@ -28,7 +29,6 @@ import {
   convertDateToTimestamp
 } from "@/helpers";
 import { BN } from "@streamflow/stream/solana";
-import { WalletProvider } from "@solana/wallet-adapter-react";
 import Configuration from "./Configuration";
 import Review from "./Review";
 import Recipients from "./Recipients";
@@ -139,6 +139,8 @@ const PaymentStepperForm = () => {
     const amountPerInterval = totalAmountInLamports.div(
       new BN(numberOfIntervals)
     );
+
+    console.log("confirm",amountPerInterval, numberOfIntervals, periodInSeconds, unlockDurationInSeconds, start, totalAmountInLamports)
     const createStreamParams = {
       recipient: recipientWallet,
       tokenId:
@@ -149,8 +151,8 @@ const PaymentStepperForm = () => {
       amount: totalAmountInLamports,
       period: unlockDurationInSeconds,
       cliff: getCurrentTimestampInSeconds() + DELAY_IN_SECONDS,
-      cliffAmount: totalAmountInLamports,
-      amountPerPeriod: totalAmountInLamports,
+      cliffAmount: getBN(0, 9),
+      amountPerPeriod: amountPerInterval,
       name: "paystream",
       canTopup: false,
       cancelableBySender: false,
@@ -158,7 +160,7 @@ const PaymentStepperForm = () => {
       transferableBySender: false,
       transferableByRecipient: false,
       automaticWithdrawal: false,
-      withdrawalFrequency: 0,
+      withdrawalFrequency: unlockDurationInSeconds,
       partner: undefined,
     };
 
@@ -196,7 +198,7 @@ const PaymentStepperForm = () => {
   };
 
   if (isTransactionLoading) {
-    return <div>Loading</div>;
+    return <div className="fixed z-[10] w-full h-screen left-0 right-0 bg-[#00000040] text-white items-center justify-center flex top-0 backdrop-blur-md"><Spinner /></div>;
   }
 
   return (
