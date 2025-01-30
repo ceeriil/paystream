@@ -13,7 +13,6 @@ import { unlockScheduleOptions, vestingDurationOptions } from "@/constants";
 import useSolanaTokens from "@/hooks/useSolanaTokens";
 import { useState } from "react";
 import { DEFAULT_TOKENS } from "@/constants";
-import { configurationSchema } from "@/lib/payment-schemas";
 
 const Configuration = () => {
   const tokens = DEFAULT_TOKENS;
@@ -23,7 +22,6 @@ const Configuration = () => {
     register,
     watch,
   } = useFormContext<StepperFormValues>();
-
 
   // Watch the selected payment type to conditionally render the cliff amount input
   const selectedPaymentType = watch("paymentType");

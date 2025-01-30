@@ -1,0 +1,86 @@
+{
+  "version": "0.0.1",
+  "employees": [
+    {
+      "id": "BuPXEVr7SzknmQ3VU8nvrECvwxwAMagRQKRJ3gqse3A9",
+      "name": "John Doe",
+      "title": "Senior Developer",
+      "employmentType": "Full Time",
+      "walletAddress": "BuPXEVr7SzknmQ3VU8nvrECvwxwAMagRQKRJ3gqse3A9",
+      "additionalWallets": ["0xabcd...efgh", "0x9012...3456"],
+      "email": "john.doe@example.com"
+    },
+    {
+      "id": "GCqCqmBrXuhsA9QypAXLxcA3GCpcWXnQmajvMah9ZDBS",
+      "name": "Jane Smith",
+      "title": "Product Manager",
+      "employmentType": "Full Time",
+      "walletAddress": "GCqCqmBrXuhsA9QypAXLxcA3GCpcWXnQmajvMah9ZDBS",
+      "additionalWallets": ["6WxofD4zk33GoMdFdPHaDsdyTwhNwJVWJVMTgnqWs6to"],
+      "email": "jane.smith@example.com"
+    },
+    {
+      "id": "GCqCqmBrXuhsA9QypAXLxcA3GCpcWXnQmajvMah9ZDBD",
+      "name": "Bob Wilson",
+      "title": "UI Designer",
+      "employmentType": "Part Time",
+      "walletAddress": "GCqCqmBrXuhsA9QypAXLxcA3GCpcWXnQmajvMah9ZDBD",
+      "additionalWallets": [],
+      "email": "bob.wilson@example.com"
+    },
+    {
+      "id": "X1Y2Z3A4B5C6D7E8F9G0H1I2J3K4L5M6N7O8P9Q0",
+      "name": "Alice Johnson",
+      "title": "HR Manager",
+      "employmentType": "Full Time",
+      "walletAddress": "X1Y2Z3A4B5C6D7E8F9G0H1I2J3K4L5M6N7O8P9Q0",
+      "additionalWallets": ["0x5678...abcd"],
+      "email": "alice.johnson@example.com"
+    },
+    {
+      "id": "R2D2C3P0X9Y8Z7A6B5C4D3E2F1G0H1I2J3K4L5M6N7",
+      "name": "Charlie Brown",
+      "title": "QA Engineer",
+      "employmentType": "Contract",
+      "walletAddress": "R2D2C3P0X9Y8Z7A6B5C4D3E2F1G0H1I2J3K4L5M6N7",
+      "additionalWallets": [],
+      "email": "charlie.brown@example.com"
+    },
+    {
+      "id": "M1N2O3P4Q5R6S7T8U9V0W1X2Y3Z4A5B6C7D8E9F0G1",
+      "name": "David Kim",
+      "title": "DevOps Engineer",
+      "employmentType": "Full Time",
+      "walletAddress": "M1N2O3P4Q5R6S7T8U9V0W1X2Y3Z4A5B6C7D8E9F0G1",
+      "additionalWallets": ["0x3456...7890"],
+      "email": "david.kim@example.com"
+    },
+    {
+      "id": "H2I3J4K5L6M7N8O9P0Q1R2S3T4U5V6W7X8Y9Z0A1B2",
+      "name": "Eve Adams",
+      "title": "Marketing Specialist",
+      "employmentType": "Part Time",
+      "walletAddress": "H2I3J4K5L6M7N8O9P0Q1R2S3T4U5V6W7X8Y9Z0A1B2",
+      "additionalWallets": ["0x1234...5678"],
+      "email": "eve.adams@example.com"
+    },
+    {
+      "id": "C3D4E5F6G7H8I9J0K1L2M3N4O5P6Q7R8S9T0U1V2W3",
+      "name": "Frank Thomas",
+      "title": "Cybersecurity Analyst",
+      "employmentType": "Full Time",
+      "walletAddress": "C3D4E5F6G7H8I9J0K1L2M3N4O5P6Q7R8S9T0U1V2W3",
+      "additionalWallets": [],
+      "email": "frank.thomas@example.com"
+    },
+    {
+      "id": "W4X5Y6Z7A8B9C0D1E2F3G4H5I6J7K8L9M0N1O2P3Q4",
+      "name": "Grace Lee",
+      "title": "Business Analyst",
+      "employmentType": "Contract",
+      "walletAddress": "W4X5Y6Z7A8B9C0D1E2F3G4H5I6J7K8L9M0N1O2P3Q4",
+      "additionalWallets": [],
+      "email": "grace.lee@example.com"
+    }
+  ]
+}
