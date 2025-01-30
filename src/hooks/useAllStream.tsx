@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { getAllStreams } from "@/services/streamflow";
 import { Stream } from "@streamflow/stream";
 import {
-  useAppKitAccount,
   useAppKitProvider,
   type Provider,
 } from "@reown/appkit/react";
@@ -20,7 +19,6 @@ export function useAllStreams(): {
   loading: boolean;
   error: Error | undefined;
 } {
-  const wallet = useWallet();
   const [streams, setStreams] = useState<[string, Stream][] | undefined>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | undefined>();

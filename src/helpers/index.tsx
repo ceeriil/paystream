@@ -169,3 +169,13 @@ export const convertDateToTimestamp = (dateStr: Date, timeStr: string): number =
 
   return date.getTime();
 };
+
+
+export const getTotalDepositedAmount = (streams: Array<[string, any]>): number => {
+  return streams.reduce((total, [, contract]) => {
+    if (contract?.depositedAmount instanceof BN) {
+      total += convertBNToNumber(contract.depositedAmount, 6)
+    }
+    return total;
+  }, 0);
+};
