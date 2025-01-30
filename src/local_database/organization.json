@@ -1,0 +1,20 @@
+{
+  "version": "0.0.1",
+  "organizations": [
+    {
+      "id": "ORG1WALLET123456",
+      "name": "Tech Innovations Ltd",
+      "walletAddress": "ORG1WALLET12345610"
+    },
+    {
+      "id": "ORG2WALLET789012",
+      "name": "NextGen Solutions",
+      "walletAddress": "ORG1WALLET12345611"
+    },
+    {
+      "id": "ORG3WALLET345678",
+      "name": "Blockchain Ventures",
+      "walletAddress": "ORG1WALLET123456123"
+    }
+  ] 
+}
