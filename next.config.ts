@@ -1,6 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/dashboard",
+        permanent: true,
+      },
+    ];
+  },
   webpack: (config: any) => {
     // Add externals
     config.externals.push("pino-pretty", "lokijs", "encoding");

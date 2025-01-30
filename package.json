@@ -65,6 +65,7 @@
     "encoding": "^0.1.13",
     "ethers": "^6.13.5",
     "firebase": "^11.2.0",
+    "firebase-admin": "^13.0.2",
     "lokijs": "^1.5.12",
     "lucide-react": "^0.471.1",
     "next": "15.0.3",
@@ -84,6 +85,7 @@
     "tailwind-merge": "^2.6.0",
     "tailwindcss": "^3.4.14",
     "tailwindcss-animate": "^1.0.7",
+    "typesaurus": "^10.7.0",
     "wagmi": "^2.14.8",
     "winston": "^3.14.1"
   },
