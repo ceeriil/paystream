@@ -13,7 +13,6 @@ import {
   useAppKitConnection,
   type Provider,
 } from "@reown/appkit-adapter-solana/react";
-import { useWalletInfo } from "@reown/appkit/react";
 import { Keypair } from "@solana/web3.js";
 import { DELAY_IN_SECONDS } from "@/constants";
 import { TimeUnit } from "@/types";
@@ -51,7 +50,6 @@ const PaymentStepperForm = () => {
   const [activeStep, setActiveStep] = useState(1);
   const { toast } = useToast();
   const router = useRouter();
-  const { walletInfo } = useWalletInfo();
   const { address, isConnected, caipAddress, status, embeddedWalletInfo } =
     useAppKitAccount();
   const [isTransactionLoading, setIsTransactionLoading] =

@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { Spinner } from "@/components/Spinner";
 import { BiError } from "react-icons/bi";
 import { ContractsTable } from "@/components/ContractsTable";
-import { ConnectButton } from "@/components/ConnectButton";
+import { CircleDollarSign } from "lucide-react";
 
 export default function Payment() {
   const { streams, fetchStreams, loading, error } = useAllStreams();
@@ -34,18 +34,17 @@ export default function Payment() {
 
   if (!streams || streams.length === 0) {
     return (
-      <div>
-        {" "}
-        <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-semibold">Contracts</h1>
-          <Link
+      <div>      
+        <div className="flex items-center justify-center mt-[4rem] font-bold text-gray-400 flex-col">
+        < CircleDollarSign  className=" mb-4" size={60} />
+        No Payment Contract Found
+        <Link
             href="/dashboard/payments/create"
-            className="btn-gradient px-4 py-3 rounded-xl font-medium text-sm"
+            className="btn-gradient px-4 py-3 rounded-xl font-[600] text-sm mt-5 "
           >
             Create Contract
           </Link>
-        </div>
-        No Payment Contr act found.
+      </div>
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import { useWallet, WalletProvider } from "@solana/wallet-adapter-react";
+
 import { useEffect, useState } from "react";
 import { getAllStreams } from "@/services/streamflow";
 import { Stream } from "@streamflow/stream";

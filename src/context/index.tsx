@@ -27,8 +27,13 @@ export const modal = createAppKit({
   networks: [solana, base, sepolia, solanaDevnet],
   defaultNetwork: solanaDevnet,
   metadata: metadata,
+  themeMode: "dark",
   features: {
     analytics: true,
+  },
+  themeVariables: {
+    "--w3m-font-family": "urbanist",
+    "--w3m-accent": "#ffffff20",
   },
 });
 

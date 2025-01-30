@@ -71,14 +71,14 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
     <SidebarProvider>
       <div className="flex min-h-screen w-full">
         <Sidebar className="bg-black border-[#272727]">
-          <SidebarHeader>
-            <div className="flex items-center px-6">
+          <SidebarHeader className="border-[#272727] border-b">
+            <div className="flex items-center px-6  pb-[0.4rem] pt-[0.4rem] ">
               <Image alt="app logo" src="/logo.png" width={20} height={20}/>
               <span className="text-xl font-semibold ml-2">PayStream</span>
             </div>
           </SidebarHeader>
           <SidebarContent>
-            <SidebarMenu className="space-y-4 p-4">
+            <SidebarMenu className="space-y-4 p-4 pt-6">
               {navItems.map((item) => (
                 <SidebarMenuItem key={item.href} className="px-2">
                   <SidebarMenuButton asChild tooltip={item.title}>
