@@ -19,7 +19,7 @@ import { Keypair } from "@solana/web3.js";
  * create a new instance of the SolanaStreamClient
  */
 const solanaClient = new SolanaStreamClient(
-  "https://solana-mainnet.g.alchemy.com/v2/DSNzldjbcJtxEB3x_JHCcqhqUtuCyBNt",
+  "https://mainnet.helius-rpc.com/?api-key=d6b842be-5729-49db-a0b0-4a19822b3533",
   ICluster.Mainnet
 );
 
