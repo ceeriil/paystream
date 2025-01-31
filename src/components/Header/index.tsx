@@ -13,12 +13,12 @@ const Header = () => {
       href: "/",
     },
     {
-      id: 3,
-      link: "FAQS",
-      href: "/#FAQS",
+      id: 2,
+      link: "docs",
+      href: "https://paystream.gitbook.io/paystream",
     },
     {
-      id: 4,
+      id: 3,
       link: "dahsboard",
       href: "/dashboard",
     },
