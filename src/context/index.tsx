@@ -10,13 +10,6 @@ import { cookieToInitialState, WagmiProvider, type Config } from "wagmi";
 import { WalletProvider } from "@solana/wallet-adapter-react";
 import { UnsafeBurnerWalletAdapter } from "@solana/wallet-adapter-wallets";
 
-import dynamic from "next/dynamic";
-
-const ReactUIWalletModalProviderDynamic = dynamic(
-  async () =>
-    (await import("@solana/wallet-adapter-react-ui")).WalletModalProvider,
-  { ssr: false }
-);
 
 const queryClient = new QueryClient();
 
@@ -74,7 +67,7 @@ function AppKitProvider({
       config={wagmiAdapter.wagmiConfig as Config}
       initialState={initialState}
     >
-      <QueryClientProvider client={queryClient}><ReactUIWalletModalProviderDynamic>{children}</ReactUIWalletModalProviderDynamic></QueryClientProvider>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     </WagmiProvider>
     </WalletProvider>
    

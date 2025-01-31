@@ -3,7 +3,9 @@
 A **salary management app** for job owners that automates salary payments and tracks worker payments using **Streamflow**.
 
 ## 🎥 Demo  
-[![Watch the demo](https://paystreamfi.vercel.app/img/demo.mov)](https://paystreamfi.vercel.app/img/demo.mov)  
+![Watch the demo](https://paystreamfi.vercel.app/img/demo.mov)  
+
+
 
 
 ## ✨ Features (MVP)  
