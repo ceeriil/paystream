@@ -3,7 +3,7 @@
 A **salary management app** for job owners that automates salary payments and tracks worker payments using **Streamflow**.
 
 ## 🎥 Demo  
-[![Watch the demo](/demo.mov)](/demo.mov)  
+[![Watch the demo](/img/demo.mov)](/img/demo.mov)  
 
 
 ## ✨ Features (MVP)  
