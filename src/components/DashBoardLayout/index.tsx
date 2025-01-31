@@ -110,7 +110,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           </SidebarFooter>
         </Sidebar>
         <main className="flex-1 overflow-y-auto bg-black">
-          <header className="sticky top-0 z-10 border-b border-[#272727]">
+          <header className="sticky top-0 z-20 border-b border-[#272727] backdrop-blur-lg bg-[#00000040]">
             <div className="flex h-14 items-center gap-4 px-6 justify-between">
               <SidebarTrigger />
               <div className="flex-1" />

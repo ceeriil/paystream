@@ -45,7 +45,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({
             onClick={() => reset && reset()}
           >{label ?? 'Remove all filters'}</Button>
         )}
-        <Button className="btn-gradient" label="Go Back" onClick={() => router.push('/')} />
+        <Button className="btn-gradient" onClick={() => router.push('/dashboard')} >Go Back</Button>
       </div>
     </div>
   );

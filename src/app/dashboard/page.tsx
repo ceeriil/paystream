@@ -37,15 +37,15 @@ export default function DashboardPage() {
         <DashboardCard
           icon={BarChart3}
           label="Last Month's Payout"
-          value="22,374 USDC"
-          percentageChange={20.1}
+          value="0 USDC"
+          percentageChange={0}
         />
 
         <DashboardCard
           icon={Users}
           label="Active Contracts"
-          value="234"
-          percentageChange={12.3}
+          value="0"
+          percentageChange={0}
           href="/contracts"
           color="#29C5EE"
         />
@@ -53,9 +53,9 @@ export default function DashboardPage() {
         <DashboardCard
           icon={CreditCard}
           label="Total Employess"
-          value="34"
+          value="0"
           color="#CF1A2C"
-          percentageChange={19}
+          percentageChange={0}
         />
       </div>
 
@@ -81,7 +81,7 @@ export default function DashboardPage() {
             </Tabs>
           </div>
           <div className="text-5xl font-bold mb-4 gradient-text">
-            $12,300<span className="text-3xl">.24</span>
+            $00<span className="text-3xl">.00</span>
           </div>
         </div>
 

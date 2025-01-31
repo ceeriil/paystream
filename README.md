@@ -2,6 +2,10 @@
 
 A **salary management app** for job owners that automates salary payments and tracks worker payments using **Streamflow**.
 
+## 🎥 Demo  
+[![Watch the demo](/demo.mov)](/demo.mov)  
+
+
 ## ✨ Features (MVP)  
 
 - ✅ Automate salary payments via **Streamflow**  
@@ -23,7 +27,7 @@ A **salary management app** for job owners that automates salary payments and tr
 - **Styling:** [`Styled Components`](https://styled-components.com/)  
 - **Linting & Formatting:** [`ESLint`](https://eslint.org/), [`Prettier`](https://prettier.io/)  
 - **Version Control & Hooks:** [`Husky`](https://github.com/typicode/husky)  
-- **Blockchain Integration:** [Streamflow](https://streamflow.finance/)  
+- **Blockchain Integration:** [Streamflow](https://streamflow.finance/)   [Reown](https://reown.com/)  
 
 ---
 
@@ -47,5 +51,5 @@ yarn build   # Build for production
 yarn start   # Run the production build  
  ```
 
- 
+
 

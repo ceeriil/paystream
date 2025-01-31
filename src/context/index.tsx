@@ -5,8 +5,18 @@ import { solanaAdapter } from "@/config";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createAppKit } from "@reown/appkit/react";
 import { base, solana, sepolia, solanaDevnet } from "@reown/appkit/networks";
-import React, { type ReactNode } from "react";
+import React, { useMemo, type ReactNode } from "react";
 import { cookieToInitialState, WagmiProvider, type Config } from "wagmi";
+import { WalletProvider } from "@solana/wallet-adapter-react";
+import { UnsafeBurnerWalletAdapter } from "@solana/wallet-adapter-wallets";
+
+import dynamic from "next/dynamic";
+
+const ReactUIWalletModalProviderDynamic = dynamic(
+  async () =>
+    (await import("@solana/wallet-adapter-react-ui")).WalletModalProvider,
+  { ssr: false }
+);
 
 const queryClient = new QueryClient();
 
@@ -17,8 +27,8 @@ if (!projectId) {
 const metadata = {
   name: "Paystream",
   description: "Paystream",
-  url: "https://paystream.io",
-  icons: ["https://paystream.io/favicon.ico"],
+  url: "https://paystreamfi.vercel.app/logo.png",
+  icons: ["https://paystreamfi.vercel.app/logo.png"],
 };
 
 export const modal = createAppKit({
@@ -30,6 +40,11 @@ export const modal = createAppKit({
   themeMode: "dark",
   features: {
     analytics: true,
+  },
+  tokens: {
+    "solana:mainnet-beta": {
+      address: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    }
   },
   themeVariables: {
     "--w3m-font-family": "urbanist",
@@ -49,13 +64,20 @@ function AppKitProvider({
     cookies
   );
 
+  const wallets = useMemo(() => [new UnsafeBurnerWalletAdapter()], []);
+
+  
   return (
-    <WagmiProvider
+    <WalletProvider   wallets={wallets}
+    autoConnect={true}>
+       <WagmiProvider
       config={wagmiAdapter.wagmiConfig as Config}
       initialState={initialState}
     >
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      <QueryClientProvider client={queryClient}><ReactUIWalletModalProviderDynamic>{children}</ReactUIWalletModalProviderDynamic></QueryClientProvider>
     </WagmiProvider>
+    </WalletProvider>
+   
   );
 }
 

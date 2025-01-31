@@ -19,6 +19,8 @@ import { TimeUnit } from "@/types";
 import { useToast } from "../ui/use-toast";
 import { Spinner } from "../Spinner";
 
+
+
 import { getBN } from "@streamflow/stream";
 import {
   convertDurationToSeconds,
@@ -60,6 +62,8 @@ const PaymentStepperForm = () => {
   });
   const { walletProvider } = useAppKitProvider<Provider>("solana");
 
+
+
   console.log(useAppKitAccount(), "hii");
 
   const {
@@ -86,6 +90,7 @@ const PaymentStepperForm = () => {
 
     if (!isConnected) {
       try {
+        console.log("need to connect wallet")
         await walletProvider.connect;
       } catch (error) {
         console.error("Wallet connection failed:", error);
@@ -138,14 +143,16 @@ const PaymentStepperForm = () => {
       new BN(numberOfIntervals)
     );
 
-    console.log("confirm",amountPerInterval, numberOfIntervals, periodInSeconds, unlockDurationInSeconds, start, totalAmountInLamports)
+    console.log("start",start)
+
+   console.log("confirm", start, numberOfIntervals, periodInSeconds, unlockDurationInSeconds, totalAmountInLamports)
     const createStreamParams = {
       recipient: recipientWallet,
       tokenId:
         token !== "Native SOL"
           ? token
           : "So11111111111111111111111111111111111111112",
-      start: start + DELAY_IN_SECONDS,
+      start: getCurrentTimestampInSeconds() + DELAY_IN_SECONDS,
       amount: totalAmountInLamports,
       period: unlockDurationInSeconds,
       cliff: getCurrentTimestampInSeconds() + DELAY_IN_SECONDS,
@@ -153,22 +160,25 @@ const PaymentStepperForm = () => {
       amountPerPeriod: amountPerInterval,
       name: "paystream",
       canTopup: false,
-      cancelableBySender: false,
+      cancelableBySender: true,
       cancelableByRecipient: false,
-      transferableBySender: false,
+      transferableBySender: true,
       transferableByRecipient: false,
-      automaticWithdrawal: false,
+      automaticWithdrawal: true,
       withdrawalFrequency: unlockDurationInSeconds,
       partner: undefined,
-    };
+    }; 
+
+    console.log(walletProvider, "wallet")
 
     console.log("createStreamParams", createStreamParams, "stream ready");
+
 
     await createStream(
       createStreamParams,
       {
         sender: walletProvider as unknown as Keypair,
-        isNative: true,
+        isNative: false,
       },
       (stream) => {
         toast({

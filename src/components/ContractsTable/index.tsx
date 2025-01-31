@@ -100,7 +100,7 @@ export const ContractsTable = ({ streams }: { streams: any }) => {
             Recipient Address
           </th>
           <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-            Recipient Name
+            Transaction Reciept
           </th>
           <th
             className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-400"
@@ -141,7 +141,11 @@ export const ContractsTable = ({ streams }: { streams: any }) => {
                 length="short"
               />
             </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm ">-</td>
+            <td className="px-6 py-4 whitespace-nowrap text-sm ">  <Address
+                address={id}
+                type="contract"
+                length="short"
+              /></td>
             <td className="px-6 py-4 whitespace-nowrap text-sm ">
               {convertTimestampToFormattedDate(stream.end)}
             </td>

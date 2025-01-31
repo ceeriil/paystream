@@ -7,6 +7,8 @@ import type { ChildrenProps } from "@/types";
 import { Toaster } from "@/components/ui/toaster";
 import AppKitProvider from "@/context";
 import { headers } from "next/headers";
+require("@solana/wallet-adapter-react-ui/styles.css");
+
 
 export const metadata = {
   title: "Paystream",
