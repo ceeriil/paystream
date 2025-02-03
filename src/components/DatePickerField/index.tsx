@@ -16,8 +16,8 @@ import {
 
 interface DatePickerFieldProps {
   name: string;
-  control: any; // From `react-hook-form`
-  rules?: any; // Validation rules
+  control: any;
+  rules?: any;
   placeholder?: string;
 }
 

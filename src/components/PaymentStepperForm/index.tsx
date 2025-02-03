@@ -7,7 +7,7 @@ import { StepperFormValues } from "@/types/hook-stepper";
 import StepperIndicator from "../ui/stepper-indicator";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import { Button } from "../ui/button";
-import { createStream } from "@/services/streamflow";
+import { createStream, useSolanaClient } from "@/services/streamflow";
 import { useAppKitAccount, useAppKitProvider } from "@reown/appkit/react";
 import {
   useAppKitConnection,
@@ -18,16 +18,11 @@ import { DELAY_IN_SECONDS } from "@/constants";
 import { TimeUnit } from "@/types";
 import { useToast } from "../ui/use-toast";
 import { Spinner } from "../Spinner";
-
-
-
 import { getBN } from "@streamflow/stream";
 import {
   convertDurationToSeconds,
   getCurrentTimestampInSeconds,
-  returnCancelableBy,
-  returnTransferableBy,
-  convertDateToTimestamp
+  convertDateToTimestamp,
 } from "@/helpers";
 import { BN } from "@streamflow/stream/solana";
 import Configuration from "./Configuration";
@@ -61,8 +56,7 @@ const PaymentStepperForm = () => {
     mode: "onTouched",
   });
   const { walletProvider } = useAppKitProvider<Provider>("solana");
-
-
+  const { solanaClient } = useSolanaClient();
 
   console.log(useAppKitAccount(), "hii");
 
@@ -90,7 +84,7 @@ const PaymentStepperForm = () => {
 
     if (!isConnected) {
       try {
-        console.log("need to connect wallet")
+        console.log("need to connect wallet");
         await walletProvider.connect;
       } catch (error) {
         console.error("Wallet connection failed:", error);
@@ -102,7 +96,7 @@ const PaymentStepperForm = () => {
     const {
       paymentType,
       token,
-  cliffAmount,
+      cliffAmount,
       duration,
       durationUnit,
       unlockSchedule,
@@ -110,14 +104,14 @@ const PaymentStepperForm = () => {
       startTime,
       tokenAmount,
       recipientWallet,
-      recipientEmail
+      recipientEmail,
     } = formData;
 
     console.log(
       "hmm",
       paymentType,
       token,
-  cliffAmount,
+      cliffAmount,
       duration,
       durationUnit,
       unlockSchedule,
@@ -129,7 +123,7 @@ const PaymentStepperForm = () => {
     );
 
     const totalAmountInLamports = getBN(Number(tokenAmount), 6);
-    const start =  convertDateToTimestamp(startDate, startTime)
+    const start = convertDateToTimestamp(startDate, startTime);
     const unlockDurationInSeconds = convertDurationToSeconds(
       1,
       unlockSchedule as TimeUnit
@@ -143,9 +137,6 @@ const PaymentStepperForm = () => {
       new BN(numberOfIntervals)
     );
 
-    console.log("start",start)
-
-   console.log("confirm", start, numberOfIntervals, periodInSeconds, unlockDurationInSeconds, totalAmountInLamports)
     const createStreamParams = {
       recipient: recipientWallet,
       tokenId:
@@ -167,14 +158,14 @@ const PaymentStepperForm = () => {
       automaticWithdrawal: true,
       withdrawalFrequency: unlockDurationInSeconds,
       partner: undefined,
-    }; 
+    };
 
-    console.log(walletProvider, "wallet")
+    console.log(walletProvider, "wallet");
 
     console.log("createStreamParams", createStreamParams, "stream ready");
 
-
     await createStream(
+      solanaClient,
       createStreamParams,
       {
         sender: walletProvider as unknown as Keypair,
@@ -206,7 +197,11 @@ const PaymentStepperForm = () => {
   };
 
   if (isTransactionLoading) {
-    return <div className="fixed z-[10] w-full h-screen left-0 right-0 bg-[#00000040] text-white items-center justify-center flex top-0 backdrop-blur-md"><Spinner /></div>;
+    return (
+      <div className="fixed z-[10] w-full h-screen left-0 right-0 bg-[#00000040] text-white items-center justify-center flex top-0 backdrop-blur-md">
+        <Spinner />
+      </div>
+    );
   }
 
   return (

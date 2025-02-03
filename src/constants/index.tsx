@@ -30,7 +30,7 @@ export const transferableRights = ["Recipient", "Sender", "Both", "Neither"];
 
 export const DEFAULT_TOKENS = [
   {
-    mint: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    mint: "Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr",
     balance: 0,
     name: "USDC",
     symbol: "USDC",

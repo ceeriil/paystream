@@ -1,11 +1,8 @@
-
 import { useEffect, useState } from "react";
 import { getAllStreams } from "@/services/streamflow";
 import { Stream } from "@streamflow/stream";
-import {
-  useAppKitProvider,
-  type Provider,
-} from "@reown/appkit/react";
+import { useAppKitProvider, type Provider } from "@reown/appkit/react";
+import { useSolanaClient } from "@/services/streamflow";
 
 /**
  * Returns all streams of the user's wallet on the Solana blockchain.
@@ -23,6 +20,7 @@ export function useAllStreams(): {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | undefined>();
   const { walletProvider } = useAppKitProvider<Provider>("solana");
+  const { solanaClient } = useSolanaClient();
 
   const fetchStreams = async () => {
     if (!walletProvider) {
@@ -30,13 +28,13 @@ export function useAllStreams(): {
       return;
     }
 
-    const publicKeyString = walletProvider?.publicKey?.toString();
+    const publicKeyString = (walletProvider as any)?.publicKey?.toString();
 
     console.log("pb string", publicKeyString);
 
     try {
       setLoading(true);
-      const streamData = await getAllStreams(publicKeyString);
+      const streamData = await getAllStreams(solanaClient, publicKeyString);
       setStreams(streamData);
     } catch (err) {
       setError(err as Error);
@@ -52,7 +50,7 @@ export function useAllStreams(): {
       setLoading(true);
       setError(undefined);
     };
-  }, [walletProvider]);
+  }, [walletProvider, solanaClient]);
 
   return { streams, fetchStreams, loading, error };
 }
