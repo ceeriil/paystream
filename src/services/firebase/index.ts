@@ -8,7 +8,7 @@ if (process.env.NODE_ENV === "test") {
   // we might want to run tests against the Staging firebase instance.
   throw new Error(
     ` This will connect to the production firestore. 
-      Make sure db/firebase.ts is updated before testing against Firebase`,
+      Make sure db/firebase.ts is updated before testing against Firebase`
   );
 }
 
@@ -17,8 +17,8 @@ if (!admin.apps.length) {
     console.log("using Firebase **emulator** DB");
 
     admin.initializeApp({
-      projectId: "paystream-314c2",
-      storageBucket: "paystream-314c2.firebasestorage.app",
+      projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+      storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
     });
 
     seedDatabase();
@@ -26,11 +26,11 @@ if (!admin.apps.length) {
     console.log("using Firebase live DB");
     admin.initializeApp({
       credential: admin.credential.applicationDefault(),
-      storageBucket: "paystream-314c2.firebasestorage.app",
+      storageBucket: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
     });
   } else {
     admin.initializeApp({
-      storageBucket: "paystream-314c2.firebasestorage.app",
+      storageBucket: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
     });
   }
 }

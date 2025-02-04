@@ -10,7 +10,6 @@ import { useAllStreams } from "@/hooks/useAllStream";
 import { useEffect } from "react";
 import { getTotalDepositedAmount } from "@/helpers";
 
-
 export default function Stats() {
   const { streams, fetchStreams, loading, error } = useAllStreams();
 
@@ -26,7 +25,7 @@ export default function Stats() {
         <DashboardCard
           icon={BarChart3}
           label="Total Amount Spent"
-          value={`${totalPayout.toLocaleString()} USDC`} 
+          value={`${totalPayout.toLocaleString()} USDC`}
           percentageChange={20.1}
         />
 
@@ -40,14 +39,14 @@ export default function Stats() {
 
         <DashboardCard
           icon={CreditCard}
-          label="Total Employees"
+          label="Total Contracts Created"
           value="0"
           color="#CF1A2C"
           percentageChange={0}
         />
       </div>
 
-      <div className="grid grid-cols-[65%,35%] gap-5">
+      <div className="grid lg:grid-cols-[65%,35%] gap-5">
         <Card className="">
           <div className="p-10 mt-3 card-lg">
             <div className="text-lg mb-6 font-[600] flex justify-between">
@@ -70,7 +69,8 @@ export default function Stats() {
               </Tabs>
             </div>
             <div className="text-5xl font-bold mb-4 gradient-text">
-              ${totalPayout.toLocaleString()}<span className="text-3xl">.00</span>
+              ${totalPayout.toLocaleString()}
+              <span className="text-3xl">.00</span>
             </div>
           </div>
           <PaymentTypePieChart />

@@ -44,7 +44,7 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <MainLayout>
+    <>
       <Header />
       <main className="bg-black">
         <section className="min-h-screen hero" id="home">
@@ -442,6 +442,6 @@ export default function Home() {
           </div>
         </footer>
       </main>
-    </MainLayout>
+    </>
   );
 }

@@ -1,6 +1,15 @@
 import { PermissionRole, TimeUnit } from "@/types";
 import BN from "bn.js";
-import { addSeconds, addMinutes, addHours, addDays, addWeeks, addMonths, addYears } from "date-fns";
+import {
+  addSeconds,
+  addMinutes,
+  addHours,
+  addDays,
+  addWeeks,
+  addMonths,
+  addYears,
+} from "date-fns";
+import { Stream } from "@streamflow/stream";
 
 export interface TransferPermissions {
   transferableBySender: boolean;
@@ -131,7 +140,11 @@ export const convertBNToNumber = (bnValue: BN, decimals: number): number => {
  * @param {string} unlockDuration
  * @returns {string}
  */
-export const calculateUnlockDate = (startDate: Date, duration: number, durationUnit: string): Date => {
+export const calculateUnlockDate = (
+  startDate: Date,
+  duration: number,
+  durationUnit: string
+): Date => {
   switch (durationUnit) {
     case "Second":
       return addSeconds(startDate, duration);
@@ -156,8 +169,10 @@ export const calculateUnlockDate = (startDate: Date, duration: number, durationU
   }
 };
 
-
-export const convertDateToTimestamp = (dateStr: Date, timeStr: string): number => {
+export const convertDateToTimestamp = (
+  dateStr: Date,
+  timeStr: string
+): number => {
   if (!dateStr || !timeStr) return 0;
 
   const date = new Date(dateStr);
@@ -170,11 +185,12 @@ export const convertDateToTimestamp = (dateStr: Date, timeStr: string): number =
   return date.getTime();
 };
 
-
-export const getTotalDepositedAmount = (streams: Array<[string, any]>): number => {
+export const getTotalDepositedAmount = (
+  streams: Array<[string, any]>
+): number => {
   return streams.reduce((total, [, contract]) => {
     if (contract?.depositedAmount instanceof BN) {
-      total += convertBNToNumber(contract.depositedAmount, 6)
+      total += convertBNToNumber(contract.depositedAmount, 6);
     }
     return total;
   }, 0);
