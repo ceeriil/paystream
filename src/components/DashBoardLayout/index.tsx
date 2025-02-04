@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/sidebar";
 import { ConnectButton } from "../ConnectButton";
 import { useAppKitNetwork } from "@reown/appkit/react";
+import Link from "next/link";
 
 interface NavItem {
   title: string;
@@ -95,7 +96,12 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             </SidebarHeader>
             <SidebarContent>
               <SidebarMenu className="space-y-4 p-4 pt-6">
-                {navItems.map((item) => (
+                {navItems.map(({ title, href }) => (
+                  <li key={title}>
+                    <Link href={href}>{title}</Link>
+                  </li>
+                ))}
+                {/*  {navItems.map((item) => (
                   <SidebarMenuItem key={item.href} className="px-2">
                     <SidebarMenuButton asChild tooltip={item.title}>
                       <a
@@ -116,7 +122,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
-                ))}
+                ))} */}
               </SidebarMenu>
             </SidebarContent>
             <SidebarFooter>

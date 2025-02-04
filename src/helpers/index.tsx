@@ -188,7 +188,7 @@ export const convertDateToTimestamp = (
 export const getTotalDepositedAmount = (
   streams: Array<[string, any]>
 ): number => {
-  return streams.reduce((total, [, contract]) => {
+  return streams?.reduce((total, [, contract]) => {
     if (contract?.depositedAmount instanceof BN) {
       total += convertBNToNumber(contract.depositedAmount, 6);
     }
