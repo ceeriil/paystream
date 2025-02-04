@@ -6,9 +6,14 @@ import { Spinner } from "@/components/Spinner";
 import { BiError } from "react-icons/bi";
 import { ContractsTable } from "@/components/ContractsTable";
 import { CircleDollarSign } from "lucide-react";
+import { Stream } from "@streamflow/stream";
 
 export default function Payment() {
   const { streams, fetchStreams, loading, error } = useAllStreams();
+
+  const paystreamStreams = streams?.filter(([_, stream]: [string, Stream]) =>
+    stream.name?.toLowerCase().includes("paystream")
+  );
   useEffect(() => {
     console.log("stream for account", streams);
   });
@@ -32,7 +37,7 @@ export default function Payment() {
     );
   }
 
-  if (!streams || streams.length === 0) {
+  if (!paystreamStreams || paystreamStreams.length === 0) {
     return (
       <div>
         <div className="flex items-center justify-center mt-[4rem] font-bold text-gray-400 flex-col text-center">
@@ -60,7 +65,7 @@ export default function Payment() {
           Create Contract
         </Link>
       </div>
-      <ContractsTable streams={streams} />
+      <ContractsTable streams={paystreamStreams} />
     </section>
   );
 }

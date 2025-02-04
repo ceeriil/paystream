@@ -16,6 +16,7 @@ import { SignerWalletAdapter } from "@solana/wallet-adapter-base";
 import { Keypair } from "@solana/web3.js";
 import { useAppKitNetwork } from "@reown/appkit/react";
 import { useEffect, useState } from "react";
+import { IGetOneData } from "@streamflow/stream";
 
 const getCluster = (network: string) => {
   switch (network) {
@@ -112,6 +113,27 @@ export const getAllStreams = async (
       direction: StreamDirection.All,
     });
     return streams;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+/**
+ * Get one streams from the Solana blockchain
+ *
+ * @async
+ * @param {string} address
+ * @param {string} solanaClient
+ * @returns {Promise<[string, Stream][] | undefined>}
+ */
+export const getOneStream = async (
+  solanaClient: SolanaStreamClient,
+  id: string
+): Promise<Stream | undefined> => {
+  try {
+    const data: IGetOneData = { id };
+    const stream = await solanaClient.getOne(data);
+    return stream;
   } catch (error) {
     console.error(error);
   }

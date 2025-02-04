@@ -5,14 +5,18 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import { useAllStreams } from "@/hooks/useAllStream";
 import { Spinner } from "@/components/Spinner";
+import { useOneStream } from "@/hooks/useOneStream";
+import { Address } from "@/components/Address.tsx";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 export default function PaymentDetailPage() {
-  const { streams, loading, error } = useAllStreams();
   const params = useParams();
   const router = useRouter();
   const streamId = params.id as string;
+
+  const { stream, loading, error } = useOneStream(streamId);
 
   if (loading) {
     return (
@@ -29,8 +33,6 @@ export default function PaymentDetailPage() {
       </div>
     );
   }
-
-  const stream = streams?.find((s) => s[0] === streamId);
 
   if (!stream) {
     return (
@@ -61,11 +63,27 @@ export default function PaymentDetailPage() {
       </div>
 
       <Card className="p-6">
-        <h1 className="text-2xl font-bold">{stream.recipient}</h1>
-        <p className="text-gray-500">Payment Details</p>
-        <Badge variant="default" className="mt-2">
-          {stream.status}
-        </Badge>
+        <div className="flex items-center justify-between">
+          <div>
+            <Address
+              address={streamId}
+              type="contract"
+              className="text-xl font-medium"
+              length="long"
+            />
+            <Badge variant="default" className="mt-3">
+              One Time Payment
+            </Badge>
+          </div>
+          <Link
+            className="btn-gradient px-4 py-3 rounded-xl font-[600] text-sm mt-5 flex space-x-2 "
+            href=""
+          >
+            {" "}
+            View on StreamFlow
+            <ArrowUpRight />
+          </Link>
+        </div>
 
         <Separator className="my-6" />
 
@@ -75,7 +93,7 @@ export default function PaymentDetailPage() {
             <div className="space-y-4">
               <div>
                 <p className="text-sm text-gray-500">Amount</p>
-                <p className="font-medium">{stream.amount} USDC</p>
+                <p className="font-medium"> USDC</p>
               </div>
               <div>
                 <p className="text-sm text-gray-500">Start Date</p>
@@ -103,7 +121,7 @@ export default function PaymentDetailPage() {
               </div>
               <div>
                 <p className="text-sm text-gray-500">Status</p>
-                <p className="font-medium">{stream.status}</p>
+                <p className="font-medium">{/* {stream.status} */}</p>
               </div>
             </div>
           </div>
