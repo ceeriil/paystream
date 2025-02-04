@@ -39,7 +39,7 @@ export default function Stats() {
 
         <DashboardCard
           icon={CreditCard}
-          label="Total Employees"
+          label="Total Contracts Created"
           value="0"
           color="#CF1A2C"
           percentageChange={0}

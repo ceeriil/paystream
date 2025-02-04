@@ -6,16 +6,8 @@ import { Card } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DashboardCard } from "@/components/DashboardCard";
 import { DicebearAvatar } from "@/components/ui/dicebear-avatar";
-import { useAllStreams } from "@/hooks/useAllStream";
-import { useEffect } from "react";
 
 export default function DashboardPage() {
-  const { streams, fetchStreams, loading, error } = useAllStreams();
-
-  useEffect(() => {
-    console.log("stream for account", streams);
-  });
-
   return (
     <div className="space-y-8">
       <div className="flex items-center justify-between">
