@@ -25,7 +25,7 @@ const Header = () => {
   ];
 
   return (
-    <div className="flex justify-between items-center w-full h-20 px-4 text-white fixed nav md:px-16 z-20 navbar">
+    <div className="flex justify-between items-center w-full h-20 px-4 text-white fixed nav md:px-16 z-20 navbar backdrop-blur-md bg-[#00000040]">
       <div className="flex items-center">
         <Image src="/logo.png" width={24} height={24} alt="Paystream Logo" />
         <h2 className="text-2xl font-signature ml-4">

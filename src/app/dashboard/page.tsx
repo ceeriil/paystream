@@ -42,7 +42,7 @@ export default function DashboardPage() {
         />
 
         <DashboardCard
-          icon={Users}
+          icon={CreditCard}
           label="Active Contracts"
           value="0"
           percentageChange={0}
@@ -51,7 +51,7 @@ export default function DashboardPage() {
         />
 
         <DashboardCard
-          icon={CreditCard}
+          icon={Users}
           label="Total Employess"
           value="0"
           color="#CF1A2C"
@@ -61,7 +61,7 @@ export default function DashboardPage() {
 
       <Card className="">
         <div className="p-10 mt-3 card-lg">
-          <div className="text-lg mb-6 font-[600] flex justify-between ">
+          <div className="text-lg mb-6 font-[600] flex md:flex-row flex-col justify-between gap-y-2 ">
             Payment History
             <Tabs>
               <TabsList className="space-x-5 h-8">
@@ -85,7 +85,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <PaymentChart timerange="1w"  />
+        <PaymentChart timerange="1w" />
       </Card>
     </div>
   );

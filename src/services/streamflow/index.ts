@@ -39,7 +39,6 @@ export const useSolanaClient = () => {
   const network =
     (caipNetwork as { network?: string })?.network || "solana-devnet";
 
-  // Manage state for RPC URL and Solana client
   const [rpcUrl, setRpcUrl] = useState(
     "https://mainnet.helius-rpc.com/?api-key=d6b842be-5729-49db-a0b0-4a19822b3533"
   );

@@ -11,6 +11,7 @@ import {
   LayoutDashboard,
   BarChart2,
   CircleDollarSign,
+  BookOpen,
 } from "lucide-react";
 import {
   Sidebar,
@@ -53,6 +54,11 @@ const navItems: NavItem[] = [
     title: "Stats",
     href: "/dashboard/stats",
     icon: BarChart2,
+  },
+  {
+    title: "Docs",
+    href: "https://paystream.gitbook.io/paystream",
+    icon: BookOpen,
   },
   {
     title: "Settings",
@@ -131,7 +137,9 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             </header>
             {network === "solana-devnet" && <TestnetBanner network={network} />}
 
-            <div className="container mx-auto p-6 px-12 pb-12">{children}</div>
+            <div className="container mx-auto p-6 lg:px-12 px-4 pb-12">
+              {children}
+            </div>
           </main>
         </div>
       </SidebarProvider>

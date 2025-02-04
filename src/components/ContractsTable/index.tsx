@@ -5,6 +5,8 @@ import Image from "next/image";
 import { Address } from "../Address.tsx";
 import { Table } from "../ui/table";
 import { cn } from "@/lib/utils";
+import Link from "next/link.js";
+import { SquareArrowOutUpRight } from "lucide-react";
 
 type SortField = "amount" | "startDate" | "endDate" | "nextPayment";
 type SortDirection = "asc" | "desc" | null;
@@ -109,6 +111,7 @@ export const ContractsTable = ({ streams }: { streams: any }) => {
             End Date
             <SortIcon field="nextPayment" />
           </th>
+          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-400"></th>
         </tr>
       </thead>
       <tbody className="divide-y divide-[#272727]">
@@ -141,13 +144,17 @@ export const ContractsTable = ({ streams }: { streams: any }) => {
                 length="short"
               />
             </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm ">  <Address
-                address={id}
-                type="contract"
-                length="short"
-              /></td>
+            <td className="px-6 py-4 whitespace-nowrap text-sm ">
+              {" "}
+              <Address address={id} type="contract" length="short" />
+            </td>
             <td className="px-6 py-4 whitespace-nowrap text-sm ">
               {convertTimestampToFormattedDate(stream.end)}
+            </td>
+            <td className="px-6 py-4 whitespace-nowrap text-sm ">
+              <Link href={`/dashboard/payments/${id}`}>
+                <SquareArrowOutUpRight color="#415CFC" size={20} />
+              </Link>
             </td>
           </tr>
         ))}
