@@ -10,12 +10,11 @@ import {
   SelectValue,
 } from "../ui/select";
 import { unlockScheduleOptions, vestingDurationOptions } from "@/constants";
-import useSolanaTokens from "@/hooks/useSolanaTokens";
 import { useState } from "react";
 import { DEFAULT_TOKENS } from "@/constants";
+import { useAppKitNetwork } from "@reown/appkit/react";
 
 const Configuration = () => {
-  const tokens = DEFAULT_TOKENS;
   const {
     control,
     formState: { errors },
@@ -23,15 +22,19 @@ const Configuration = () => {
     watch,
   } = useFormContext<StepperFormValues>();
 
-  // Watch the selected payment type to conditionally render the cliff amount input
   const selectedPaymentType = watch("paymentType");
-  const [cliffAmount, setCliffAmount] = useState("");
+  const [cliffAmount, setCliffAmount] = useState(0);
+  const { caipNetwork } = useAppKitNetwork();
+  const network =
+    (caipNetwork as { network?: string })?.network || "solana-devnet";
+  const tokens =
+    DEFAULT_TOKENS[network as keyof typeof DEFAULT_TOKENS] ||
+    DEFAULT_TOKENS["solana-devnet"];
 
   return (
     <div>
       <h4 className="stepper_step_heading">Configuration</h4>
       <div className="stepper_step_container">
-        {/* Payment Type Select */}
         <div>
           <label
             htmlFor="paymentType"
@@ -71,30 +74,33 @@ const Configuration = () => {
 
         {/* Token Selection */}
         <div>
-  <label htmlFor="token" className="text-sm text-neutral-300 mb-2 inline-block">
-    Token
-  </label>
-  <Controller
-    name="token"
-    control={control}
-    rules={{ required: "Required" }}
-    defaultValue={DEFAULT_TOKENS[0].mint}
-    render={({ field: { value }, fieldState: { error } }) => (
-      <div>
-        <Select value={value || DEFAULT_TOKENS[0].mint} disabled>
-          <SelectTrigger>
-            <SelectValue>{DEFAULT_TOKENS[0].name}</SelectValue> 
-          </SelectTrigger>
-        </Select>
-        {error && (
-          <span className="text-destructive block !mt-[5px] text-[12px]">
-            {error.message}
-          </span>
-        )}
-      </div>
-    )}
-  />
-</div>
+          <label
+            htmlFor="token"
+            className="text-sm text-neutral-300 mb-2 inline-block"
+          >
+            Token
+          </label>
+          <Controller
+            name="token"
+            control={control}
+            rules={{ required: "Required" }}
+            defaultValue={tokens[0].mint}
+            render={({ field: { value }, fieldState: { error } }) => (
+              <div>
+                <Select value={value || tokens[0].mint} disabled>
+                  <SelectTrigger>
+                    <SelectValue>{tokens[0].name}</SelectValue>
+                  </SelectTrigger>
+                </Select>
+                {error && (
+                  <span className="text-destructive block !mt-[5px] text-[12px]">
+                    {error.message}
+                  </span>
+                )}
+              </div>
+            )}
+          />
+        </div>
 
         {(selectedPaymentType === "contract" ||
           selectedPaymentType === "one-time") && (
@@ -111,17 +117,15 @@ const Configuration = () => {
               min="0"
               max="100"
               value={cliffAmount}
-              onChange={(e) => {
-                setCliffAmount(e.target.value);
-                onChange(e); // Call the original onChange to update the form
-              }}
-              error={errors.cliffAmount?.message}
               {...register("cliffAmount", {
                 required: "Cliff amount is required for this payment type",
                 validate: (value) =>
-                  value >= 0 && value <= 100
+                  Number(value) >= 0 && Number(value) <= 100
                     ? true
                     : "Cliff amount must be between 0 and 100",
+                onChange: (e) => {
+                  setCliffAmount(e.target.value);
+                },
               })}
             />
           </div>

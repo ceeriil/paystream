@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { getAllStreams } from "@/services/streamflow";
 import { Stream } from "@streamflow/stream";
-import { useAppKitProvider, type Provider } from "@reown/appkit/react";
+import {
+  useAppKitNetwork,
+  useAppKitProvider,
+  type Provider,
+} from "@reown/appkit/react";
 import { useSolanaClient } from "@/services/streamflow";
 
 /**
@@ -21,6 +25,9 @@ export function useAllStreams(): {
   const [error, setError] = useState<Error | undefined>();
   const { walletProvider } = useAppKitProvider<Provider>("solana");
   const { solanaClient } = useSolanaClient();
+  const { caipNetwork } = useAppKitNetwork();
+  const network =
+    (caipNetwork as { network?: string })?.network || "solana-devnet";
 
   const fetchStreams = async () => {
     if (!walletProvider) {
@@ -29,8 +36,6 @@ export function useAllStreams(): {
     }
 
     const publicKeyString = (walletProvider as any)?.publicKey?.toString();
-
-    console.log("pb string", publicKeyString);
 
     try {
       setLoading(true);
