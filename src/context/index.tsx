@@ -9,8 +9,7 @@ import React, { useMemo, type ReactNode } from "react";
 import { cookieToInitialState, WagmiProvider, type Config } from "wagmi";
 import { WalletProvider } from "@solana/wallet-adapter-react";
 import { UnsafeBurnerWalletAdapter } from "@solana/wallet-adapter-wallets";
-
-
+import { suiDevnet, suiWallet } from "@/config/sui";
 const queryClient = new QueryClient();
 
 if (!projectId) {
@@ -37,7 +36,7 @@ export const modal = createAppKit({
   tokens: {
     "solana:mainnet-beta": {
       address: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
-    }
+    },
   },
   themeVariables: {
     "--w3m-font-family": "urbanist",
@@ -59,18 +58,17 @@ function AppKitProvider({
 
   const wallets = useMemo(() => [new UnsafeBurnerWalletAdapter()], []);
 
-  
   return (
-    <WalletProvider   wallets={wallets}
-    autoConnect={true}>
-       <WagmiProvider
-      config={wagmiAdapter.wagmiConfig as Config}
-      initialState={initialState}
-    >
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    </WagmiProvider>
+    <WalletProvider wallets={wallets} autoConnect={true}>
+      <WagmiProvider
+        config={wagmiAdapter.wagmiConfig as Config}
+        initialState={initialState}
+      >
+        <QueryClientProvider client={queryClient}>
+          {children}
+        </QueryClientProvider>
+      </WagmiProvider>
     </WalletProvider>
-   
   );
 }
 

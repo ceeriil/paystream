@@ -35,18 +35,54 @@ export abstract class FormValidators {
   }
 }
 
-export const handleSignMessage = async (walletProvider: any) => {
+/**
+ * Signs a message using the Solana wallet provider.
+ * @param {object} walletProvider - The connected wallet provider.
+ * @param {string} nonce - A unique nonce for the message.
+ * @returns {Promise<string>} - The signed message in hexadecimal format.
+ */
+export const signMessage = async (walletProvider, nonce) => {
   try {
-    const encodedMessage = new TextEncoder().encode(
-      "Sign this message to authenticate with Paystream. This request will not trigger a blockchain transaction or cost any gas fees."
-    );
-    const signature = await walletProvider.signMessage(encodedMessage);
-    const signatureHex = Buffer.from(signature).toString("hex");
+    const message = `Sign this message to authenticate to Paystream. This request will not trigger a blockchain transaction or cost any gas fees. iat: ${nonce}`;
 
-    console.log("Signed Message:", signatureHex);
+    const encodedMessage = new TextEncoder().encode(message);
+
+    const signature = await walletProvider.signMessage(encodedMessage);
+
+    const signatureHex = Buffer.from(signature).toString("hex");
 
     return signatureHex;
   } catch (error) {
     console.error("Error signing message:", error);
+    throw error;
+  }
+};
+
+import { PublicKey } from "@solana/web3.js";
+
+/**
+ * Verifies a signed message using the wallet's public key.
+ * @param {string} publicKey - The wallet's public key.
+ * @param {string} signatureHex - The signed message in hexadecimal format.
+ * @param {string} nonce - The nonce used in the original message.
+ * @returns {boolean} - True if the signature is valid, false otherwise.
+ */
+export const verifyMessage = (publicKey, signatureHex, nonce) => {
+  try {
+    // Reconstruct the original message
+    const message = `Sign this message to authenticate to Paystream. This request will not trigger a blockchain transaction or cost any gas fees. iat: ${nonce}`;
+
+    const encodedMessage = new TextEncoder().encode(message);
+
+    const signatureBuffer = Buffer.from(signatureHex, "hex");
+
+    const publicKeyObj = new PublicKey(publicKey);
+
+    const isValid = publicKeyObj.verify(encodedMessage, signatureBuffer);
+
+    return isValid;
+  } catch (error) {
+    console.error("Error verifying message:", error);
+    return false;
   }
 };

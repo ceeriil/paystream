@@ -39,8 +39,11 @@ export function useAllStreams(): {
 
     try {
       setLoading(true);
-      const streamData = await getAllStreams(solanaClient, publicKeyString);
-      setStreams(streamData);
+      if (solanaClient){
+        const streamData = await getAllStreams(solanaClient, publicKeyString);
+        setStreams(streamData);
+      }
+    
     } catch (err) {
       setError(err as Error);
     } finally {

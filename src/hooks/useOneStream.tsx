@@ -29,10 +29,10 @@ export function useOneStream(id: string): {
 
     try {
       setLoading(true);
-      const streamData = await getOneStream(solanaClient, id);
-      setStream(streamData);
-      console.log("solanaClient", solanaClient);
-      console.log("streamdata", streamData);
+      if (solanaClient) {
+        const streamData = await getOneStream(solanaClient, id);
+        setStream(streamData);
+      }
     } catch (err) {
       setError(err as Error);
     } finally {
