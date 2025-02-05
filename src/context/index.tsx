@@ -7,7 +7,6 @@ import { createAppKit } from "@reown/appkit/react";
 import { base, solana, sepolia, solanaDevnet } from "@reown/appkit/networks";
 import React, { useMemo, type ReactNode } from "react";
 import { cookieToInitialState, WagmiProvider, type Config } from "wagmi";
-import { WalletProvider } from "@solana/wallet-adapter-react";
 const queryClient = new QueryClient();
 
 if (!projectId) {
@@ -30,6 +29,7 @@ export const modal = createAppKit({
   themeMode: "dark",
   features: {
     analytics: true,
+    socials: ["google", "x", "github", "discord"],
   },
   tokens: {
     "solana:mainnet-beta": {

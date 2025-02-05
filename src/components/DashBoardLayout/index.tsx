@@ -27,6 +27,7 @@ import {
 import { ConnectButton } from "../ConnectButton";
 import { useAppKitNetwork } from "@reown/appkit/react";
 import Link from "next/link";
+import FaucetButton from "../FaucetButton";
 
 interface NavItem {
   title: string;
@@ -133,7 +134,11 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               <div className="flex h-14 items-center gap-4 px-6 justify-between">
                 <SidebarTrigger />
                 <div className="flex-1" />
-                <ConnectButton />
+                <div className="flex space-x-2">
+                  <ConnectButton />
+
+                  {network === "solana-devnet" && <FaucetButton />}
+                </div>
               </div>
             </header>
             {network === "solana-devnet" && <TestnetBanner network={network} />}
