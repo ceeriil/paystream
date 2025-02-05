@@ -1,9 +1,19 @@
 import { DashboardLayout } from "@/components/DashBoardLayout";
+import ContextProvider from "@/context";
+import { headers } from "next/headers";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default async function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const headersObj = await headers();
+  const cookies = headersObj.get("cookie");
   return (
     <>
-      <DashboardLayout>{children}</DashboardLayout>;
+      <ContextProvider cookies={cookies}>
+        <DashboardLayout>{children}</DashboardLayout>;
+      </ContextProvider>
     </>
   );
 }

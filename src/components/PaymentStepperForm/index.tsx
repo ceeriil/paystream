@@ -13,9 +13,7 @@ import {
   useAppKitNetwork,
   useAppKitProvider,
 } from "@reown/appkit/react";
-import {
-  type Provider,
-} from "@reown/appkit-adapter-solana/react";
+import { type Provider } from "@reown/appkit-adapter-solana/react";
 import { Keypair } from "@solana/web3.js";
 import { DELAY_IN_SECONDS } from "@/constants";
 import { TimeUnit } from "@/types";
@@ -131,7 +129,7 @@ const PaymentStepperForm = () => {
         (t) => t.mint === formData.token
       ) || DEFAULT_TOKENS[network as keyof typeof DEFAULT_TOKENS]?.[0];
 
-      const totalAmountInLamports = getBN(Number(tokenAmount), 6);
+    const totalAmountInLamports = getBN(Number(tokenAmount), 6);
     const start = convertDateToTimestamp(startDate, startTime);
     const unlockDurationInSeconds = convertDurationToSeconds(
       1,
@@ -156,7 +154,7 @@ const PaymentStepperForm = () => {
       cliff: getCurrentTimestampInSeconds() + DELAY_IN_SECONDS,
       cliffAmount: getBN(0, 9),
       amountPerPeriod: amountPerInterval,
-      name: "paystream",
+      name: "paystream-" + paymentType,
       canTopup: false,
       cancelableBySender: true,
       cancelableByRecipient: false,

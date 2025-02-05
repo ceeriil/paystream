@@ -1,15 +1,13 @@
 "use client";
 
-import { wagmiAdapter, projectId } from "@/config/wagmi";
-import { solanaAdapter } from "@/config";
+import { wagmiAdapter, projectId } from "@/services/reown/wagmi";
+import { solanaAdapter } from "@/services/reown/solana";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createAppKit } from "@reown/appkit/react";
 import { base, solana, sepolia, solanaDevnet } from "@reown/appkit/networks";
 import React, { useMemo, type ReactNode } from "react";
 import { cookieToInitialState, WagmiProvider, type Config } from "wagmi";
 import { WalletProvider } from "@solana/wallet-adapter-react";
-import { UnsafeBurnerWalletAdapter } from "@solana/wallet-adapter-wallets";
-import { suiDevnet, suiWallet } from "@/config/sui";
 const queryClient = new QueryClient();
 
 if (!projectId) {
@@ -44,7 +42,7 @@ export const modal = createAppKit({
   },
 });
 
-function AppKitProvider({
+function ContextProvider({
   children,
   cookies,
 }: {
@@ -56,20 +54,14 @@ function AppKitProvider({
     cookies
   );
 
-  const wallets = useMemo(() => [new UnsafeBurnerWalletAdapter()], []);
-
   return (
-    <WalletProvider wallets={wallets} autoConnect={true}>
-      <WagmiProvider
-        config={wagmiAdapter.wagmiConfig as Config}
-        initialState={initialState}
-      >
-        <QueryClientProvider client={queryClient}>
-          {children}
-        </QueryClientProvider>
-      </WagmiProvider>
-    </WalletProvider>
+    <WagmiProvider
+      config={wagmiAdapter.wagmiConfig as Config}
+      initialState={initialState}
+    >
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    </WagmiProvider>
   );
 }
 
-export default AppKitProvider;
+export default ContextProvider;
