@@ -28,7 +28,7 @@ export const unlockScheduleOptions = [
 export const cancellationRights = ["Recipient", "Sender", "Both", "Neither"];
 export const transferableRights = ["Recipient", "Sender", "Both", "Neither"];
 
-export const DEFAULT_TOKENS = [
+/* export const DEFAULT_TOKENS = [
   {
     mint: "Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr",
     balance: 0,
@@ -37,3 +37,24 @@ export const DEFAULT_TOKENS = [
     logoURI: "/img/token-logo.png",
   },
 ];
+ */
+export const DEFAULT_TOKENS = {
+  "solana-mainnet": [
+    {
+      mint: "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+      balance: 0,
+      name: "USDC",
+      symbol: "USDC",
+      logoURI: "/img/token-logo.png",
+    },
+  ],
+  "solana-devnet": [
+    {
+      mint: "Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr",
+      balance: 0,
+      name: "USDC dev",
+      symbol: "USDC",
+      logoURI: "/img/token-logo.png",
+    },
+  ],
+};

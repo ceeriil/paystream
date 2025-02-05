@@ -22,9 +22,6 @@ const getCluster = (network: string) => {
   switch (network) {
     case "solana-mainnet":
       return ICluster.Mainnet;
-    case "solana-testnet":
-      return ICluster.Testnet;
-    case "solana-devnet":
     default:
       return ICluster.Devnet;
   }
@@ -40,11 +37,8 @@ export const useSolanaClient = () => {
   const network =
     (caipNetwork as { network?: string })?.network || "solana-devnet";
 
-  const [rpcUrl, setRpcUrl] = useState(
-    "https://mainnet.helius-rpc.com/?api-key=d6b842be-5729-49db-a0b0-4a19822b3533"
-  );
-  const [solanaClient, setSolanaClient] = useState(() =>
-    createSolanaClient(rpcUrl, getCluster(network))
+  const [solanaClient, setSolanaClient] = useState<SolanaStreamClient | null>(
+    null
   );
 
   useEffect(() => {
@@ -53,12 +47,10 @@ export const useSolanaClient = () => {
     const newRpcUrl =
       network === "solana-mainnet"
         ? "https://mainnet.helius-rpc.com/?api-key=d6b842be-5729-49db-a0b0-4a19822b3533"
-        : network === "solana-devnet"
-          ? "https://devnet.helius-rpc.com/?api-key=d6b842be-5729-49db-a0b0-4a19822b3533"
-          : "https://devnet.helius-rpc.com/?api-key=d6b842be-5729-49db-a0b0-4a19822b3533"; //don't steal my rpc please. this one is free
+        : "https://devnet.helius-rpc.com/?api-key=d6b842be-5729-49db-a0b0-4a19822b3533"; //don't steal my rpc please. this one is free
 
-    setRpcUrl(newRpcUrl);
-    setSolanaClient(createSolanaClient(newRpcUrl, getCluster(network)));
+    const newSolanaClient = createSolanaClient(newRpcUrl, getCluster(network));
+    setSolanaClient(newSolanaClient);
   }, [network]);
 
   console.log("Solana Client updated for network:", network);

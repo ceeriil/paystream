@@ -34,3 +34,19 @@ export abstract class FormValidators {
     return value ? undefined : "Required";
   }
 }
+
+export const handleSignMessage = async (walletProvider: any) => {
+  try {
+    const encodedMessage = new TextEncoder().encode(
+      "Sign this message to authenticate with Paystream. This request will not trigger a blockchain transaction or cost any gas fees."
+    );
+    const signature = await walletProvider.signMessage(encodedMessage);
+    const signatureHex = Buffer.from(signature).toString("hex");
+
+    console.log("Signed Message:", signatureHex);
+
+    return signatureHex;
+  } catch (error) {
+    console.error("Error signing message:", error);
+  }
+};

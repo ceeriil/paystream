@@ -96,16 +96,11 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             </SidebarHeader>
             <SidebarContent>
               <SidebarMenu className="space-y-4 p-4 pt-6">
-                {navItems.map(({ title, href }) => (
-                  <li key={title}>
-                    <Link href={href}>{title}</Link>
-                  </li>
-                ))}
-                {/*  {navItems.map((item) => (
+                {navItems.map((item) => (
                   <SidebarMenuItem key={item.href} className="px-2">
                     <SidebarMenuButton asChild tooltip={item.title}>
-                      <a
-                        href={item.inactive ? undefined : item.href}
+                      <Link
+                        href={item.inactive ? "/#" : item.href}
                         className={`flex items-center text-base font-medium p-2 rounded-md transition-all py-5 ${
                           item.inactive
                             ? "text-gray-500 cursor-not-allowed"
@@ -119,10 +114,10 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                       >
                         <item.icon className="mr-4 h-5 w-5" />
                         <span>{item.title}</span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
-                ))} */}
+                ))}
               </SidebarMenu>
             </SidebarContent>
             <SidebarFooter>

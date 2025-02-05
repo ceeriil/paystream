@@ -8,9 +8,12 @@ import StepperIndicator from "../ui/stepper-indicator";
 import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
 import { Button } from "../ui/button";
 import { createStream, useSolanaClient } from "@/services/streamflow";
-import { useAppKitAccount, useAppKitProvider } from "@reown/appkit/react";
 import {
-  useAppKitConnection,
+  useAppKitAccount,
+  useAppKitNetwork,
+  useAppKitProvider,
+} from "@reown/appkit/react";
+import {
   type Provider,
 } from "@reown/appkit-adapter-solana/react";
 import { Keypair } from "@solana/web3.js";
@@ -29,6 +32,7 @@ import Configuration from "./Configuration";
 import Review from "./Review";
 import Recipients from "./Recipients";
 import { useRouter } from "next/navigation";
+import { DEFAULT_TOKENS } from "@/constants";
 
 function getStepContent(step: number) {
   switch (step) {
@@ -47,8 +51,7 @@ const PaymentStepperForm = () => {
   const [activeStep, setActiveStep] = useState(1);
   const { toast } = useToast();
   const router = useRouter();
-  const { address, isConnected, caipAddress, status, embeddedWalletInfo } =
-    useAppKitAccount();
+  const { isConnected } = useAppKitAccount();
   const [isTransactionLoading, setIsTransactionLoading] =
     useState<boolean>(false);
   const [erroredInputName, setErroredInputName] = useState("");
@@ -57,6 +60,7 @@ const PaymentStepperForm = () => {
   });
   const { walletProvider } = useAppKitProvider<Provider>("solana");
   const { solanaClient } = useSolanaClient();
+  const { caipNetwork } = useAppKitNetwork();
 
   console.log(useAppKitAccount(), "hii");
 
@@ -121,8 +125,13 @@ const PaymentStepperForm = () => {
       recipientWallet,
       recipientEmail
     );
+    const network = caipNetwork?.network || "solana-mainnet";
+    const selectedToken =
+      DEFAULT_TOKENS[network as keyof typeof DEFAULT_TOKENS]?.find(
+        (t) => t.mint === formData.token
+      ) || DEFAULT_TOKENS[network as keyof typeof DEFAULT_TOKENS]?.[0];
 
-    const totalAmountInLamports = getBN(Number(tokenAmount), 6);
+      const totalAmountInLamports = getBN(Number(tokenAmount), 6);
     const start = convertDateToTimestamp(startDate, startTime);
     const unlockDurationInSeconds = convertDurationToSeconds(
       1,
@@ -140,9 +149,7 @@ const PaymentStepperForm = () => {
     const createStreamParams = {
       recipient: recipientWallet,
       tokenId:
-        token !== "Native SOL"
-          ? token
-          : "So11111111111111111111111111111111111111112",
+        selectedToken?.mint || "So11111111111111111111111111111111111111112",
       start: getCurrentTimestampInSeconds() + DELAY_IN_SECONDS,
       amount: totalAmountInLamports,
       period: unlockDurationInSeconds,
@@ -176,7 +183,7 @@ const PaymentStepperForm = () => {
           title: "Success",
           description: `${stream.txId} created successfully.`,
         });
-        router.push("/");
+        router.push("/dashboard");
       },
       (error) => {
         toast({

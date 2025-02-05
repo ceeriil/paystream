@@ -31,6 +31,7 @@ export function useOneStream(id: string): {
       setLoading(true);
       const streamData = await getOneStream(solanaClient, id);
       setStream(streamData);
+      console.log("solanaClient", solanaClient);
       console.log("streamdata", streamData);
     } catch (err) {
       setError(err as Error);
@@ -46,7 +47,7 @@ export function useOneStream(id: string): {
       setLoading(true);
       setError(undefined);
     };
-  }, [id]);
+  }, [id, solanaClient]);
 
   return { stream, fetchStream, loading, error };
 }
