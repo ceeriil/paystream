@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { Provider } from "@reown/appkit-adapter-solana/react";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -41,7 +42,7 @@ export abstract class FormValidators {
  * @param {string} nonce - A unique nonce for the message.
  * @returns {Promise<string>} - The signed message in hexadecimal format.
  */
-export const signMessage = async (walletProvider, nonce) => {
+export const signMessage = async (walletProvider: Provider, nonce: string) => {
   try {
     const message = `Sign this message to authenticate to Paystream. This request will not trigger a blockchain transaction or cost any gas fees. iat: ${nonce}`;
 
@@ -59,6 +60,7 @@ export const signMessage = async (walletProvider, nonce) => {
 };
 
 import { PublicKey } from "@solana/web3.js";
+import nacl from "tweetnacl";
 
 /**
  * Verifies a signed message using the wallet's public key.
@@ -67,18 +69,24 @@ import { PublicKey } from "@solana/web3.js";
  * @param {string} nonce - The nonce used in the original message.
  * @returns {boolean} - True if the signature is valid, false otherwise.
  */
-export const verifyMessage = (publicKey, signatureHex, nonce) => {
+export const verifyMessage = (
+  publicKey: string,
+  signatureHex: string,
+  nonce: string
+) => {
   try {
-    // Reconstruct the original message
     const message = `Sign this message to authenticate to Paystream. This request will not trigger a blockchain transaction or cost any gas fees. iat: ${nonce}`;
 
     const encodedMessage = new TextEncoder().encode(message);
 
     const signatureBuffer = Buffer.from(signatureHex, "hex");
+    const publicKeyBytes = new PublicKey(publicKey).toBytes();
 
-    const publicKeyObj = new PublicKey(publicKey);
-
-    const isValid = publicKeyObj.verify(encodedMessage, signatureBuffer);
+    const isValid = nacl.sign.detached.verify(
+      encodedMessage,
+      signatureBuffer,
+      publicKeyBytes
+    );
 
     return isValid;
   } catch (error) {

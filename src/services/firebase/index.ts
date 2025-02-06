@@ -1,8 +1,6 @@
 import * as admin from "firebase-admin";
 import { seedDatabase } from "@/local_database/seedDb";
 
-console.log(process.env);
-
 if (process.env.NODE_ENV === "test") {
   // We won't be using firebase for testing for now. At some point,
   // we might want to run tests against the Staging firebase instance.
@@ -24,10 +22,21 @@ if (!admin.apps.length) {
     seedDatabase();
   } else if (process.env.GOOGLE_APPLICATION_CREDENTIALS) {
     console.log("using Firebase live DB");
-    admin.initializeApp({
-      credential: admin.credential.applicationDefault(),
-      storageBucket: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-    });
+    const firebaseServiceAccountKey = process.env.FIREBASE_SERVICE_ACCOUNT_KEY;
+
+    const storageBucket = process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET;
+
+    if (firebaseServiceAccountKey && storageBucket) {
+      const serviceAccount = JSON.parse(
+        Buffer.from(firebaseServiceAccountKey, "base64").toString("utf8")
+      );
+
+      console.log("Using Firebase live DB");
+      admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount),
+        storageBucket: storageBucket,
+      });
+    }
   } else {
     admin.initializeApp({
       storageBucket: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,

@@ -19,7 +19,7 @@ const Header = () => {
     },
     {
       id: 3,
-      link: "dahsboard",
+      link: "dashboard",
       href: "/dashboard",
     },
   ];
