@@ -8,8 +8,8 @@ import { SuietWalletAdapter } from "@suiet/wallet-adapter";
 
 export const suiDevnet = defineChain({
   id: 2,
-  caipNetworkId: "sui:devnet",
-  chainNamespace: "sui",
+  caipNetworkId: "eip155:1",
+  chainNamespace: "eip155",
   name: "Sui Devnet",
   nativeCurrency: {
     decimals: 9,

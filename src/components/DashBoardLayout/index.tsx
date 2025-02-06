@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import TestnetBanner from "../TestnetBanner";
@@ -25,8 +25,16 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { ConnectButton } from "../ConnectButton";
-import { useAppKitNetwork } from "@reown/appkit/react";
+import {
+  useAppKitNetwork,
+  useAppKitProvider,
+  useAppKitAccount,
+} from "@reown/appkit/react";
 import Link from "next/link";
+import FaucetButton from "../FaucetButton";
+import { SignMessageOverlay } from "../SignMessageOverlay";
+import { type Provider } from "@reown/appkit-adapter-solana/react";
+import { useAuth } from "@/context/AuthContext";
 
 interface NavItem {
   title: string;
@@ -76,12 +84,19 @@ interface DashboardLayoutProps {
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const pathname = usePathname();
   const { caipNetwork } = useAppKitNetwork();
+  const [isOverlayVisible, setIsOverlayVisible] = useState(true);
+  const { isConnected } = useAppKitAccount();
+  const { user } = useAuth();
 
   const network = (caipNetwork as { network?: string })?.network;
 
   useEffect(() => {
     console.log("Network", network);
   });
+
+  const handleSignSuccess = (signatureHex: string) => {
+    console.log("Signature:", signatureHex);
+  };
 
   return (
     <>
@@ -133,7 +148,11 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               <div className="flex h-14 items-center gap-4 px-6 justify-between">
                 <SidebarTrigger />
                 <div className="flex-1" />
-                <ConnectButton />
+                <div className="flex space-x-2">
+                  <ConnectButton />
+
+                  {network === "solana-devnet" && <FaucetButton />}
+                </div>
               </div>
             </header>
             {network === "solana-devnet" && <TestnetBanner network={network} />}
@@ -143,6 +162,13 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             </div>
           </main>
         </div>
+
+        {isOverlayVisible && isConnected && !user && (
+          <SignMessageOverlay
+            onClose={() => setIsOverlayVisible(false)}
+            onSignSuccess={handleSignSuccess}
+          />
+        )}
       </SidebarProvider>
     </>
   );

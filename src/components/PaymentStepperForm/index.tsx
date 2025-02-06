@@ -68,11 +68,7 @@ const PaymentStepperForm = () => {
     formState: { isSubmitting, errors },
   } = methods;
 
-  // focus errored input on submit
   useEffect(() => {
-    if (walletProvider) {
-      console.log("this iswallet info", walletProvider.publicKey);
-    }
     const erroredInputElement =
       document.getElementsByName(erroredInputName)?.[0];
     if (erroredInputElement instanceof HTMLInputElement) {
@@ -86,15 +82,14 @@ const PaymentStepperForm = () => {
 
     if (!isConnected) {
       try {
-        console.log("need to connect wallet");
         await walletProvider.connect;
       } catch (error) {
-        console.error("Wallet connection failed:", error);
         return;
       }
     }
 
     setIsTransactionLoading(true);
+
     const {
       paymentType,
       token,
@@ -109,20 +104,6 @@ const PaymentStepperForm = () => {
       recipientEmail,
     } = formData;
 
-    console.log(
-      "hmm",
-      paymentType,
-      token,
-      cliffAmount,
-      duration,
-      durationUnit,
-      unlockSchedule,
-      startDate,
-      startTime,
-      tokenAmount,
-      recipientWallet,
-      recipientEmail
-    );
     const network = caipNetwork?.network || "solana-mainnet";
     const selectedToken =
       DEFAULT_TOKENS[network as keyof typeof DEFAULT_TOKENS]?.find(

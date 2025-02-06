@@ -8,7 +8,6 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
-  ReferenceArea,
 } from "recharts";
 import { Loader2 } from "lucide-react";
 import numeral from "numeral";
@@ -20,24 +19,24 @@ interface SalaryChartProps {
 
 export function PaymentChart({ timerange }: SalaryChartProps) {
   const [data, setData] = useState<{ date: number; amount: number }[]>([]);
-  const [left, setLeft] = useState<string | number>("dataMin");
-  const [right, setRight] = useState<string | number>("dataMax");
-  const [refAreaLeft, setRefAreaLeft] = useState("");
-  const [refAreaRight, setRefAreaRight] = useState("");
-  const [zoomLevel, setZoomLevel] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchChartData = async () => {
       setIsLoading(true);
 
-      // Dummy JSON data for salary over a month
-      const dummyData = Array.from({ length: 30 }, (_, i) => ({
-        date: Date.now() / 1000 + i * 86400,
-        amount: Math.floor(Math.random() * 500 + 100),
-      }));
+      let fetchedData: any = [];
 
-      setData(dummyData);
+      if (fetchedData.length === 0) {
+        const last7Days = Array.from({ length: 7 }, (_, i) => ({
+          date: Math.floor(Date.now() / 1000) - (6 - i) * 86400,
+          amount: 0,
+        }));
+        setData(last7Days);
+      } else {
+        setData(fetchedData);
+      }
+
       setIsLoading(false);
     };
 
@@ -62,41 +61,18 @@ export function PaymentChart({ timerange }: SalaryChartProps) {
       });
 
       return (
-        <Card className="bg-black p-3 rounded-lg shadow-lg border border-[ffffff80] items-center text-center">
+        <Card className="bg-black p-3 rounded-lg shadow-lg border border-white/50 items-center text-center">
           <p className="text-gray-300 text-sm mb-2">{formattedDate}</p>
-          <p className="text-gray-400 font-medium text-sm bg-[#ffffff16] p-3 py-1 rounded-lg">
+          <p className="text-gray-400 font-medium text-sm bg-white/10 p-3 py-1 rounded-lg">
             Total Amount
             <span className="text-white text-lg ml-2">
-              {`$${numeral(payload[0].value).format("0,0")}`}
+              ${numeral(payload[0].value).format("0,0")}
             </span>
           </p>
         </Card>
       );
     }
     return null;
-  };
-
-  const zoomIn = () => {
-    let leftIndex = data.findIndex((item) => item.date === Number(refAreaLeft));
-    let rightIndex = data.findIndex(
-      (item) => item.date === Number(refAreaRight)
-    );
-
-    if (leftIndex > rightIndex)
-      [leftIndex, rightIndex] = [rightIndex, leftIndex];
-
-    setLeft(data[leftIndex].date);
-    setRight(data[rightIndex].date);
-
-    setRefAreaLeft("");
-    setRefAreaRight("");
-    setZoomLevel(zoomLevel + 1);
-  };
-
-  const zoomOut = () => {
-    setLeft("dataMin");
-    setRight("dataMax");
-    setZoomLevel(0);
   };
 
   return (
@@ -109,12 +85,7 @@ export function PaymentChart({ timerange }: SalaryChartProps) {
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart
           data={data}
-          margin={{ top: 5, right: 10, left: 10, bottom: 5 }}
-          onMouseDown={(e) => e && setRefAreaLeft(e.activeLabel || "")}
-          onMouseMove={(e) =>
-            e && refAreaLeft && setRefAreaRight(e.activeLabel || "")
-          }
-          onMouseUp={zoomIn}
+          margin={{ top: 5, right: 10, left: 10, bottom: 20 }}
         >
           <defs>
             <linearGradient id="colorAmount" x1="0" y1="0" x2="0" y2="1">
@@ -124,21 +95,21 @@ export function PaymentChart({ timerange }: SalaryChartProps) {
           </defs>
           <XAxis
             dataKey="date"
-            allowDataOverflow={true}
-            domain={[left, right]}
             type="number"
             tick={{ fill: "#9096A2", fontSize: 12 }}
             tickLine={{ stroke: "#88800000" }}
             axisLine={{ stroke: "#88800000" }}
             tickFormatter={formatXAxis}
-            interval={0}
+            domain={[
+              Math.floor(Date.now() / 1000) - 6 * 86400,
+              Math.floor(Date.now() / 1000),
+            ]}
           />
           <YAxis
             yAxisId="1"
-            hide={true}
-            allowDataOverflow={true}
-            domain={[(dataMin: number) => dataMin * 0.01, "dataMax"]}
             type="number"
+            domain={[0, "dataMax"]}
+            tick={{ fill: "#9096A2", fontSize: 12 }}
           />
           <Tooltip content={<CustomTooltip />} />
           <Area
@@ -148,16 +119,10 @@ export function PaymentChart({ timerange }: SalaryChartProps) {
             stroke="#EA1BEF"
             strokeWidth={2.5}
             fill="url(#colorAmount)"
+            fillOpacity={1}
+            strokeOpacity={0.7}
             activeDot={{ r: 6 }}
           />
-          {refAreaLeft && refAreaRight ? (
-            <ReferenceArea
-              yAxisId="1"
-              x1={refAreaLeft}
-              x2={refAreaRight}
-              strokeOpacity={0.3}
-            />
-          ) : null}
         </AreaChart>
       </ResponsiveContainer>
     </div>
