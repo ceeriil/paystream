@@ -1,6 +1,6 @@
 # 🚀 Paystream
 
-A **salary management app** for job owners that automates salary payments and tracks worker payments using **Streamflow**.
+Programmable payroll app to automate payments and track payments using **Streamflow**.
 
 ## 🎥 Demo
 
@@ -13,11 +13,13 @@ A **salary management app** for job owners that automates salary payments and tr
 - ✅ Add and manage employees
 - ✅ Use on TestNet or DevNet (support for USDC only for now)
 - ✅ Secure and transparent transaction history
+- ✅ View Contract details and some stats
+- ✅ Smart accounts - log in with socials and fund wallet
 
 ## 🔮 Future Enhancements
 
 - 🚀 Multi-chain support for payments
-- 🚀 Custom salary scheduling options
+- 🚀 Multi-token (this is already set up)
 - 🚀 Advanced analytics and reporting
 
 ---
