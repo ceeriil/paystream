@@ -13,29 +13,13 @@ const Review = () => {
   const duration = formValues.duration ? Number(formValues.duration) : 0;
   const endDate =
     startDate && duration
-      ? (calculateUnlockDate(startDate, duration, formValues.durationUnit)
-        )
+      ? calculateUnlockDate(startDate, duration, formValues.durationUnit)
       : null;
 
   const tokenAmount = formValues.tokenAmount
     ? Number(formValues.tokenAmount)
     : 0;
   const amountPerPeriod = duration ? tokenAmount / duration : 0;
-
-  function getDurationInMs(unit: string | undefined): number {
-    switch (unit) {
-      case "hour":
-        return 60 * 60 * 1000;
-      case "day":
-        return 24 * 60 * 60 * 1000;
-      case "week":
-        return 7 * 24 * 60 * 60 * 1000;
-      case "month":
-        return 30 * 24 * 60 * 60 * 1000;
-      default:
-        return 0;
-    }
-  }
 
   return (
     <div>
@@ -54,7 +38,7 @@ const Review = () => {
             <label className="text-sm font-medium text-muted-foreground">
               End Date
             </label>
-            <p className="text-lg">{endDate ? format(endDate, "PPP"): "_"}</p>
+            <p className="text-lg">{endDate ? format(endDate, "PPP") : "_"}</p>
           </div>
         </div>
 

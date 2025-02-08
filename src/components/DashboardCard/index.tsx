@@ -18,7 +18,6 @@ export function DashboardCard({
   value,
   percentageChange,
   href,
-  color,
 }: DashboardCardProps) {
   const CardWrapper = ({ children }: { children: React.ReactNode }) => {
     return (

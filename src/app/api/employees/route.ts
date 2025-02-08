@@ -13,7 +13,7 @@ export async function GET(request: Request) {
   if (!user || !user.uid) {
     return NextResponse.json(
       { error: "Unauthorized - Must be authenticated with a wallet" },
-      { status: 401 }
+      { status: 401 },
     );
   }
 
@@ -27,7 +27,7 @@ export async function POST(request: Request) {
   if (!user || !user.walletAddress) {
     return NextResponse.json(
       { error: "Unauthorized - Must be authenticated with a wallet" },
-      { status: 401 }
+      { status: 401 },
     );
   }
 
@@ -45,7 +45,7 @@ export async function POST(request: Request) {
     } = await request.json();
 
     const result = await createEmployee(
-      user.walletAddress, // Use the organization's wallet address
+      user.walletAddress,
       name,
       title,
       employmentType,
@@ -54,7 +54,7 @@ export async function POST(request: Request) {
       email,
       status,
       estimatedSalary,
-      employerNotes
+      employerNotes,
     );
 
     return NextResponse.json(result);
@@ -62,7 +62,7 @@ export async function POST(request: Request) {
     console.error("Error adding employee:", error);
     return NextResponse.json(
       { error: "Failed to add employee" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

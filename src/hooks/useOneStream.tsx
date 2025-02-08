@@ -27,10 +27,15 @@ export function useOneStream(id: string): {
       return;
     }
 
+    if (!solanaClient) {
+      setError(new Error("Solana client not initialized"));
+      return;
+    }
+
     setLoading(true);
 
     getOneStream(solanaClient, id)
-      .then((streamData) => setStreams(streamData))
+      .then((streamData) => setStream(streamData))
       .catch((err) => setError(err as Error))
       .finally(() => setLoading(false));
   };

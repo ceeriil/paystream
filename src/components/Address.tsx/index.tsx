@@ -4,7 +4,7 @@ import {
   DocumentDuplicateIcon,
   CheckCircleIcon,
 } from "@heroicons/react/24/outline";
-import { CopyToClipboard } from "react-copy-to-clipboard";
+import CopyToClipboard from "react-copy-to-clipboard";
 
 type AddressProps = {
   address: string;
@@ -23,7 +23,7 @@ export const Address: React.FC<AddressProps> = ({
 
   const truncateAddress = (
     address: string,
-    length: "short" | "long" | "full"
+    length: "short" | "long" | "full",
   ): string => {
     if (length === "full") return address;
 
@@ -55,7 +55,7 @@ export const Address: React.FC<AddressProps> = ({
   return (
     <div className={`flex items-center text-center w-full ${className}`}>
       <span>
-        <Link href={url} passHref target="blank_">
+        <Link href={url} passHref target="_blank">
           {truncateAddress(address, length)}
         </Link>
       </span>

@@ -11,7 +11,7 @@ export type AppPropsWithLayout = AppProps & {
 };
 
 export type ChildrenProps = {
-  children: ReactNode;
+  readonly children: ReactNode;
 };
 
 export type IToken = {

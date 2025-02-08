@@ -10,10 +10,8 @@ export default async function Layout({
   const headersObj = await headers();
   const cookies = headersObj.get("cookie");
   return (
-    <>
-      <ContextProvider cookies={cookies}>
-        <DashboardLayout>{children}</DashboardLayout>;
-      </ContextProvider>
-    </>
+    <ContextProvider cookies={cookies}>
+      <DashboardLayout>{children}</DashboardLayout>;
+    </ContextProvider>
   );
 }

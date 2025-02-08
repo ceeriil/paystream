@@ -104,7 +104,8 @@ const PaymentStepperForm = () => {
       recipientEmail,
     } = formData;
 
-    const network = caipNetwork?.network || "solana-mainnet";
+    const network =
+      (caipNetwork as { network?: string })?.network || "solana-mainnet";
     const selectedToken =
       DEFAULT_TOKENS[network as keyof typeof DEFAULT_TOKENS]?.find(
         (t) => t.mint === formData.token

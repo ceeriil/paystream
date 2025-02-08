@@ -9,7 +9,6 @@ import {
   addMonths,
   addYears,
 } from "date-fns";
-import { Stream } from "@streamflow/stream";
 
 export interface TransferPermissions {
   transferableBySender: boolean;
@@ -48,7 +47,7 @@ export const getCurrentTimestampInSeconds = (): number => {
  * @returns {TransferPermissions}
  */
 export const returnTransferableBy = (
-  value: PermissionRole
+  value: PermissionRole,
 ): TransferPermissions => {
   switch (value) {
     case "Recipient":
@@ -69,7 +68,7 @@ export const returnTransferableBy = (
  * @returns {CancelPermissions}
  */
 export const returnCancelableBy = (
-  value: PermissionRole
+  value: PermissionRole,
 ): CancelPermissions => {
   switch (value) {
     case "Recipient":
@@ -92,7 +91,7 @@ export const returnCancelableBy = (
  */
 export const convertDurationToSeconds = (
   duration: number,
-  unit: TimeUnit
+  unit: TimeUnit,
 ): number => {
   const unitToSeconds: { [key in TimeUnit]: number } = {
     Second: 1,
@@ -143,7 +142,7 @@ export const convertBNToNumber = (bnValue: BN, decimals: number): number => {
 export const calculateUnlockDate = (
   startDate: Date,
   duration: number,
-  durationUnit: string
+  durationUnit: string,
 ): Date => {
   switch (durationUnit) {
     case "Second":
@@ -171,7 +170,7 @@ export const calculateUnlockDate = (
 
 export const convertDateToTimestamp = (
   dateStr: Date,
-  timeStr: string
+  timeStr: string,
 ): number => {
   if (!dateStr || !timeStr) return 0;
 
@@ -186,7 +185,7 @@ export const convertDateToTimestamp = (
 };
 
 export const getTotalDepositedAmount = (
-  streams: Array<[string, any]> | undefined
+  streams: Array<[string, any]> | undefined,
 ): number => {
   if (!Array.isArray(streams)) {
     return 0;

@@ -5,7 +5,7 @@ import { solanaAdapter } from "@/services/reown/solana";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createAppKit } from "@reown/appkit/react";
 import { base, solana, sepolia, solanaDevnet } from "@reown/appkit/networks";
-import React, {  type ReactNode } from "react";
+import React, { type ReactNode } from "react";
 import { cookieToInitialState, WagmiProvider, type Config } from "wagmi";
 import { AuthProvider } from "./AuthContext";
 
@@ -48,12 +48,12 @@ function ContextProvider({
   children,
   cookies,
 }: {
-  children: ReactNode;
+  readonly children: ReactNode;
   cookies: string | null;
 }) {
   const initialState = cookieToInitialState(
     wagmiAdapter.wagmiConfig as Config,
-    cookies
+    cookies,
   );
 
   return (

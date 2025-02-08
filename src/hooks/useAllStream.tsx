@@ -23,8 +23,6 @@ export function useAllStreams(): {
   const { walletProvider } = useAppKitProvider<Provider>("solana");
   const { solanaClient } = useSolanaClient();
   const { caipNetwork } = useAppKitNetwork();
-  const network =
-    (caipNetwork as { network?: string })?.network || "solana-devnet";
 
   const fetchStreams = () => {
     if (!walletProvider) {

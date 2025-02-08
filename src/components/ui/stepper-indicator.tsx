@@ -16,7 +16,7 @@ const StepperIndicator = ({ activeStep }: StepperIndicatorProps) => {
             className={clsx(
               "w-[40px] h-[40px] flex justify-center items-center m-[5px] border-[2px] rounded-full bg-[#ffffff16] border-[#ffffff21]",
               step < activeStep && "bg-primary text-white",
-              step === activeStep && "border-primary text-primary"
+              step === activeStep && "border-primary text-primary",
             )}
           >
             {step >= activeStep ? step : <Check className="h-5 w-5" />}
@@ -26,7 +26,7 @@ const StepperIndicator = ({ activeStep }: StepperIndicatorProps) => {
               orientation="horizontal"
               className={clsx(
                 "w-[100px] h-[2px]",
-                step <= activeStep - 1 && "bg-primary"
+                step <= activeStep - 1 && "bg-primary",
               )}
             />
           )}
