@@ -1,17 +1,19 @@
 import { useFormContext } from "react-hook-form";
 import { Wallet, Search } from "lucide-react";
 import { StepperFormValues } from "@/types/hook-stepper";
-import { FloatingLabelInput } from "../ui/floating-input";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { employees } from "@/data/employees";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { useState } from "react";
-
 
 const Recipients = () => {
   const {
-    formState: { errors },
+    formState: {},
     register,
     setValue,
   } = useFormContext<StepperFormValues>();
@@ -21,7 +23,7 @@ const Recipients = () => {
   const filteredEmployees = employees.filter(
     (employee) =>
       employee.name.toLowerCase().includes(search.toLowerCase()) ||
-      employee.walletAddress.toLowerCase().includes(search.toLowerCase())
+      employee.walletAddress.toLowerCase().includes(search.toLowerCase()),
   );
 
   return (
@@ -29,29 +31,41 @@ const Recipients = () => {
       <h4 className="stepper_step_heading">Recipient Information</h4>
       <div className="stepper_step_container">
         <div>
-        <label
+          <label
             htmlFor="paymentType"
             className="text-sm text-neutral-300 mb-2 inline-block"
           >
             Token Amount
           </label>
-        <Input
-          id="tokenAmount"
-          type="number"
-          {...register("tokenAmount", { required: "Required" })}
-        />
+          <Input
+            id="tokenAmount"
+            type="number"
+            {...register("tokenAmount", { required: "Required" })}
+          />
         </div>
-  
 
         <div>
-          <label htmlFor="recipientWallet" className="text-sm text-neutral-300 mb-2 inline-block">
+          <label
+            htmlFor="recipientWallet"
+            className="text-sm text-neutral-300 mb-2 inline-block"
+          >
             Recipient Wallet
           </label>
           <div className="relative">
-            <Input id="recipientWallet" type="text" className="pr-12" {...register("recipientWallet", { required: "Required" })} />
+            <Input
+              id="recipientWallet"
+              type="text"
+              className="pr-12"
+              {...register("recipientWallet", { required: "Required" })}
+            />
             <Popover open={open} onOpenChange={setOpen}>
               <PopoverTrigger asChild>
-                <Button type="button" variant="ghost" size="icon" className="absolute right-2 top-1/2 -translate-y-1/2">
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-2 top-1/2 -translate-y-1/2"
+                >
                   <Wallet className="h-5 w-5" />
                 </Button>
               </PopoverTrigger>
@@ -80,13 +94,19 @@ const Recipients = () => {
                         }}
                         className="text-left text-xs p-2 hover:bg-[#ffffff16] rounded-md"
                       >
-                        {employee.name} <span className="text-gray-400">({employee.walletAddress.slice(0, 6)}...)</span>
+                        {employee.name}{" "}
+                        <span className="text-gray-400">
+                          ({employee.walletAddress.slice(0, 6)}...)
+                        </span>
                       </button>
                     ))
                   ) : (
                     <div className="text-xs text-gray-400 p-2">
                       No employee found.{" "}
-                      <a href="/dashboard/employees" className="text-blue-500 underline">
+                      <a
+                        href="/dashboard/employees"
+                        className="text-blue-500 underline"
+                      >
                         Go to Employee Page
                       </a>{" "}
                       to add an employee.
@@ -97,22 +117,20 @@ const Recipients = () => {
             </Popover>
           </div>
         </div>
-     
 
-<div>
-<label
+        <div>
+          <label
             htmlFor="recipientEmail"
             className="text-sm text-neutral-300 mb-2 inline-block"
           >
             Recipient Email
           </label>
           <Input
-          id="recipientEmail"
-          type="email"
-          {...register("recipientEmail", { required: "Required" })}
-        />
-</div>
-      
+            id="recipientEmail"
+            type="email"
+            {...register("recipientEmail", { required: "Required" })}
+          />
+        </div>
       </div>
     </div>
   );

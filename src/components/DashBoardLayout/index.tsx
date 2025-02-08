@@ -25,15 +25,10 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { ConnectButton } from "../ConnectButton";
-import {
-  useAppKitNetwork,
-  useAppKitProvider,
-  useAppKitAccount,
-} from "@reown/appkit/react";
+import { useAppKitNetwork, useAppKitAccount } from "@reown/appkit/react";
 import Link from "next/link";
 import FaucetButton from "../FaucetButton";
 import { SignMessageOverlay } from "../SignMessageOverlay";
-import { type Provider } from "@reown/appkit-adapter-solana/react";
 import { useAuth } from "@/context/AuthContext";
 
 interface NavItem {

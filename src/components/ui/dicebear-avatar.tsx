@@ -3,6 +3,7 @@
 import { createAvatar } from "@dicebear/core";
 import { lorelei } from "@dicebear/collection";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 interface DicebearAvatarProps {
   seed: string;
@@ -33,7 +34,7 @@ export function DicebearAvatar({
       style={{ width: size, height: size }}
     >
       {avatarSvg && (
-        <img
+        <Image
           src={avatarSvg}
           alt="Avatar"
           width={size}

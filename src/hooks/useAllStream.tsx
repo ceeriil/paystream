@@ -23,28 +23,26 @@ export function useAllStreams(): {
   const { walletProvider } = useAppKitProvider<Provider>("solana");
   const { solanaClient } = useSolanaClient();
   const { caipNetwork } = useAppKitNetwork();
-  const network =
-    (caipNetwork as { network?: string })?.network || "solana-devnet";
 
-  const fetchStreams = async () => {
+  const fetchStreams = () => {
     if (!walletProvider) {
       setError(new Error("Wallet not connected or public key not found"));
       return;
     }
 
+    if (!solanaClient) {
+      setError(new Error("Solana client not initialized"));
+      return;
+    }
+
     const publicKeyString = walletProvider?.publicKey?.toString() || "";
 
-    try {
-      setLoading(true);
-      if (solanaClient) {
-        const streamData = await getAllStreams(solanaClient, publicKeyString);
-        setStreams(streamData);
-      }
-    } catch (err) {
-      setError(err as Error);
-    } finally {
-      setLoading(false);
-    }
+    setLoading(true);
+
+    getAllStreams(solanaClient, publicKeyString)
+      .then((streamData) => setStreams(streamData))
+      .catch((err) => setError(err as Error))
+      .finally(() => setLoading(false));
   };
 
   useEffect(() => {

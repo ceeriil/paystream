@@ -8,8 +8,7 @@ import {
   signOut,
   signInWithCustomToken,
 } from "firebase/auth";
-import { useAppKitProvider, useAppKitAccount } from "@reown/appkit/react";
-import { type Provider } from "@reown/appkit-adapter-solana/react";
+import { useAppKitAccount } from "@reown/appkit/react";
 import { app } from "@/lib/firebase";
 
 interface AuthContextType {
@@ -18,14 +17,18 @@ interface AuthContextType {
   signIn: (
     signatureHex: string,
     publicKey: string,
-    nonce: string
+    nonce: string,
   ) => Promise<void>;
   signOut: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
+export function AuthProvider({
+  children,
+}: {
+  readonly children: React.ReactNode;
+}) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const { isConnected } = useAppKitAccount();
@@ -50,7 +53,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const signIn = async (
     signatureHex: string,
     publicKey: string,
-    nonce: string
+    nonce: string,
   ) => {
     try {
       const response = await fetch("/api/auth/solana", {

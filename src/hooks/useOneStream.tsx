@@ -21,23 +21,23 @@ export function useOneStream(id: string): {
   const [error, setError] = useState<Error | undefined>();
   const { solanaClient } = useSolanaClient();
 
-  const fetchStream = async () => {
+  const fetchStream = () => {
     if (!id) {
       setError(new Error("Stream ID is required"));
       return;
     }
 
-    try {
-      setLoading(true);
-      if (solanaClient) {
-        const streamData = await getOneStream(solanaClient, id);
-        setStream(streamData);
-      }
-    } catch (err) {
-      setError(err as Error);
-    } finally {
-      setLoading(false);
+    if (!solanaClient) {
+      setError(new Error("Solana client not initialized"));
+      return;
     }
+
+    setLoading(true);
+
+    getOneStream(solanaClient, id)
+      .then((streamData) => setStream(streamData))
+      .catch((err) => setError(err as Error))
+      .finally(() => setLoading(false));
   };
 
   useEffect(() => {

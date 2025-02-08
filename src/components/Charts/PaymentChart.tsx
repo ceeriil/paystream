@@ -25,7 +25,7 @@ export function PaymentChart({ timerange }: SalaryChartProps) {
     const fetchChartData = async () => {
       setIsLoading(true);
 
-      let fetchedData: any = [];
+      const fetchedData: any = [];
 
       if (fetchedData.length === 0) {
         const last7Days = Array.from({ length: 7 }, (_, i) => ({
@@ -42,10 +42,6 @@ export function PaymentChart({ timerange }: SalaryChartProps) {
 
     fetchChartData();
   }, [timerange]);
-
-  function formatYAxis(value: number) {
-    return numeral(Number(value)).format("0.[00]a").toUpperCase();
-  }
 
   const formatXAxis = (timestamp: number) => {
     const date = new Date(timestamp * 1000);

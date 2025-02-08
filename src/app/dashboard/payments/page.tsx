@@ -9,7 +9,7 @@ import { CircleDollarSign } from "lucide-react";
 import { Stream } from "@streamflow/stream";
 
 export default function Payment() {
-  const { streams, fetchStreams, loading, error } = useAllStreams();
+  const { streams, loading, error } = useAllStreams();
 
   const paystreamStreams = streams?.filter(([_, stream]: [string, Stream]) =>
     stream.name?.toLowerCase().includes("paystream")

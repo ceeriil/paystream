@@ -59,7 +59,7 @@ export const ContractsTable = ({ streams }: { streams: any }) => {
           default:
             return 0;
         }
-      }
+      },
     );
   };
 
@@ -72,7 +72,7 @@ export const ContractsTable = ({ streams }: { streams: any }) => {
         className={cn(
           "inline-block ml-1",
           isActive && "text-primary",
-          !isActive && "text-gray-400"
+          !isActive && "text-gray-400",
         )}
       >
         {direction === "asc" ? "↑" : direction === "desc" ? "↓" : "↕"}

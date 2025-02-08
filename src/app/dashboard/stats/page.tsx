@@ -7,20 +7,15 @@ import { DashboardCard } from "@/components/DashboardCard";
 import { PaymentTypePieChart } from "@/components/Charts/PaymentTypePieChart";
 import TopPaidEmployees from "@/components/TopPaidEmployees";
 import { useAllStreams } from "@/hooks/useAllStream";
-import { useEffect } from "react";
 import { getTotalDepositedAmount } from "@/helpers";
 import { Stream } from "@streamflow/stream";
 
 export default function Stats() {
-  const { streams, fetchStreams, loading, error } = useAllStreams();
+  const { streams, loading, error } = useAllStreams();
 
   const paystreamStreams = streams?.filter(([_, stream]: [string, Stream]) =>
     stream.name?.toLowerCase().includes("paystream")
   );
-
-  useEffect(() => {
-    console.log("stream for account", paystreamStreams);
-  }, [streams]);
 
   const totalPayout =
     loading || error ? 0 : getTotalDepositedAmount(paystreamStreams);

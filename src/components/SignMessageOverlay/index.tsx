@@ -42,7 +42,7 @@ export const SignMessageOverlay: React.FC<SignMessageOverlayProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 text-center ">
+    <div className="fixed inset-0 bg-[#ffffff14] backdrop-blur-sm flex items-center justify-center z-50 text-center ">
       <div className="bg-black p-6 rounded-lg border border-[#272727]">
         <h2 className="text-xl font-semibold mb-4">Sign Message</h2>
         <p className="mb-4">
