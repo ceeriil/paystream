@@ -1,18 +1,30 @@
-import { Organization } from "./organization";
-import { Employee } from "./employees";
 import { Typesaurus, schema } from "typesaurus";
 
-// Generate the db object from given schem that you can use to access
-// Firestore, i.e.:
-//   await db.get(userId)
+export interface Organization {
+  name: string;
+  walletAddress: string;
+  recoveryAddress?: string;
+}
+
+export interface Employee {
+  name: string;
+  title: string;
+  employmentType: string;
+  walletAddress: string;
+  additionalWallets: string[];
+  email: string;
+  status: boolean;
+  estimatedSalary: number;
+  employerNotes: string;
+  organizationId: string;
+}
+
 export const db = schema(($) => ({
   organizations: $.collection<Organization>().sub({
     employees: $.collection<Employee>(),
   }),
 }));
 
-// Infer schema type helper with shortcuts to types in your database:
-//   function getUser(id: Schema["users"]["Id"]): Schema["users"]["Result"]
 export type Schema = Typesaurus.Schema<typeof db>;
 
 export type SchemaKeys = keyof Schema;

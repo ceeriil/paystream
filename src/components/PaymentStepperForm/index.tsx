@@ -60,11 +60,8 @@ const PaymentStepperForm = () => {
   const { solanaClient } = useSolanaClient();
   const { caipNetwork } = useAppKitNetwork();
 
-  console.log(useAppKitAccount(), "hii");
-
   const {
     handleSubmit,
-    setError,
     formState: { isSubmitting, errors },
   } = methods;
 
@@ -92,8 +89,6 @@ const PaymentStepperForm = () => {
 
     const {
       paymentType,
-      token,
-      cliffAmount,
       duration,
       durationUnit,
       unlockSchedule,
@@ -101,36 +96,35 @@ const PaymentStepperForm = () => {
       startTime,
       tokenAmount,
       recipientWallet,
-      recipientEmail,
     } = formData;
 
     const network =
       (caipNetwork as { network?: string })?.network || "solana-mainnet";
     const selectedToken =
       DEFAULT_TOKENS[network as keyof typeof DEFAULT_TOKENS]?.find(
-        (t) => t.mint === formData.token
+        (t) => t.mint === formData.token,
       ) || DEFAULT_TOKENS[network as keyof typeof DEFAULT_TOKENS]?.[0];
 
     const totalAmountInLamports = getBN(Number(tokenAmount), 6);
     const start = convertDateToTimestamp(startDate, startTime);
     const unlockDurationInSeconds = convertDurationToSeconds(
       1,
-      unlockSchedule as TimeUnit
+      unlockSchedule as TimeUnit,
     );
     const periodInSeconds = convertDurationToSeconds(
       duration,
-      durationUnit as TimeUnit
+      durationUnit as TimeUnit,
     );
     const numberOfIntervals = periodInSeconds / unlockDurationInSeconds;
     const amountPerInterval = totalAmountInLamports.div(
-      new BN(numberOfIntervals)
+      new BN(numberOfIntervals),
     );
 
     const createStreamParams = {
       recipient: recipientWallet,
       tokenId:
         selectedToken?.mint || "So11111111111111111111111111111111111111112",
-      start: getCurrentTimestampInSeconds() + DELAY_IN_SECONDS,
+      start: start || getCurrentTimestampInSeconds() + DELAY_IN_SECONDS,
       amount: totalAmountInLamports,
       period: unlockDurationInSeconds,
       cliff: getCurrentTimestampInSeconds() + DELAY_IN_SECONDS,
@@ -170,7 +164,7 @@ const PaymentStepperForm = () => {
           title: "Error",
           description: `${error} `,
         });
-      }
+      },
     );
     setIsTransactionLoading(false);
   };
@@ -210,8 +204,7 @@ const PaymentStepperForm = () => {
               className="w-[100px]"
               variant="secondary"
               onClick={handleBack}
-              disabled={activeStep === 1}
-            >
+              disabled={activeStep === 1}>
               Back
             </Button>
             {activeStep === 3 ? (
@@ -219,16 +212,14 @@ const PaymentStepperForm = () => {
                 className="w-[100px] btn-gradient"
                 type="button"
                 onClick={handleSubmit(onSubmit)}
-                disabled={isSubmitting}
-              >
+                disabled={isSubmitting}>
                 Submit
               </Button>
             ) : (
               <Button
                 type="button"
                 className="w-[100px] btn-gradient "
-                onClick={handleNext}
-              >
+                onClick={handleNext}>
                 Next
               </Button>
             )}

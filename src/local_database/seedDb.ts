@@ -13,7 +13,7 @@ export async function seedDatabase() {
 
   const EMPLOYEE_SEED_DATA = "/src/local_database/employees.json";
   const seedEmployees = JSON.parse(
-    fs.readFileSync(path.join(process.cwd(), EMPLOYEE_SEED_DATA), "utf8")
+    fs.readFileSync(path.join(process.cwd(), EMPLOYEE_SEED_DATA), "utf8"),
   );
 
   Object.entries(seedEmployees.employees).forEach(async ([_, employeeData]) => {
@@ -34,21 +34,21 @@ export async function seedDatabase() {
       email,
       false,
       100,
-      "dummy notes"
+      "dummy notes",
     );
   });
 
   const ORGANIZATION_SEED_DATA = "/src/local_database/organization.json";
   const seedOrganizations = JSON.parse(
-    fs.readFileSync(path.join(process.cwd(), ORGANIZATION_SEED_DATA), "utf8")
+    fs.readFileSync(path.join(process.cwd(), ORGANIZATION_SEED_DATA), "utf8"),
   );
 
   Object.entries(seedOrganizations.organizations).forEach(
     async ([_, organizationsData]) => {
-      const { name, walletAddress, id } = organizationsData as Organization & {
+      const { name, walletAddress } = organizationsData as Organization & {
         id: string;
       };
       await createOrganization(name, walletAddress);
-    }
+    },
   );
 }

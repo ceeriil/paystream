@@ -32,8 +32,7 @@ const Header = () => {
           <a
             className="link-underline link-underline-black"
             href="/"
-            rel="noreferrer"
-          >
+            rel="noreferrer">
             PayStream
           </a>
         </h2>
@@ -43,27 +42,24 @@ const Header = () => {
         {links.map(({ id, link, href }) => (
           <li
             key={id}
-            className="nav-links px-4 cursor-pointer capitalize font-medium text-white hover:scale-105 hover:text-white duration-200 link-underline"
-          >
+            className="nav-links px-4 cursor-pointer capitalize font-medium text-white hover:scale-105 hover:text-white duration-200 link-underline">
             <Link href={href}>{link}</Link>
           </li>
         ))}
       </ul>
 
-      <div
+      <button
         onClick={() => setNav(!nav)}
-        className="cursor-pointer pr-4 z-[100] text-white md:hidden"
-      >
+        className="cursor-pointer pr-4 z-[100] text-white md:hidden">
         {nav ? <FaTimes size={30} /> : <FaBars size={30} />}
-      </div>
+      </button>
 
       {nav && (
         <ul className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen text-white z-[99] bg-black">
           {links.map(({ id, link }) => (
             <li
               key={id}
-              className="px-4 cursor-pointer capitalize py-6 text-4xl"
-            >
+              className="px-4 cursor-pointer capitalize py-6 text-4xl">
               <Link onClick={() => setNav(!nav)} href={"#" + link}>
                 {link}
               </Link>

@@ -67,8 +67,7 @@ export default function Home() {
               <Link
                 href="/dashboard"
                 className="btn btn-hover color-6 md:text-xl text-white"
-                target="blank_"
-              >
+                target="blank_">
                 Go to App
               </Link>
             </div>
@@ -175,8 +174,7 @@ export default function Home() {
                 height="14"
                 viewBox="0 0 12 14"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+                xmlns="http://www.w3.org/2000/svg">
                 <path
                   fillRule="evenodd"
                   clipRule="evenodd"
@@ -205,8 +203,7 @@ export default function Home() {
                 height="14"
                 viewBox="0 0 12 14"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+                xmlns="http://www.w3.org/2000/svg">
                 <path
                   fillRule="evenodd"
                   clipRule="evenodd"
@@ -234,8 +231,7 @@ export default function Home() {
                 height="14"
                 viewBox="0 0 12 14"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+                xmlns="http://www.w3.org/2000/svg">
                 <path
                   fillRule="evenodd"
                   clipRule="evenodd"
@@ -265,8 +261,7 @@ export default function Home() {
                 height="14"
                 viewBox="0 0 12 14"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+                xmlns="http://www.w3.org/2000/svg">
                 <path
                   fillRule="evenodd"
                   clipRule="evenodd"
@@ -295,8 +290,7 @@ export default function Home() {
                 height="14"
                 viewBox="0 0 12 14"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+                xmlns="http://www.w3.org/2000/svg">
                 <path
                   fillRule="evenodd"
                   clipRule="evenodd"
@@ -324,8 +318,7 @@ export default function Home() {
                 height="14"
                 viewBox="0 0 12 14"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+                xmlns="http://www.w3.org/2000/svg">
                 <path
                   fillRule="evenodd"
                   clipRule="evenodd"
@@ -362,8 +355,7 @@ export default function Home() {
             <Link
               href="/dashboard"
               className="btn btn-hover color-6 text-xl text-white"
-              target="blank_"
-            >
+              target="blank_">
               Go to Dahboard
             </Link>
           </div>
@@ -377,20 +369,20 @@ export default function Home() {
             <div className="my-12 md:mt-32 grid w-full md:grid-cols-2">
               <ul className="card-gradient bg-black border-[#ffffff20] z-10 my-12 rounded-lg p-6 font-bold border">
                 {faqs.map((faq) => (
-                  <li
-                    className="tab flex items-center justify-between p-4"
-                    style={{
-                      cursor: "pointer",
-                      background:
-                        activeTab === faq.id ? " #1a62ff" : "transparent",
-                    }}
-                    onClick={() => setActiveTab(faq.id)}
-                    key={faq.id}
-                  >
-                    {faq.question}
-                    <span className="text-3xl">
-                      <FaCaretRight size={20} />
-                    </span>
+                  <li key={faq.id}>
+                    <button
+                      className="tab flex items-center justify-between p-4"
+                      style={{
+                        cursor: "pointer",
+                        background:
+                          activeTab === faq.id ? " #1a62ff" : "transparent",
+                      }}
+                      onClick={() => setActiveTab(faq.id)}>
+                      {faq.question}
+                      <span className="text-3xl">
+                        <FaCaretRight size={20} />
+                      </span>
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -437,8 +429,7 @@ export default function Home() {
                 <div className="rounded-full border border-[#1a62ff] p-3 text-xl leading-[1]">
                   <a
                     href="https://github.com/ceeriil/paystream"
-                    target="blank_"
-                  >
+                    target="blank_">
                     <FaGithub />
                   </a>
                 </div>
