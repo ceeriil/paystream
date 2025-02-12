@@ -1,10 +1,10 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-import type { ChildrenProps } from '@/types';
+import type { ChildrenProps } from "@/types";
 
 export const metadata = {
-  title: 'Something is wrong',
-  description: 'Something is wrong',
+  title: "Something is wrong",
+  description: "Something is wrong",
 };
 
 export default function ErrorLayout({ children }: ChildrenProps) {

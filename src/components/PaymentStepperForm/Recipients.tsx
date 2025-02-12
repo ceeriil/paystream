@@ -12,11 +12,7 @@ import {
 import { useState } from "react";
 
 const Recipients = () => {
-  const {
-    formState: {},
-    register,
-    setValue,
-  } = useFormContext<StepperFormValues>();
+  const { register, setValue } = useFormContext<StepperFormValues>();
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
 
@@ -33,8 +29,7 @@ const Recipients = () => {
         <div>
           <label
             htmlFor="paymentType"
-            className="text-sm text-neutral-300 mb-2 inline-block"
-          >
+            className="text-sm text-neutral-300 mb-2 inline-block">
             Token Amount
           </label>
           <Input
@@ -47,8 +42,7 @@ const Recipients = () => {
         <div>
           <label
             htmlFor="recipientWallet"
-            className="text-sm text-neutral-300 mb-2 inline-block"
-          >
+            className="text-sm text-neutral-300 mb-2 inline-block">
             Recipient Wallet
           </label>
           <div className="relative">
@@ -64,8 +58,7 @@ const Recipients = () => {
                   type="button"
                   variant="ghost"
                   size="icon"
-                  className="absolute right-2 top-1/2 -translate-y-1/2"
-                >
+                  className="absolute right-2 top-1/2 -translate-y-1/2">
                   <Wallet className="h-5 w-5" />
                 </Button>
               </PopoverTrigger>
@@ -92,8 +85,7 @@ const Recipients = () => {
                           setOpen(false);
                           setSearch("");
                         }}
-                        className="text-left text-xs p-2 hover:bg-[#ffffff16] rounded-md"
-                      >
+                        className="text-left text-xs p-2 hover:bg-[#ffffff16] rounded-md">
                         {employee.name}{" "}
                         <span className="text-gray-400">
                           ({employee.walletAddress.slice(0, 6)}...)
@@ -105,8 +97,7 @@ const Recipients = () => {
                       No employee found.{" "}
                       <a
                         href="/dashboard/employees"
-                        className="text-blue-500 underline"
-                      >
+                        className="text-blue-500 underline">
                         Go to Employee Page
                       </a>{" "}
                       to add an employee.
@@ -121,8 +112,7 @@ const Recipients = () => {
         <div>
           <label
             htmlFor="recipientEmail"
-            className="text-sm text-neutral-300 mb-2 inline-block"
-          >
+            className="text-sm text-neutral-300 mb-2 inline-block">
             Recipient Email
           </label>
           <Input

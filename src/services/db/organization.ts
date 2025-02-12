@@ -1,47 +1,46 @@
-import { Result, Schema, db, toResult } from "@/services/db";
+import { Result, db, toResult } from "@/services/db";
+import { Organization } from "@/services/db";
 
-export interface Organization {
-  name: string;
-  walletAddress: string
-  recoveryAddress?: string
+export async function findAllOrganizations(): Promise<Result<Organization>[]> {
+  const organizationsSnapshot = await db.organizations.all();
+  const organizations = organizationsSnapshot.map((org) =>
+    toResult<Organization>(org),
+  );
+  return organizations;
 }
 
-
-export type OrganizationDoc = Schema["organizations"]["Doc"];
-export type OrganizationResult = Result<Organization>;
-
-
-export async function findAllOrganizations(): Promise<OrganizationResult[]> {
-  const organizationsSnaphot = await db.organizations.all();
-   const organizations = organizationsSnaphot.map(employee => toResult<Organization>(employee));
-   return organizations;
- }
-
-export async function findOrganization(address: string): Promise<OrganizationResult> {
-  const organizationSnapshot = await db.organizations.get(db.organizations.id(address));
+export async function findOrganization(
+  address: string,
+): Promise<Result<Organization>> {
+  const organizationSnapshot = await db.organizations.get(
+    db.organizations.id(address),
+  );
   return toResult<Organization>(organizationSnapshot);
 }
 
 export async function createOrganization(
   name: string,
-  walletAddress: string
-): Promise<OrganizationResult> {
+  walletAddress: string,
+): Promise<Result<Organization>> {
   const organizationAddress = db.organizations.id(walletAddress);
   const ref = await db.organizations.set(organizationAddress, () => ({
-    name, walletAddress: walletAddress
+    name,
+    walletAddress: walletAddress,
   }));
-  const userSnapshot = await db.organizations.get(ref.id);
-  return toResult<Organization>(userSnapshot);
+  const organizationSnapshot = await db.organizations.get(ref.id);
+  return toResult<Organization>(organizationSnapshot);
 }
 
-
 export async function updateOrganization(
-   name: string,
-  walletAddress: string
-): Promise<OrganizationResult> {
-  const organizationSnapshot = await db.organizations.get(db.organizations.id(walletAddress));
+  name: string,
+  walletAddress: string,
+): Promise<Result<Organization>> {
+  const organizationSnapshot = await db.organizations.get(
+    db.organizations.id(walletAddress),
+  );
   await organizationSnapshot?.ref?.update(() => ({
-    name, walletAddress: walletAddress
+    name,
+    walletAddress: walletAddress,
   }));
   return toResult<Organization>(organizationSnapshot);
 }

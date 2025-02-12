@@ -10,25 +10,47 @@ export interface Employee {
   status: boolean;
   estimatedSalary: number;
   employerNotes: string;
+  createdBy: string;
 }
 
-export type EmployerDoc = Schema["employees"]["Doc"];
+export type EmployerDoc = Schema["organizations"]["Doc"];
 export type EmployerResult = Result<Employee>;
 
-export async function findAllEmployees(): Promise<EmployerResult[]> {
-  const employeesSnaphot = await db.employees.all();
-  const employees = employeesSnaphot.map((employee) =>
-    toResult<Employee>(employee)
+export async function findAllEmployees(
+  organizationId: string,
+): Promise<EmployerResult[]> {
+  const org = await db.organizations.get(db.organizations.id(organizationId));
+  if (!org) {
+    return [];
+  }
+
+  const employeesRef = db.organizations.sub.employees;
+  const employeesSnapshot = await employeesRef.all();
+
+  const employees = employeesSnapshot.map((employee) =>
+    toResult<Employee>(employee),
   );
   return employees;
 }
 
-export async function findEmployee(address: string): Promise<EmployerResult> {
-  const userSnapshot = await db.employees.get(db.employees.id(address));
-  return toResult<Employee>(userSnapshot);
+export async function findEmployee(
+  organizationId: string,
+  employeeAddress: string,
+): Promise<EmployerResult> {
+  const org = await db.organizations.get(db.organizations.id(organizationId));
+  if (!org) {
+    throw new Error("Organization not found");
+  }
+
+  const employeesRef = db.organizations.sub.employees;
+  const employeeSnapshot = await employeesRef.get(
+    employeesRef.id(employeeAddress),
+  );
+  return toResult<Employee>(employeeSnapshot);
 }
 
 export async function createEmployee(
+  organizationId: string,
   name: string,
   title: string,
   employmentType: string,
@@ -37,10 +59,17 @@ export async function createEmployee(
   email: string,
   status: boolean,
   estimatedSalary: number,
-  employerNotes?: string
+  employerNotes?: string,
 ): Promise<EmployerResult> {
-  const employeeAddress = db.employees.id(walletAddress);
-  const ref = await db.employees.set(employeeAddress, () => ({
+  const org = await db.organizations.get(db.organizations.id(organizationId));
+  if (!org) {
+    throw new Error("Organization not found");
+  }
+
+  const employeesRef = db.organizations.sub.employees;
+  const employeeAddress = employeesRef.id(walletAddress);
+
+  const ref = await employeesRef.set(employeeAddress, {
     name,
     title,
     employmentType,
@@ -50,12 +79,15 @@ export async function createEmployee(
     status: status,
     estimatedSalary: estimatedSalary,
     employerNotes: employerNotes || "",
-  }));
-  const employeeSnapshot = await db.employees.get(ref.id);
+    createdBy: organizationId,
+  });
+
+  const employeeSnapshot = await employeesRef.get(ref.id);
   return toResult<Employee>(employeeSnapshot);
 }
 
 export async function updateEmployee(
+  organizationId: string,
   name: string,
   title: string,
   employmentType: string,
@@ -64,12 +96,31 @@ export async function updateEmployee(
   email: string,
   status: boolean,
   estimatedSalary: number,
-  employerNotes?: string
+  employerNotes?: string,
 ): Promise<EmployerResult> {
-  const employeeSnapshot = await db.employees.get(
-    db.employees.id(walletAddress)
+  const org = await db.organizations.get(db.organizations.id(organizationId));
+  if (!org) {
+    throw new Error("Organization not found");
+  }
+
+  const employeesRef = db.organizations.sub.employees;
+  const employeeSnapshot = await employeesRef.get(
+    employeesRef.id(walletAddress),
   );
-  await employeeSnapshot?.ref?.update(() => ({
+
+  if (!employeeSnapshot) {
+    throw new Error("Employee not found");
+  }
+
+  // Check if the organization is the creator of this employee
+  const employeeData = employeeSnapshot.data;
+  if (employeeData.createdBy !== organizationId) {
+    throw new Error(
+      "Unauthorized: Only the organization that created this employee can update it",
+    );
+  }
+
+  await employeeSnapshot.ref.update({
     name,
     title,
     employmentType,
@@ -79,6 +130,8 @@ export async function updateEmployee(
     status: status,
     estimatedSalary: estimatedSalary,
     employerNotes: employerNotes || "",
-  }));
-  return toResult<EmployerResult>(employeeSnapshot);
+    createdBy: organizationId, // Preserve the original creator
+  });
+
+  return toResult<Employee>(employeeSnapshot);
 }

@@ -9,24 +9,22 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import { unlockScheduleOptions, vestingDurationOptions } from "@/constants";
+import {
+  unlockScheduleOptions,
+  vestingDurationOptions,
+  DEFAULT_TOKENS,
+} from "@/constants";
 import { useState } from "react";
-import { DEFAULT_TOKENS } from "@/constants";
 import { useAppKitNetwork } from "@reown/appkit/react";
 
 const Configuration = () => {
-  const {
-    control,
-    formState: { errors },
-    register,
-    watch,
-  } = useFormContext<StepperFormValues>();
+  const { control, register, watch } = useFormContext<StepperFormValues>();
 
   const selectedPaymentType = watch("paymentType");
   const [cliffAmount, setCliffAmount] = useState(0);
   const { caipNetwork } = useAppKitNetwork();
   const network =
-    (caipNetwork as { network?: string })?.network || "solana-devnet";
+    (caipNetwork as { network?: string })?.network ?? "solana-devnet";
   const tokens =
     DEFAULT_TOKENS[network as keyof typeof DEFAULT_TOKENS] ||
     DEFAULT_TOKENS["solana-devnet"];
@@ -38,8 +36,7 @@ const Configuration = () => {
         <div>
           <label
             htmlFor="paymentType"
-            className="text-sm text-neutral-300 mb-2 inline-block"
-          >
+            className="text-sm text-neutral-300 mb-2 inline-block">
             Payment Type
           </label>
           <Controller
@@ -76,8 +73,7 @@ const Configuration = () => {
         <div>
           <label
             htmlFor="token"
-            className="text-sm text-neutral-300 mb-2 inline-block"
-          >
+            className="text-sm text-neutral-300 mb-2 inline-block">
             Token
           </label>
           <Controller
@@ -107,8 +103,7 @@ const Configuration = () => {
           <div>
             <label
               htmlFor="cliffAmount"
-              className="text-sm text-neutral-300 mb-2 inline-block"
-            >
+              className="text-sm text-neutral-300 mb-2 inline-block">
               Cliff Amount (%)
             </label>
             <Input
@@ -134,8 +129,7 @@ const Configuration = () => {
         <div>
           <label
             htmlFor="duration"
-            className="text-sm text-neutral-300 mb-2 inline-block"
-          >
+            className="text-sm text-neutral-300 mb-2 inline-block">
             Payment Duration
           </label>
           <div className="grid grid-cols-2 gap-4">
@@ -181,8 +175,7 @@ const Configuration = () => {
         <div>
           <label
             htmlFor="Unlock Schedule"
-            className="text-sm text-neutral-300 mb-2 inline-block"
-          >
+            className="text-sm text-neutral-300 mb-2 inline-block">
             Unlock Schedule
           </label>
           <Controller
@@ -218,8 +211,7 @@ const Configuration = () => {
           <div>
             <label
               htmlFor="startDate"
-              className="text-sm text-neutral-300 mb-2 inline-block"
-            >
+              className="text-sm text-neutral-300 mb-2 inline-block">
               Start Date
             </label>
             <DatePickerField
@@ -234,8 +226,7 @@ const Configuration = () => {
           <div>
             <label
               htmlFor="startTime"
-              className="text-sm text-neutral-300 mb-2 inline-block"
-            >
+              className="text-sm text-neutral-300 mb-2 inline-block">
               Start Time
             </label>
             <Input

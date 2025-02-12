@@ -5,7 +5,7 @@ import { headers } from "next/headers";
 export default async function Layout({
   children,
 }: {
-  children: React.ReactNode;
+  readonly children: React.ReactNode;
 }) {
   const headersObj = await headers();
   const cookies = headersObj.get("cookie");

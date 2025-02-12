@@ -1,4 +1,5 @@
 {
-    "trailingComma": "all"
-  }
-  
+  "trailingComma": "all",
+  "bracketSameLine": true,
+  "singleQuote": false
+}
