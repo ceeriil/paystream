@@ -11,6 +11,7 @@ export interface Employee {
   estimatedSalary: number;
   employerNotes: string;
   createdBy: string;
+  organisationId: string;
 }
 
 export type EmployerDoc = Schema["organizations"]["Doc"];
@@ -49,6 +50,18 @@ export async function findEmployee(
   return toResult<Employee>(employeeSnapshot);
 }
 
+/**
+ * Creates an employee document as a sub-collection under the specified organization.
+ *
+ * @param {string} organizationId - The ID of the organization creating the employee.
+ * @returns {Promise<EmployerResult>} - A promise that resolves to the created employee document.
+ *
+ * @description
+ * This function first retrieves the organization document using the provided `organizationId`.
+ * If the organization exists, it creates an employee document in the `employees` sub-collection
+ * under the specific organization. The employee document includes details such as name, title,
+ * wallet address, and other relevant information. The function returns the created employee document.
+ */
 export async function createEmployee(
   organizationId: string,
   name: string,
@@ -65,11 +78,9 @@ export async function createEmployee(
   if (!org) {
     throw new Error("Organization not found");
   }
-
-  const employeesRef = db.organizations.sub.employees;
-  const employeeAddress = employeesRef.id(walletAddress);
-
-  const ref = await employeesRef.set(employeeAddress, {
+  const employeesRef = db.organizations(org.ref.id).employees;
+  const employeeId = employeesRef.id(walletAddress);
+  const ref = await employeesRef.set(employeeId, {
     name,
     title,
     employmentType,
@@ -79,9 +90,8 @@ export async function createEmployee(
     status: status,
     estimatedSalary: estimatedSalary,
     employerNotes: employerNotes || "",
-    createdBy: organizationId,
+    organizationId: organizationId,
   });
-
   const employeeSnapshot = await employeesRef.get(ref.id);
   return toResult<Employee>(employeeSnapshot);
 }

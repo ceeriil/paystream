@@ -1,9 +1,7 @@
-import "@/services/firebase";
-import { getAuth } from "firebase/auth";
-import { app } from "@/lib/firebase";
-import { createEmployee, findAllEmployees } from "@/services/db/employees";
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { admin } from "@/services/firebase";
+import { createEmployee, findAllEmployees } from "@/services/db/employees";
 
 // Schema for employee creation validation
 const createEmployeeSchema = z.object({
@@ -18,67 +16,47 @@ const createEmployeeSchema = z.object({
   employerNotes: z.string().optional(),
 });
 
-// Helper function to get organization ID from user
-function getOrganizationId(user: any): string {
-  // Assuming the wallet address is stored in customClaims
-  const customClaims = user.customClaims || {};
-  const walletAddress = customClaims.walletAddress;
+// Function to extract and verify token
+async function getOrganizationIdFromToken(request: Request) {
+  const authHeader = request.headers.get("Authorization");
 
-  if (!walletAddress) {
-    throw new Error("Wallet address not found in user claims");
+  console.log(authHeader, "ath");
+
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    throw new Error("Unauthorized - Missing or invalid token");
   }
 
-  return walletAddress;
+  const token = authHeader.split(" ")[1]; // Extract token
+
+  try {
+    const decodedToken = await admin.auth().verifyIdToken(token);
+    console.log(decodedToken.uid, "decoded");
+    return decodedToken.uid; // Using UID as organization ID
+  } catch (error) {
+    throw new Error("Unauthorized - Invalid token");
+  }
 }
 
 export async function GET(request: Request) {
   try {
-    const auth = getAuth(app);
-    const user = auth.currentUser;
-
-    if (!user) {
-      return NextResponse.json(
-        { error: "Unauthorized - Must be authenticated" },
-        { status: 401 },
-      );
-    }
-
-    const organizationId = getOrganizationId(user);
+    const organizationId = await getOrganizationIdFromToken(request);
+    console.log(organizationId, "org id");
     const employees = await findAllEmployees(organizationId);
 
     return NextResponse.json({ employees });
   } catch (error) {
     console.error("Error fetching employees:", error);
 
-    if (error instanceof Error) {
-      return NextResponse.json(
-        { error: error.message },
-        { status: error.message.includes("Unauthorized") ? 401 : 500 },
-      );
-    }
-
     return NextResponse.json(
-      { error: "An unexpected error occurred" },
-      { status: 500 },
+      { error: error.message },
+      { status: error.message.includes("Unauthorized") ? 401 : 500 },
     );
   }
 }
 
 export async function POST(request: Request) {
   try {
-    const auth = getAuth(app);
-    const user = auth.currentUser;
-
-    if (!user) {
-      return NextResponse.json(
-        { error: "Unauthorized - Must be authenticated" },
-        { status: 401 },
-      );
-    }
-
-    const organizationId = getOrganizationId(user);
-
-    // Parse and validate request body
+    const organizationId = await getOrganizationIdFromToken(request);
     const body = await request.json();
     const validatedData = createEmployeeSchema.parse(body);
 
@@ -102,23 +80,9 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("Error creating employee:", error);
 
-    if (error instanceof z.ZodError) {
-      return NextResponse.json(
-        { error: "Validation error", details: error.errors },
-        { status: 400 },
-      );
-    }
-
-    if (error instanceof Error) {
-      return NextResponse.json(
-        { error: error.message },
-        { status: error.message.includes("Unauthorized") ? 401 : 500 },
-      );
-    }
-
     return NextResponse.json(
-      { error: "An unexpected error occurred" },
-      { status: 500 },
+      { error: error.message },
+      { status: error instanceof z.ZodError ? 400 : 500 },
     );
   }
 }
