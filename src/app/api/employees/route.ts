@@ -43,6 +43,8 @@ export async function GET(request: Request) {
     console.log(organizationId, "org id");
     const employees = await findAllEmployees(organizationId);
 
+    console.log("emppp", employees);
+
     return NextResponse.json({ employees });
   } catch (error) {
     console.error("Error fetching employees:", error);

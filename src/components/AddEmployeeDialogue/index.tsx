@@ -18,8 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { z } from "zod";
-/* import { toast } from "sonner";
- */ import { Spinner } from "@/components/Spinner";
+import { Spinner } from "@/components/Spinner";
 
 // Schema for employee creation validation
 const createEmployeeSchema = z.object({
@@ -232,7 +231,7 @@ export function AddEmployeeDialog() {
             className="btn-gradient"
             onClick={handleSubmit}
             disabled={loading}>
-            {loading ? <Spinner className="mr-2" /> : null}
+            {loading ? <Spinner /> : null}
             Add Employee
           </Button>
         </div>
