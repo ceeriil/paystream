@@ -16,16 +16,27 @@ export interface Employee {
 
 export type EmployerDoc = Schema["organizations"]["Doc"];
 export type EmployerResult = Result<Employee>;
-
+/**
+ * Finds all employees under the specified organization.
+ *
+ * @param {string} organizationId - The ID of the organization.
+ * @returns {Promise<EmployerResult[]>} - A promise that resolves to an array of employee documents.
+ *
+ * @description
+ * This function retrieves all employee documents from the `employees` sub-collection
+ * under the specified organization. If the organization does not exist, it returns an empty array.
+ */
 export async function findAllEmployees(
   organizationId: string,
 ): Promise<EmployerResult[]> {
+  // Get the organization document
   const org = await db.organizations.get(db.organizations.id(organizationId));
   if (!org) {
     return [];
   }
 
-  const employeesRef = db.organizations.sub.employees;
+  const employeesRef = db.organizations(org.ref.id).employees;
+
   const employeesSnapshot = await employeesRef.all();
 
   const employees = employeesSnapshot.map((employee) =>
@@ -34,19 +45,36 @@ export async function findAllEmployees(
   return employees;
 }
 
+/**
+ * Finds a specific employee under the specified organization.
+ *
+ * @param {string} organizationId - The ID of the organization.
+ * @param {string} employeeAddress - The wallet address of the employee (used as the employee ID).
+ * @returns {Promise<EmployerResult>} - A promise that resolves to the employee document.
+ *
+ * @description
+ * This function retrieves a specific employee document from the `employees` sub-collection
+ * under the specified organization. If the organization or employee does not exist, it throws an error.
+ */
 export async function findEmployee(
   organizationId: string,
   employeeAddress: string,
 ): Promise<EmployerResult> {
+  // Get the organization document
   const org = await db.organizations.get(db.organizations.id(organizationId));
   if (!org) {
     throw new Error("Organization not found");
   }
 
-  const employeesRef = db.organizations.sub.employees;
+  const employeesRef = db.organizations(org.ref.id).employees;
   const employeeSnapshot = await employeesRef.get(
     employeesRef.id(employeeAddress),
   );
+
+  if (!employeeSnapshot) {
+    throw new Error("Employee not found");
+  }
+
   return toResult<Employee>(employeeSnapshot);
 }
 
