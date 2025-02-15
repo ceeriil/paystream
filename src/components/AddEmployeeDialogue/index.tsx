@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -37,6 +38,7 @@ type EmployeeFormData = z.infer<typeof createEmployeeSchema>;
 
 export function AddEmployeeDialog() {
   const [open, setOpen] = useState(false);
+  const { user } = useAuth();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState<EmployeeFormData>({
     name: "",
@@ -66,18 +68,20 @@ export function AddEmployeeDialog() {
     try {
       setLoading(true);
 
-      // Get the current user's token
-      const auth = getAuth(app);
-      const token = await auth.currentUser?.getIdToken();
-
-      if (!token) {
+      console.log("Current user:", user);
+      if (!user) {
         throw new Error("Not authenticated");
       }
+
+      // Get the current user's token
+      const token = await user.getIdToken();
+      console.log("Got token:", token ? "Token exists" : "No token");
 
       // Validate form data
       const validatedData = createEmployeeSchema.parse(formData);
 
       // Send request to API with token
+      console.log("Sending request to API...");
       const response = await fetch("/api/employees", {
         method: "POST",
         headers: {
@@ -88,6 +92,12 @@ export function AddEmployeeDialog() {
       });
 
       const data = await response.json();
+
+      console.log("API Response:", {
+        status: response.status,
+        ok: response.ok,
+        data,
+      });
 
       if (!response.ok) {
         throw new Error(data.error || "Failed to create employee");
