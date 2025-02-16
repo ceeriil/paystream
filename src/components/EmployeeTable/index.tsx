@@ -1,10 +1,10 @@
 import React from "react";
 import { useRouter } from "next/navigation";
-import { Employee } from "@/data/employees";
 import { Address } from "../Address.tsx";
 import { Table } from "../ui/table";
+import { Employee } from "@/services/db/employees.js";
 
-export const EmployeesTable = ({employees}:{employees: Employee[]}) => {
+export const EmployeesTable = ({ employees }: { employees: Employee[] }) => {
   const router = useRouter();
 
   const handleRowClick = (id: string) => {
@@ -35,10 +35,9 @@ export const EmployeesTable = ({employees}:{employees: Employee[]}) => {
       <tbody className="divide-y divide-[#272727]">
         {employees.map((employee) => (
           <tr
-            key={employee.id}
+            key={employee.walletAddress}
             className="hover:bg-black cursor-pointer"
-            onClick={() => handleRowClick(employee.id)}
-          >
+            onClick={() => handleRowClick(employee.walletAddress)}>
             <td className="px-6 py-4 whitespace-nowrap text-sm">
               {employee.name}
             </td>
