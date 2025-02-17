@@ -1,4 +1,5 @@
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
+import { CustomTooltip } from "./CustomToolTip";
 
 const data = [
   { name: "Salaried Payment", value: 0, color: "#29C5EE" },
@@ -28,13 +29,13 @@ export const PaymentTypePieChart = () => {
               fill="#8884d8"
               dataKey="value"
               stroke="#ffffff20"
-              strokeWidth={5}
-            >
+              strokeWidth={5}>
               {processedData.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.color} />
               ))}
             </Pie>
-            <Tooltip />
+            <Tooltip content={<CustomTooltip />} />
+
           </PieChart>
         </ResponsiveContainer>
 

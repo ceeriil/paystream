@@ -3,7 +3,6 @@ import { z } from "zod";
 import { admin } from "@/services/firebase";
 import { createEmployee, findAllEmployees } from "@/services/db/employees";
 
-// Schema for employee creation validation
 const createEmployeeSchema = z.object({
   name: z.string().min(1, "Name is required"),
   title: z.string().min(1, "Title is required"),
@@ -16,7 +15,6 @@ const createEmployeeSchema = z.object({
   employerNotes: z.string().optional(),
 });
 
-// Function to extract and verify token
 async function getOrganizationIdFromToken(request: Request) {
   const authHeader = request.headers.get("Authorization");
 
@@ -26,12 +24,12 @@ async function getOrganizationIdFromToken(request: Request) {
     throw new Error("Unauthorized - Missing or invalid token");
   }
 
-  const token = authHeader.split(" ")[1]; // Extract token
+  const token = authHeader.split(" ")[1];
 
   try {
     const decodedToken = await admin.auth().verifyIdToken(token);
     console.log(decodedToken.uid, "decoded");
-    return decodedToken.uid; // Using UID as organization ID
+    return decodedToken.uid;
   } catch (error) {
     throw new Error("Unauthorized - Invalid token");
   }
@@ -50,8 +48,8 @@ export async function GET(request: Request) {
     console.error("Error fetching employees:", error);
 
     return NextResponse.json(
-      { error: error.message },
-      { status: error.message.includes("Unauthorized") ? 401 : 500 },
+      { error: (error as Error).message },
+      { status: (error as Error).message.includes("Unauthorized") ? 401 : 500 },
     );
   }
 }
@@ -83,7 +81,7 @@ export async function POST(request: Request) {
     console.error("Error creating employee:", error);
 
     return NextResponse.json(
-      { error: error.message },
+      { error: (error as Error).message },
       { status: error instanceof z.ZodError ? 400 : 500 },
     );
   }
