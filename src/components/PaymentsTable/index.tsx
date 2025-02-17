@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Stream } from "@streamflow/stream";
 import { convertTimestampToFormattedDate, convertBNToNumber } from "@/helpers";
 import Image from "next/image";
-import { Address } from "../Address.tsx";
 import { Table } from "../ui/table";
 import { cn } from "@/lib/utils";
 import Link from "next/link.js";
 import { SquareArrowOutUpRight } from "lucide-react";
+import { Address } from "../Address";
 
 type SortField = "amount" | "startDate" | "endDate" | "nextPayment";
 type SortDirection = "asc" | "desc" | null;
@@ -16,7 +16,7 @@ interface SortState {
   direction: SortDirection;
 }
 
-export const ContractsTable = ({ streams }: { streams: any }) => {
+export const PaymentsTable = ({ streams }: { streams: any }) => {
   const [sortState, setSortState] = useState<SortState>({
     field: null,
     direction: null,
@@ -73,8 +73,7 @@ export const ContractsTable = ({ streams }: { streams: any }) => {
           "inline-block ml-1",
           isActive && "text-primary",
           !isActive && "text-gray-400",
-        )}
-      >
+        )}>
         {direction === "asc" ? "↑" : direction === "desc" ? "↓" : "↕"}
       </span>
     );
@@ -86,15 +85,13 @@ export const ContractsTable = ({ streams }: { streams: any }) => {
         <tr>
           <th
             className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-400"
-            onClick={() => handleSort("amount")}
-          >
+            onClick={() => handleSort("amount")}>
             Unlocked Total
             <SortIcon field="amount" />
           </th>
           <th
             className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-400"
-            onClick={() => handleSort("startDate")}
-          >
+            onClick={() => handleSort("startDate")}>
             Start Date
             <SortIcon field="startDate" />
           </th>
@@ -106,8 +103,7 @@ export const ContractsTable = ({ streams }: { streams: any }) => {
           </th>
           <th
             className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:text-gray-400"
-            onClick={() => handleSort("nextPayment")}
-          >
+            onClick={() => handleSort("nextPayment")}>
             End Date
             <SortIcon field="nextPayment" />
           </th>

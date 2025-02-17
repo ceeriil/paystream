@@ -6,19 +6,33 @@ import { DicebearAvatar } from "@/components/ui/dicebear-avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import { employees } from "@/data/employees";
+import { useFetchEmployee } from "@/hooks/useFetchEmployee";
 
 export default function EmployeeDetailPage() {
   const params = useParams();
   const router = useRouter();
   const employeeId = params.id as string;
-  const employee = employees.find((emp) => emp.id === employeeId);
 
-  if (!employee) {
+  const { employee, loading, error } = useFetchEmployee(employeeId);
+
+  if (loading) {
     return (
       <div className="container mx-auto py-8">
-        <Card className="p-6">
+        <Card className="p-6 text-center">
+          <p className="text-lg font-medium">Loading employee details...</p>
+        </Card>
+      </div>
+    );
+  }
+
+  if (error || !employee) {
+    return (
+      <div className="container mx-auto py-8">
+        <Card className="p-6 text-center">
           <h1 className="text-2xl font-bold">Employee not found</h1>
+          <p className="text-gray-500">
+            {error || "No employee data available"}
+          </p>
           <Button
             variant="outline"
             onClick={() => router.push("/dashboard/employees")}
@@ -44,7 +58,7 @@ export default function EmployeeDetailPage() {
         <div className="flex items-start justify-between">
           <div className="flex items-center space-x-4">
             <DicebearAvatar
-              seed={employee.id}
+              seed={employee.walletAddress}
               size={80}
               className="h-20 w-20"
             />

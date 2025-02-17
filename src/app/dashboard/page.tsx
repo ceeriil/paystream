@@ -39,14 +39,12 @@ export default function DashboardPage() {
           value="0"
           percentageChange={0}
           href="/contracts"
-          color="#29C5EE"
         />
 
         <DashboardCard
           icon={Users}
           label="Total Employess"
           value="0"
-          color="#CF1A2C"
           percentageChange={0}
         />
       </div>

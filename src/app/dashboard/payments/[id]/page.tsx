@@ -7,7 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/Spinner";
 import { useOneStream } from "@/hooks/useOneStream";
-import { Address } from "@/components/Address.tsx";
+import { Address } from "@/components/Address";
 import Link from "next/link";
 import { ArrowUpRight, XCircle, PlusCircle, ArrowRight } from "lucide-react";
 import Image from "next/image";
@@ -16,6 +16,12 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from "@/components/ui/tooltip";
+import {
+  convertBNToNumber,
+  convertTimestampToFormattedDate,
+  calculateNextWithdrawnTime,
+} from "@/helpers";
+import { useEffect } from "react";
 
 export default function PaymentDetailPage() {
   const params = useParams();
@@ -23,6 +29,8 @@ export default function PaymentDetailPage() {
   const streamId = params.id as string;
 
   const { stream, loading, error } = useOneStream(streamId);
+
+  useEffect(() => console.log(stream), [stream]);
 
   if (loading) {
     return (
@@ -48,8 +56,7 @@ export default function PaymentDetailPage() {
           <Button
             variant="outline"
             onClick={() => router.push("/dashboard/payments")}
-            className="mt-4"
-          >
+            className="mt-4">
             Back to Payments
           </Button>
         </Card>
@@ -57,13 +64,16 @@ export default function PaymentDetailPage() {
     );
   }
 
+  const depositedAmount = convertBNToNumber(stream.depositedAmount, 6);
+  const withdrawnAmount = convertBNToNumber(stream.withdrawnAmount, 6);
+  const remainingAmount = depositedAmount - withdrawnAmount;
+
   return (
     <div className="container mx-auto py-8">
       <div className="flex justify-between items-center mb-6">
         <Button
           variant="outline"
-          onClick={() => router.push("/dashboard/payments")}
-        >
+          onClick={() => router.push("/dashboard/payments")}>
           ← Back to Payments
         </Button>
       </div>
@@ -83,9 +93,8 @@ export default function PaymentDetailPage() {
           </div>
           <Link
             className="btn-gradient px-4 py-3 rounded-xl font-[600] text-sm mt-5 flex  items-center "
-            href=""
-          >
-            {" "}
+            target="blank_"
+            href={`https://app.streamflow.finance/contract/solana/testnet/${streamId}`}>
             View on StreamFlow
             <ArrowUpRight size={16} className="ml-2" />
           </Link>
@@ -106,7 +115,8 @@ export default function PaymentDetailPage() {
                     alt="token logo"
                     className="mr-1"
                   />
-                  10 <p className="font-medium"> USDC</p>
+                  {convertBNToNumber(stream.depositedAmount, 6)}
+                  <p className="font-medium"> USDC</p>
                 </div>
               </div>
               <div>
@@ -119,7 +129,8 @@ export default function PaymentDetailPage() {
                     alt="token logo"
                     className="mr-1"
                   />
-                  10 <p className="font-medium"> USDC</p>
+                  {convertBNToNumber(stream.withdrawnAmount, 6)}{" "}
+                  <p className="font-medium"> USDC</p>
                 </div>
               </div>
               <div>
@@ -132,25 +143,30 @@ export default function PaymentDetailPage() {
                     alt="token logo"
                     className="mr-1"
                   />
-                  10 <p className="font-medium"> USDC</p>
+
+                  {remainingAmount}
+                  <p className="font-medium"> USDC</p>
                 </div>
               </div>
               <div>
                 <p className="text-sm text-gray-500">Start Date</p>
                 <p className="font-medium">
-                  {new Date(stream.start).toLocaleString()}
+                  {convertTimestampToFormattedDate(stream.start)}
                 </p>
               </div>
               <div>
                 <p className="text-sm text-gray-500">Next Unlock Date</p>
                 <p className="font-medium">
-                  {new Date(stream.end).toLocaleString()}
+                  {calculateNextWithdrawnTime(
+                    stream.lastWithdrawnAt,
+                    stream.withdrawalFrequency,
+                  )}
                 </p>
               </div>
               <div>
                 <p className="text-sm text-gray-500">End Date</p>
                 <p className="font-medium">
-                  {new Date(stream.end).toLocaleString()}
+                  {convertTimestampToFormattedDate(stream.end)}
                 </p>
               </div>
             </div>
@@ -191,24 +207,24 @@ export default function PaymentDetailPage() {
 
                 {/* Action Buttons */}
                 <div className="flex space-x-4 mt-2">
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <button
-                        onClick={() => console.log("Cancel Payment")}
-                        className="text-red-500 hover:text-red-700"
-                      >
-                        <XCircle size={24} />
-                      </button>
-                    </TooltipTrigger>
-                    <TooltipContent>Cancel Payment</TooltipContent>
-                  </Tooltip>
+                  {stream.cancelableBySender && (
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <button
+                          onClick={() => console.log("Cancel Payment")}
+                          className="text-red-500 hover:text-red-700">
+                          <XCircle size={24} />
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent>Cancel Payment</TooltipContent>
+                    </Tooltip>
+                  )}
 
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <button
                         onClick={() => console.log("Top Up")}
-                        className="text-green-500 hover:text-green-700"
-                      >
+                        className="text-green-500 hover:text-green-700">
                         <PlusCircle size={24} />
                       </button>
                     </TooltipTrigger>
@@ -219,8 +235,7 @@ export default function PaymentDetailPage() {
                     <TooltipTrigger asChild>
                       <button
                         onClick={() => console.log("Transfer Funds")}
-                        className="text-blue-500 hover:text-blue-700"
-                      >
+                        className="text-blue-500 hover:text-blue-700">
                         <ArrowRight size={24} />
                       </button>
                     </TooltipTrigger>

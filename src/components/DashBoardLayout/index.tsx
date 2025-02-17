@@ -130,7 +130,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           </SidebarContent>
           <SidebarFooter>
             <div className="p-4">
-              <p className="text-sm text-muted-foreground">© 2024 PayStream</p>
+              <p className="text-sm text-muted-foreground">© 2025 PayStream</p>
             </div>
           </SidebarFooter>
         </Sidebar>
