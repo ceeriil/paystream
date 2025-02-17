@@ -52,15 +52,13 @@ export const SignMessageOverlay: React.FC<SignMessageOverlayProps> = ({
           <Button
             onClick={onClose}
             className="px-4 flex-1 py-2 rounded-md"
-            variant="secondary"
-          >
+            variant="secondary">
             Cancel
           </Button>
           <Button
             onClick={handleSignMessage}
             disabled={isSigning}
-            className="px-4 flex-1 py-2 btn-gradient text-white rounded-md"
-          >
+            className="px-4 flex-1 py-2 btn-gradient text-white rounded-md">
             {isSigning ? "Signing..." : "Sign Message"}
           </Button>
         </div>

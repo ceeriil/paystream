@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Image from "next/image";
 
-const Header = () => {
+export const MainHeader = () => {
   const [nav, setNav] = useState(false);
 
   const links = [
@@ -70,5 +70,3 @@ const Header = () => {
     </div>
   );
 };
-
-export default Header;

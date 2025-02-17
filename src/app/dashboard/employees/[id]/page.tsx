@@ -22,8 +22,7 @@ export default function EmployeeDetailPage() {
           <Button
             variant="outline"
             onClick={() => router.push("/dashboard/employees")}
-            className="mt-4"
-          >
+            className="mt-4">
             Back to Employees
           </Button>
         </Card>
@@ -36,8 +35,7 @@ export default function EmployeeDetailPage() {
       <div className="flex justify-between items-center mb-6">
         <Button
           variant="outline"
-          onClick={() => router.push("/dashboard/employees")}
-        >
+          onClick={() => router.push("/dashboard/employees")}>
           ← Back to Employees
         </Button>
       </div>

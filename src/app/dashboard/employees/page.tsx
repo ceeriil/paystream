@@ -4,8 +4,7 @@ import { useEffect, useState } from "react";
 import { AddEmployeeDialog } from "@/components/AddEmployeeDialogue";
 import { EmployeesTable } from "@/components/EmployeeTable";
 import { useAuth } from "@/context/AuthContext";
-import { Employee } from "@/services/db";
-
+import { Employee } from "@/services/db/employees.js";
 
 export default function Employees() {
   const [employees, setEmployees] = useState<Employee[]>([]);
@@ -36,7 +35,7 @@ export default function Employees() {
         setEmployees(data.employees);
       } catch (error) {
         console.error("Error fetching employees:", error);
-        setError(error.message);
+        setError((error as Error).message);
       } finally {
         setLoading(false);
       }
