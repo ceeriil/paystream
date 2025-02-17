@@ -16,6 +16,12 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from "@/components/ui/tooltip";
+import {
+  convertBNToNumber,
+  convertTimestampToFormattedDate,
+  calculateNextWithdrawnTime,
+} from "@/helpers";
+import { useEffect } from "react";
 
 export default function PaymentDetailPage() {
   const params = useParams();
@@ -23,6 +29,8 @@ export default function PaymentDetailPage() {
   const streamId = params.id as string;
 
   const { stream, loading, error } = useOneStream(streamId);
+
+  useEffect(() => console.log(stream), [stream]);
 
   if (loading) {
     return (
@@ -55,6 +63,10 @@ export default function PaymentDetailPage() {
       </div>
     );
   }
+
+  const depositedAmount = convertBNToNumber(stream.depositedAmount, 6);
+  const withdrawnAmount = convertBNToNumber(stream.withdrawnAmount, 6);
+  const remainingAmount = depositedAmount - withdrawnAmount;
 
   return (
     <div className="container mx-auto py-8">
@@ -103,7 +115,8 @@ export default function PaymentDetailPage() {
                     alt="token logo"
                     className="mr-1"
                   />
-                  10 <p className="font-medium"> USDC</p>
+                  {convertBNToNumber(stream.depositedAmount, 6)}
+                  <p className="font-medium"> USDC</p>
                 </div>
               </div>
               <div>
@@ -116,7 +129,8 @@ export default function PaymentDetailPage() {
                     alt="token logo"
                     className="mr-1"
                   />
-                  10 <p className="font-medium"> USDC</p>
+                  {convertBNToNumber(stream.withdrawnAmount, 6)}{" "}
+                  <p className="font-medium"> USDC</p>
                 </div>
               </div>
               <div>
@@ -129,25 +143,30 @@ export default function PaymentDetailPage() {
                     alt="token logo"
                     className="mr-1"
                   />
-                  10 <p className="font-medium"> USDC</p>
+
+                  {remainingAmount}
+                  <p className="font-medium"> USDC</p>
                 </div>
               </div>
               <div>
                 <p className="text-sm text-gray-500">Start Date</p>
                 <p className="font-medium">
-                  {new Date(stream.start).toLocaleString()}
+                  {convertTimestampToFormattedDate(stream.start)}
                 </p>
               </div>
               <div>
                 <p className="text-sm text-gray-500">Next Unlock Date</p>
                 <p className="font-medium">
-                  {new Date(stream.end).toLocaleString()}
+                  {calculateNextWithdrawnTime(
+                    stream.lastWithdrawnAt,
+                    stream.withdrawalFrequency,
+                  )}{" "}
                 </p>
               </div>
               <div>
                 <p className="text-sm text-gray-500">End Date</p>
                 <p className="font-medium">
-                  {new Date(stream.end).toLocaleString()}
+                  {convertTimestampToFormattedDate(stream.end)}
                 </p>
               </div>
             </div>

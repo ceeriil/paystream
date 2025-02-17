@@ -111,11 +111,19 @@ export const convertDurationToSeconds = (
 export const convertTimestampToFormattedDate = (timestamp: number): string => {
   const date = new Date(timestamp * 1000);
 
-  return date.toLocaleDateString("en-US", {
+  const formattedDate = date.toLocaleDateString("en-US", {
     month: "2-digit",
     day: "2-digit",
     year: "numeric",
   });
+
+  const formattedTime = date.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+
+  return `${formattedDate}, ${formattedTime}`;
 };
 
 /**
@@ -198,3 +206,17 @@ export const getTotalDepositedAmount = (
     return total;
   }, 0);
 };
+
+/**
+ * Utility function to calculate the next withdrawn time.
+ * @param lastWithdrawnAt The Unix timestamp of the last withdrawn time.
+ * @param withdrawalFrequency The frequency of withdrawal in seconds.
+ * @returns The next withdrawal time as a string.
+ */
+export function calculateNextWithdrawnTime(
+  lastWithdrawnAt: number,
+  withdrawalFrequency: number,
+): string {
+  const nextWithdrawnTimestamp = lastWithdrawnAt + withdrawalFrequency;
+  return convertTimestampToFormattedDate(nextWithdrawnTimestamp);
+}
