@@ -93,8 +93,8 @@ export default function PaymentDetailPage() {
           </div>
           <Link
             className="btn-gradient px-4 py-3 rounded-xl font-[600] text-sm mt-5 flex  items-center "
-            href="">
-            {" "}
+            target="blank_"
+            href={`https://app.streamflow.finance/contract/solana/testnet/${streamId}`}>
             View on StreamFlow
             <ArrowUpRight size={16} className="ml-2" />
           </Link>
@@ -160,7 +160,7 @@ export default function PaymentDetailPage() {
                   {calculateNextWithdrawnTime(
                     stream.lastWithdrawnAt,
                     stream.withdrawalFrequency,
-                  )}{" "}
+                  )}
                 </p>
               </div>
               <div>
@@ -207,16 +207,18 @@ export default function PaymentDetailPage() {
 
                 {/* Action Buttons */}
                 <div className="flex space-x-4 mt-2">
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <button
-                        onClick={() => console.log("Cancel Payment")}
-                        className="text-red-500 hover:text-red-700">
-                        <XCircle size={24} />
-                      </button>
-                    </TooltipTrigger>
-                    <TooltipContent>Cancel Payment</TooltipContent>
-                  </Tooltip>
+                  {stream.cancelableBySender && (
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <button
+                          onClick={() => console.log("Cancel Payment")}
+                          className="text-red-500 hover:text-red-700">
+                          <XCircle size={24} />
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent>Cancel Payment</TooltipContent>
+                    </Tooltip>
+                  )}
 
                   <Tooltip>
                     <TooltipTrigger asChild>
