@@ -7,7 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/Spinner";
 import { useOneStream } from "@/hooks/useOneStream";
-import { Address } from "@/components/Address.tsx";
+import { Address } from "@/components/Address";
 import Link from "next/link";
 import { ArrowUpRight, XCircle, PlusCircle, ArrowRight } from "lucide-react";
 import Image from "next/image";
@@ -48,8 +48,7 @@ export default function PaymentDetailPage() {
           <Button
             variant="outline"
             onClick={() => router.push("/dashboard/payments")}
-            className="mt-4"
-          >
+            className="mt-4">
             Back to Payments
           </Button>
         </Card>
@@ -62,8 +61,7 @@ export default function PaymentDetailPage() {
       <div className="flex justify-between items-center mb-6">
         <Button
           variant="outline"
-          onClick={() => router.push("/dashboard/payments")}
-        >
+          onClick={() => router.push("/dashboard/payments")}>
           ← Back to Payments
         </Button>
       </div>
@@ -83,8 +81,7 @@ export default function PaymentDetailPage() {
           </div>
           <Link
             className="btn-gradient px-4 py-3 rounded-xl font-[600] text-sm mt-5 flex  items-center "
-            href=""
-          >
+            href="">
             {" "}
             View on StreamFlow
             <ArrowUpRight size={16} className="ml-2" />
@@ -195,8 +192,7 @@ export default function PaymentDetailPage() {
                     <TooltipTrigger asChild>
                       <button
                         onClick={() => console.log("Cancel Payment")}
-                        className="text-red-500 hover:text-red-700"
-                      >
+                        className="text-red-500 hover:text-red-700">
                         <XCircle size={24} />
                       </button>
                     </TooltipTrigger>
@@ -207,8 +203,7 @@ export default function PaymentDetailPage() {
                     <TooltipTrigger asChild>
                       <button
                         onClick={() => console.log("Top Up")}
-                        className="text-green-500 hover:text-green-700"
-                      >
+                        className="text-green-500 hover:text-green-700">
                         <PlusCircle size={24} />
                       </button>
                     </TooltipTrigger>
@@ -219,8 +214,7 @@ export default function PaymentDetailPage() {
                     <TooltipTrigger asChild>
                       <button
                         onClick={() => console.log("Transfer Funds")}
-                        className="text-blue-500 hover:text-blue-700"
-                      >
+                        className="text-blue-500 hover:text-blue-700">
                         <ArrowRight size={24} />
                       </button>
                     </TooltipTrigger>

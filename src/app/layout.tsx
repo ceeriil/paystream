@@ -23,10 +23,7 @@ export default async function RootLayout({ children }: ChildrenProps) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={`${urbanist.className} h-full flex flex-col justify-between bg-[#000] text-foreground`}
-        suppressHydrationWarning
-      >
-        <section className="w-full"></section>
+        className={`${urbanist.className} h-full flex flex-col justify-between bg-[#000] text-foreground`}>
         {children}
         <Toaster />
       </body>

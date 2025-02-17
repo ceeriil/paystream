@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "next/navigation";
-import { Address } from "../Address.tsx";
+import { Address } from "../Address";
 import { Table } from "../ui/table";
 import { Employee } from "@/services/db/employees.js";
 
