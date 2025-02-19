@@ -14,7 +14,7 @@ import {
   useAppKitProvider,
 } from "@reown/appkit/react";
 import { type Provider } from "@reown/appkit-adapter-solana/react";
-import { Keypair } from "@solana/web3.js";
+import { Keypair, PublicKey } from "@solana/web3.js";
 import { DELAY_IN_SECONDS } from "@/constants";
 import { TimeUnit } from "@/types";
 import { useToast } from "../ui/use-toast";
