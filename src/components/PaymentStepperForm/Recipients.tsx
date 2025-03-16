@@ -3,18 +3,19 @@ import { Wallet, Search } from "lucide-react";
 import { StepperFormValues } from "@/types/hook-stepper";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-import { employees } from "@/data/employees";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useState } from "react";
+import { useFetchEmployees } from "@/hooks/useFetchEmployees";
 
 const Recipients = () => {
   const { register, setValue } = useFormContext<StepperFormValues>();
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
+  const { employees, loading, error } = useFetchEmployees();
 
   const filteredEmployees = employees.filter(
     (employee) =>
@@ -78,7 +79,7 @@ const Recipients = () => {
                   {filteredEmployees.length > 0 ? (
                     filteredEmployees.map((employee) => (
                       <button
-                        key={employee.id}
+                        key={employee.name}
                         onClick={() => {
                           setValue("recipientWallet", employee.walletAddress);
                           setValue("recipientEmail", employee.email);

@@ -13,7 +13,6 @@ export const Employees = () => {
 
   if (loading) return <EmployeeLoader />;
   if (!user) return <ConnectWallet />;
-  if (error) return <EmployeeError errorMessage={error} />;
 
   return <EmployeeLists employees={employees} />;
 };

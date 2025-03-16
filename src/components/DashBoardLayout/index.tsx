@@ -95,7 +95,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
   return (
     <SidebarProvider>
-      <div className="flex min-h-screen w-full">
+      <div className="flex min-h-screen w-full dark">
         <Sidebar className="bg-black border-[#272727]">
           <SidebarHeader className="border-[#272727] border-b">
             <div className="flex items-center px-6  pb-[0.4rem] pt-[0.4rem] ">

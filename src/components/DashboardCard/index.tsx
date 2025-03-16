@@ -20,7 +20,7 @@ export function DashboardCard({
 }: DashboardCardProps) {
   return (
     <CardWrapper href={href}>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 ">
         <div className="rounded-lg bg-primary/10 p-2">
           <Icon className="h-6 w-6 text-primary" />
         </div>
@@ -47,7 +47,7 @@ interface CardWrapperProps {
 
 function CardWrapper({ href, children }: CardWrapperProps) {
   return (
-    <Card className="p-6 py-8 card before:bg-[#CF1A2C] rounded-2xl z-[10] overflow-hidden">
+    <Card className="p-6 py-8 card before:bg-[#CF1A2C] rounded-2xl z-[10] overflow-hidden dark">
       {href && (
         <Link
           href={href}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllStreams } from "@/services/streamflow";
 import { Stream } from "@streamflow/stream";
-import { useAppKitNetwork, useAppKitProvider } from "@reown/appkit/react";
+import { useAppKitProvider } from "@reown/appkit/react";
 import { useSolanaClient } from "@/services/streamflow";
 import { Provider } from "@reown/appkit-adapter-solana/react";
 
@@ -22,7 +22,6 @@ export function useAllStreams(): {
   const [error, setError] = useState<Error | undefined>();
   const { walletProvider } = useAppKitProvider<Provider>("solana");
   const { solanaClient } = useSolanaClient();
-  const { caipNetwork } = useAppKitNetwork();
 
   const fetchStreams = () => {
     if (!walletProvider) {

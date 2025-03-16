@@ -1,6 +1,6 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 
-import secretKey from '@/env';
+import secretKey from "@/env";
 
 declare global {
   // eslint-disable-next-line vars-on-top, no-var
@@ -8,4 +8,4 @@ declare global {
 }
 
 export const prismaDB = new PrismaClient();
-if (secretKey.NODE_ENV !== 'production') globalThis.prisma = prismaDB;
+if (secretKey.NODE_ENV !== "production") globalThis.prisma = prismaDB;

@@ -10,8 +10,8 @@ export const SectionHero = () => {
           Automate Payroll with PayStream
         </h1>
         <p className="text-xl leading-[1.5] md:text-2xl mb-8 text-center mt-3">
-          Experience smooth salary automation and tracking, designed to improve
-          payment processes effortlessly
+          Experience smoooth payment automation and tracking, designed to
+          improve payment processes effortlessly
         </p>
 
         <div className="flex">
