@@ -7,11 +7,26 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { useFetchEmployee } from "@/hooks/useFetchEmployee";
+import { PaymentsTable } from "@/components/PaymentsTable";
+import { useAllStreams } from "@/hooks/useAllStream";
+import { Stream } from "@streamflow/stream";
+import { useEffect } from "react";
 
 export default function EmployeeDetailPage() {
   const params = useParams();
   const router = useRouter();
   const employeeId = params.id as string;
+  const { streams, loadingStream, streamError } = useAllStreams();
+
+  const paystreamStreams = streams?.filter(
+    ([, stream]: [string, Stream]) =>
+      stream.name?.toLowerCase().includes("paystream") &&
+      stream.recipient === params.id,
+  );
+
+  useEffect(() => {
+    console.log("stream for account", paystreamStreams);
+  });
 
   const { employee, loading, error } = useFetchEmployee(employeeId);
 
@@ -113,8 +128,8 @@ export default function EmployeeDetailPage() {
                 </div>
               )}
               <div>
-                <p className="text-sm text-gray-500">Active Streams</p>
-                <p className="font-medium">0</p>
+                <p className="text-sm text-gray-500">Total Payment Streams</p>
+                <p className="font-medium">{paystreamStreams?.length}</p>
               </div>
               <div>
                 <p className="text-sm text-gray-500">Total Payments</p>
@@ -123,6 +138,15 @@ export default function EmployeeDetailPage() {
             </div>
           </div>
         </div>
+      </Card>
+      <h2 className="mb-10 text-2xl font-medium mt-24">Payments</h2>
+
+      <Card className="">
+        {loadingStream && !paystreamStreams ? (
+          <p>loading</p>
+        ) : (
+          <PaymentsTable streams={paystreamStreams} />
+        )}
       </Card>
     </div>
   );

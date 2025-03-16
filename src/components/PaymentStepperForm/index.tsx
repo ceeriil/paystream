@@ -14,7 +14,7 @@ import {
   useAppKitProvider,
 } from "@reown/appkit/react";
 import { type Provider } from "@reown/appkit-adapter-solana/react";
-import { Keypair, PublicKey } from "@solana/web3.js";
+import { Keypair } from "@solana/web3.js";
 import { DELAY_IN_SECONDS } from "@/constants";
 import { TimeUnit } from "@/types";
 import { useToast } from "../ui/use-toast";
@@ -120,11 +120,13 @@ const PaymentStepperForm = () => {
       new BN(numberOfIntervals),
     );
 
+    console.log(start);
+
     const createStreamParams = {
       recipient: recipientWallet,
       tokenId:
         selectedToken?.mint || "So11111111111111111111111111111111111111112",
-      start: start || getCurrentTimestampInSeconds() + DELAY_IN_SECONDS,
+      start: getCurrentTimestampInSeconds() + DELAY_IN_SECONDS,
       amount: totalAmountInLamports,
       period: unlockDurationInSeconds,
       cliff: getCurrentTimestampInSeconds() + DELAY_IN_SECONDS,
@@ -144,6 +146,10 @@ const PaymentStepperForm = () => {
     console.log(walletProvider, "wallet");
 
     console.log("createStreamParams", createStreamParams, "stream ready");
+
+    if (!solanaClient) {
+      return; //refactor this or show error message later
+    }
 
     await createStream(
       solanaClient,
