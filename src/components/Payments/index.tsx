@@ -6,9 +6,12 @@ import { PaymentError } from "./PaymentError";
 import { PaymentLoader } from "./PaymentLoader";
 import { PaymentsTable } from "../PaymentsTable";
 import { EmptyPaymentState } from "./EmptyPaymentState";
+import { useAuth } from "@/context/AuthContext";
+import { ConnectWallet } from "./ConnectWallet";
 
 export const Payments = () => {
   const { streams, loading, error } = useAllStreams();
+  const { user } = useAuth();
 
   const paystreamStreams = streams?.filter(([, stream]: [string, Stream]) =>
     stream.name?.toLowerCase().includes("paystream"),
@@ -16,6 +19,10 @@ export const Payments = () => {
   useEffect(() => {
     console.log("stream for account", streams);
   });
+
+  /* fix this shit later. !important */
+
+  if (!user) return <ConnectWallet />;
 
   if (error) {
     return <PaymentError errorMessage={error.message} />;

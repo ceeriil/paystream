@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { signMessage } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { type Provider } from "@reown/appkit-adapter-solana/react";
-import { useAppKitProvider } from "@reown/appkit/react";
+import { useAppKitProvider, useDisconnect } from "@reown/appkit/react";
 import { useAuth } from "@/context/AuthContext";
 
 interface SignMessageOverlayProps {
@@ -19,6 +19,12 @@ export const SignMessageOverlay: React.FC<SignMessageOverlayProps> = ({
   const [isSigning, setIsSigning] = useState(false);
   const { walletProvider } = useAppKitProvider<Provider>("solana");
   const { signIn } = useAuth();
+  const { disconnect } = useDisconnect();
+
+  const handleClose = async () => {
+    await disconnect();
+    onClose();
+  };
 
   const handleSignMessage = async () => {
     setIsSigning(true);
@@ -50,7 +56,7 @@ export const SignMessageOverlay: React.FC<SignMessageOverlayProps> = ({
         </p>
         <div className="flex space-x-2">
           <Button
-            onClick={onClose}
+            onClick={handleClose}
             className="px-4 flex-1 py-2 rounded-md"
             variant="secondary">
             Cancel

@@ -110,12 +110,12 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                   <SidebarMenuButton asChild tooltip={item.title}>
                     <Link
                       href={item.inactive ? "/#" : item.href}
-                      className={`flex items-center text-base font-medium p-2 rounded-md transition-all py-5 ${
+                      className={`flex items-center text-base font-medium p-2 rounded-md transition-all py-5  ${
                         item.inactive
                           ? "text-gray-500 cursor-not-allowed"
                           : pathname === item.href
                             ? "btn-gradient text-white"
-                            : "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                            : " hover:text-[#ff00ed]"
                       }`}
                       onClick={(e) => {
                         if (item.inactive) e.preventDefault();

@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export const SectionHero = () => {
   return (
-    <section className="min-h-screen hero" id="home">
+    <section className="min-h-screen hero h-full" id="home">
       <div className="container mx-auto flex flex-col items-center pt-32 px-3">
         <h1 className="text-center text-3xl md:text-[4.5rem] leading-[1.5] gradient-text">
           Automate Payroll with PayStream
@@ -23,7 +23,7 @@ export const SectionHero = () => {
           </Link>
         </div>
 
-        <div className="pt-16 relative block pb-16">
+        <div className="pt-16 block pb-16 ">
           <Image
             src="/img/hero-img.png"
             alt="hero-image"

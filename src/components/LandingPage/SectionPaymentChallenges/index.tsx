@@ -3,8 +3,8 @@ import React from "react";
 export const SectionPaymentChallenges = () => {
   return (
     <section>
-      <div className="container mx-auto flex flex-col items-center px-4 py-32">
-        <p className="mb-5 font-[300] uppercase">
+      <div className="container mx-auto flex flex-col items-center px-4 py-32 mt-32">
+        <p className="mb-5 font-[300] uppercase mt-16">
           Addressing Payment Challenges
         </p>
         <h2 className="md:text-5xl font-[500] text-center text-3xl">
