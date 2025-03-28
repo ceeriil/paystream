@@ -10,12 +10,13 @@ import {
 } from "@/components/ui/popover";
 import { useState } from "react";
 import { useFetchEmployees } from "@/hooks/useFetchEmployees";
+import Link from "next/link";
 
 const Recipients = () => {
   const { register, setValue } = useFormContext<StepperFormValues>();
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
-  const { employees, loading, error } = useFetchEmployees();
+  const { employees } = useFetchEmployees();
 
   const filteredEmployees = employees.filter(
     (employee) =>
@@ -96,11 +97,11 @@ const Recipients = () => {
                   ) : (
                     <div className="text-xs text-gray-400 p-2">
                       No employee found.{" "}
-                      <a
+                      <Link
                         href="/dashboard/employees"
                         className="text-blue-500 underline">
                         Go to Employee Page
-                      </a>{" "}
+                      </Link>{" "}
                       to add an employee.
                     </div>
                   )}

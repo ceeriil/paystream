@@ -448,6 +448,7 @@ h6 {
   animation: lds-ellipsis3 0.4s infinite;
 }
 
+/* ------ keyframes and animations ----- */
 @keyframes lds-ellipsis1 {
   0% {
     transform: scale(0);
@@ -470,5 +471,29 @@ h6 {
   }
   100% {
     transform: translate(1.5rem, 0);
+  }
+}
+
+@-webkit-keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }

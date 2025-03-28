@@ -11,7 +11,7 @@ export const SectionRoadmap = () => {
         </div>
         <div className="md:ml-24 mt-5 md:mt-0">
           <p className="text-2xl leading-[1.7] ">
-            Heres how yu can simplify salary management and free yourself to
+            Heres how you can simplify payroll management and free yourself to
             focus on what matters:
           </p>
         </div>

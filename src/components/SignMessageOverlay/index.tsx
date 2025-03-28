@@ -49,7 +49,7 @@ export const SignMessageOverlay: React.FC<SignMessageOverlayProps> = ({
 
   return (
     <div className="fixed inset-0 bg-[#ffffff14] backdrop-blur-sm flex items-center justify-center z-50 text-center ">
-      <div className="bg-black p-6 rounded-lg border border-[#272727]">
+      <div className="bg-[#121212] p-6 rounded-2xl border border-[#272727]">
         <h2 className="text-xl font-semibold mb-4">Sign Message</h2>
         <p className="mb-4">
           Please sign the message to authenticate your wallet.
