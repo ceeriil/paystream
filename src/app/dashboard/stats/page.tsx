@@ -1,6 +1,6 @@
 "use client";
 
-import { BarChart3, Users, CreditCard } from "lucide-react";
+import { BarChart3, CreditCard, HandCoins } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DashboardCard } from "@/components/DashboardCard";
@@ -14,7 +14,7 @@ export default function Stats() {
   const { streams, loading, error } = useAllStreams();
 
   const paystreamStreams = streams?.filter(([_, stream]: [string, Stream]) =>
-    stream.name?.toLowerCase().includes("paystream")
+    stream.name?.toLowerCase().includes("paystream"),
   );
 
   const totalPayout =
@@ -32,18 +32,16 @@ export default function Stats() {
         />
 
         <DashboardCard
-          icon={Users}
+          icon={HandCoins}
           label="Funds in Active streams"
           value="0"
           percentageChange={0}
-          color="#29C5EE"
         />
 
         <DashboardCard
           icon={CreditCard}
           label="Total Contracts Created"
           value={`${totalContract}`}
-          color="#CF1A2C"
           percentageChange={0}
         />
       </div>

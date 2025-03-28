@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import Tilt from "react-parallax-tilt";
 
 export const SectionHero = () => {
   return (
@@ -23,13 +24,16 @@ export const SectionHero = () => {
           </Link>
         </div>
 
-        <div className="pt-16 relative block pb-16">
-          <Image
-            src="/img/hero-img.png"
-            alt="hero-image"
-            width={809}
-            height={513}
-          />
+        <div className="pt-16 block pb-16 relative min-w-[80%] ">
+          <Tilt tiltMaxAngleX={2} tiltMaxAngleY={2} glareEnable={false}>
+            <Image
+              src="/img/hero-img.png"
+              alt="hero-image"
+              width={809}
+              height={513}
+              className="object-cover w-full"
+            />
+          </Tilt>
         </div>
       </div>
     </section>

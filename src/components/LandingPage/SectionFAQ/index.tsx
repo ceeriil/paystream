@@ -42,7 +42,9 @@ const faqs = [
 ];
 
 export const SectionFAQ = () => {
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState(faqs[0].id);
+
+  const activeFaq = faqs.find((faq) => faq.id === activeTab);
 
   return (
     <section id="FAQS">
@@ -71,12 +73,14 @@ export const SectionFAQ = () => {
             ))}
           </ul>
 
-          <div className="card-gradient-2 md:ml-[-3rem] h-[22rem] md:h-[31rem] p-6 py-12 md:pl-[4rem] text-center">
-            <h2 className="font-medium text-xl">{faqs[activeTab].question}</h2>
-            <p className="mt-6 text-xl font-light leading-[1.7]">
-              {faqs[activeTab].content}
-            </p>
-          </div>
+          {activeFaq && (
+            <div className="card-gradient-2 md:ml-[-3rem] h-[22rem] md:h-[31rem] p-6 py-12 md:pl-[4rem] text-center">
+              <h2 className="font-medium text-xl"> {activeFaq.question}</h2>
+              <p className="mt-6 text-xl font-light leading-[1.7]">
+                {activeFaq.content}
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </section>
