@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export const SectionGetStarted = () => {
   return (
-    <section className="mb-16 mt-32 pb-16 px-4">
-      <div className="container mx-auto border py-24 md:px-16 flex flex-col items-center text-center px-4 demo-box rounded-xl">
+    <section className="mb-16 mt-20 pb-16 px-4">
+      <div className="container mx-auto border py-24 md:px-16 flex flex-col items-center text-center px-4 demo-box rounded-xl neon-box">
         <h2 className="font-bold md:text-[3.5rem] text-2xl leading-[1.3] gradient-text inline-block">
           Get Started with Paystream
         </h2>

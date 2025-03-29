@@ -9,7 +9,7 @@ import { DicebearAvatar } from "@/components/ui/dicebear-avatar";
 
 export default function DashboardPage() {
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 dark">
       <div className="flex items-center justify-between">
         <div className="flex space-x-6 mt-4 mb-6 items-center">
           <DicebearAvatar className="h-16 w-16" seed="12" size={80} />
@@ -25,7 +25,7 @@ export default function DashboardPage() {
 
       <div className="w-full h-[1px] bg-[#ffffff20] mb-8"></div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-12">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-12 dark">
         <DashboardCard
           icon={BarChart3}
           label="Last Month's Payout"

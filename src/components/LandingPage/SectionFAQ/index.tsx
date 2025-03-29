@@ -57,11 +57,10 @@ export const SectionFAQ = () => {
             {faqs.map((faq) => (
               <li key={faq.id}>
                 <button
-                  className="tab flex items-center justify-between p-4 w-full"
+                  className="tab flex items-center justify-between p-4 w-full hover:bg-[#ffffff15]"
                   style={{
                     cursor: "pointer",
-                    background:
-                      activeTab === faq.id ? " #1a62ff" : "transparent",
+                    background: activeTab === faq.id ? " #1a62ff" : "",
                   }}
                   onClick={() => setActiveTab(faq.id)}>
                   {faq.question}

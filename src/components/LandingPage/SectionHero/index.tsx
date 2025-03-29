@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Tilt from "react-parallax-tilt";
+import { TerminalFrame } from "@/components/TerminalFrame";
 
 export const SectionHero = () => {
   return (
@@ -25,14 +26,25 @@ export const SectionHero = () => {
         </div>
 
         <div className="pt-16 block pb-16 relative min-w-[80%] ">
-          <Tilt tiltMaxAngleX={2} tiltMaxAngleY={2} glareEnable={false}>
-            <Image
+          {/*    <Image
               src="/img/hero-img.png"
               alt="hero-image"
               width={809}
               height={513}
               className="object-cover w-full"
-            />
+            /> */}
+          <Tilt tiltMaxAngleX={2} tiltMaxAngleY={2} glareEnable={false}>
+            <TerminalFrame>
+              <Image
+                src="/img/capture.png"
+                alt="hero-image"
+                width={809}
+                height={513}
+                className="object-cover w-full  rounded-b-xl "
+                priority
+                quality={100}
+              />
+            </TerminalFrame>
           </Tilt>
         </div>
       </div>

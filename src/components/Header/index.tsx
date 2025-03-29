@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import React, { useState } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
 import Image from "next/image";
 
 export const MainHeader = () => {
@@ -51,17 +50,19 @@ export const MainHeader = () => {
       </ul>
 
       <button
-        onClick={() => setNav(!nav)}
-        className="cursor-pointer pr-4 z-[100] text-white md:hidden">
-        {nav ? <FaTimes size={30} /> : <FaBars size={30} />}
+        type="button"
+        className="md:hidden flex flex-col space-y-1 cursor-pointer z-[100]"
+        onClick={() => setNav(!nav)}>
+        <div className="w-8 h-0.5 bg-white" />
+        <div className="w-8 h-0.5 bg-white" />
       </button>
 
       {nav && (
-        <ul className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen text-white z-[99] bg-black">
+        <ul className="flex flex-col justify-center items-center absolute top-0 left-0 w-full h-screen text-white z-[99] bg-[#000000]">
           {links.map(({ id, link }) => (
             <li
               key={id}
-              className="px-4 cursor-pointer capitalize py-6 text-4xl">
+              className="px-4 cursor-pointer capitalize py-6 text-4xl font-bold gradient-text">
               <Link onClick={() => setNav(!nav)} href={"#" + link}>
                 {link}
               </Link>

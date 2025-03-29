@@ -1,5 +1,5 @@
 import type { ChildrenProps } from "@/types";
 
 export default function MainLayout({ children }: ChildrenProps) {
-  return <div className="h-full flex flex-col bg-black">{children}</div>;
+  return <div className="min-h-full bg-black">{children}</div>;
 }

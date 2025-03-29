@@ -69,11 +69,11 @@ h6 {
   :root {
     --radius: 0.5rem;
     --sidebar-background: #000000;
-    --sidebar-foreground: #424458;
-    --sidebar-primary: #1a1b1e;
-    --sidebar-primary-foreground: #fafafa;
-    --sidebar-accent: #f4f4f5;
-    --sidebar-accent-foreground: #1a1b1e;
+    --sidebar-foreground: #f4f4f5;
+    --sidebar-primary: #2563eb;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #27272a;
+    --sidebar-accent-foreground: #f4f4f5;
     --sidebar-border: #272727;
     --sidebar-ring: #3b82f6;
   }
@@ -448,6 +448,37 @@ h6 {
   animation: lds-ellipsis3 0.4s infinite;
 }
 
+/* ---- neon box------  */
+.neon-box {
+  position: relative;
+  border: 1px solid white;
+  border-radius: 12px;
+  background: black;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.neon-box::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 14px;
+  background: linear-gradient(90deg, #ff00ed, #1a62ff);
+  z-index: -1;
+  filter: blur(8px);
+  opacity: 0.8;
+  animation: neonGlow 1.5s infinite alternate;
+}
+
+@keyframes neonGlow {
+  0% {
+    filter: blur(3px);
+    opacity: 0.6;
+  }
+  100% {
+    filter: blur(6px);
+    opacity: 1;
+  }
+}
 /* ------ keyframes and animations ----- */
 @keyframes lds-ellipsis1 {
   0% {
