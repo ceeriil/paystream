@@ -10,6 +10,7 @@
 
 * {
   margin: 0;
+  scroll-behavior: smooth;
 }
 
 html,
@@ -451,31 +452,32 @@ h6 {
 /* ---- neon box------  */
 .neon-box {
   position: relative;
-  border: 1px solid white;
+  border: 1px solid white; /* White border */
   border-radius: 12px;
+  padding: 2rem;
   background: black;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); /* Subtle glow */
 }
 
 .neon-box::before {
   content: "";
   position: absolute;
-  inset: -4px;
+  inset: -4px; /* Expands beyond the border */
   border-radius: 14px;
-  background: linear-gradient(90deg, #ff00ed, #1a62ff);
+  background: linear-gradient(90deg, #ff00ff, #6600ff);
   z-index: -1;
-  filter: blur(8px);
+  filter: blur(12px); /* Creates the glow */
   opacity: 0.8;
   animation: neonGlow 1.5s infinite alternate;
 }
 
 @keyframes neonGlow {
   0% {
-    filter: blur(3px);
+    filter: blur(8px);
     opacity: 0.6;
   }
   100% {
-    filter: blur(6px);
+    filter: blur(16px);
     opacity: 1;
   }
 }

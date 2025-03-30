@@ -14,9 +14,9 @@ export const SectionGetStarted = () => {
         </p>
         <Link
           href="/dashboard"
-          className="btn btn-hover color-6 text-xl text-white"
+          className="btn btn-hover color-6 text-xl text-white px-10"
           target="blank_">
-          Go to Dahboard
+          Go to Dashboard
         </Link>
       </div>
     </section>

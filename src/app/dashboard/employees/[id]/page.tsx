@@ -11,12 +11,13 @@ import { PaymentsTable } from "@/components/PaymentsTable";
 import { useAllStreams } from "@/hooks/useAllStream";
 import { Stream } from "@streamflow/stream";
 import { useEffect } from "react";
+import { Spinner } from "@/components";
 
 export default function EmployeeDetailPage() {
   const params = useParams();
   const router = useRouter();
   const employeeId = params.id as string;
-  const { streams, loadingStream, streamError } = useAllStreams();
+  const { streams } = useAllStreams();
 
   const paystreamStreams = streams?.filter(
     ([, stream]: [string, Stream]) =>
@@ -32,10 +33,10 @@ export default function EmployeeDetailPage() {
 
   if (loading) {
     return (
-      <div className="container mx-auto py-8">
-        <Card className="p-6 text-center">
-          <p className="text-lg font-medium">Loading employee details...</p>
-        </Card>
+      <div className="container mx-auto py-8 flex items-center justify-center">
+        <div className="p-6 text-center">
+          <Spinner />
+        </div>
       </div>
     );
   }
