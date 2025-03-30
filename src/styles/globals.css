@@ -99,6 +99,10 @@ h6 {
   }
 }
 
+.text-destructive {
+  color: rgb(238, 67, 24);
+}
+
 .gradient-text {
   background: #fff
     linear-gradient(to bottom, #f6f6f7 0%, #f6f6f7 30%, #7e808f 100%);

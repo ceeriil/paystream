@@ -155,11 +155,20 @@ export default function EmployeeDetailPage() {
       <h2 className="mb-10 text-2xl font-medium mt-24">Payments</h2>
 
       <Card className="">
-        {loadingStream && !paystreamStreams ? (
-          <p>loading</p>
-        ) : (
-          <PaymentsTable streams={paystreamStreams} />
-        )}
+        {(() => {
+          switch (true) {
+            case loadingStream:
+              return <p>loading</p>;
+            case !paystreamStreams || paystreamStreams.length === 0:
+              return (
+                <div className="py-12 text-center flex flex-col items-center justify-center">
+                  No payment streams available
+                </div>
+              );
+            default:
+              return <PaymentsTable streams={paystreamStreams} />;
+          }
+        })()}
       </Card>
     </div>
   );

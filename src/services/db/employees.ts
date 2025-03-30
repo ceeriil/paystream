@@ -150,7 +150,6 @@ export async function updateEmployee(
     throw new Error("Employee not found");
   }
 
-  // Check if the organization is the creator of this employee
   const employeeData = employeeSnapshot.data;
   if (employeeData.createdBy !== organizationId) {
     throw new Error(

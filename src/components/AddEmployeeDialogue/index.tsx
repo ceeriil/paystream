@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/select";
 import { z } from "zod";
 import { Spinner } from "@/components/Spinner";
+import { useToast } from "../ui/use-toast";
 
 // Schema for employee creation validation
 const createEmployeeSchema = z.object({
@@ -39,6 +40,7 @@ export function AddEmployeeDialog() {
   const [open, setOpen] = useState(false);
   const { user } = useAuth();
   const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
   const [formData, setFormData] = useState<EmployeeFormData>({
     name: "",
     title: "",
@@ -71,15 +73,11 @@ export function AddEmployeeDialog() {
       if (!user) {
         throw new Error("Not authenticated");
       }
-
-      // Get the current user's token
       const token = await user.getIdToken();
       console.log("Got token:", token ? "Token exists" : "No token");
 
-      // Validate form data
       const validatedData = createEmployeeSchema.parse(formData);
 
-      // Send request to API with token
       console.log("Sending request to API...");
       const response = await fetch("/api/employees", {
         method: "POST",
@@ -102,7 +100,11 @@ export function AddEmployeeDialog() {
         throw new Error(data.error || "Failed to create employee");
       }
 
-      console.log("Employee added successfully");
+      toast({
+        title: "Success",
+        description: `Employee added successfully `,
+      });
+
       setOpen(false);
       setFormData({
         name: "",
@@ -118,6 +120,10 @@ export function AddEmployeeDialog() {
     } catch (error) {
       if (error instanceof z.ZodError) {
         console.error(error.errors[0].message);
+        toast({
+          title: "Error",
+          description: `${error.errors[0].message}`,
+        });
       } else if (error instanceof Error) {
         console.error(error.message);
       } else {

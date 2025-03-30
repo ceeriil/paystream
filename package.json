@@ -27,6 +27,7 @@
     "@dicebear/collection": "^9.2.2",
     "@dicebear/core": "^9.2.2",
     "@heroicons/react": "^2.2.0",
+    "@hookform/resolvers": "^4.1.3",
     "@jup-ag/jup-mobile-adapter": "^0.0.1",
     "@mysten/dapp-kit": "^0.14.49",
     "@mysten/sui": "^1.21.1",
