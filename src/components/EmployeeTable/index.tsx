@@ -36,15 +36,15 @@ export const EmployeesTable = ({ employees }: { employees: Employee[] }) => {
         {employees.map((employee) => (
           <tr
             key={employee.walletAddress}
-            className="hover:bg-black cursor-pointer"
+            className="hover:bg-[#ffffff15] cursor-pointer"
             onClick={() => handleRowClick(employee.walletAddress)}>
             <td className="px-6 py-4 whitespace-nowrap text-sm">
               {employee.name}
             </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm">
+            <td className="px-6 py-4 whitespace-nowrap text-sm capitalize">
               {employee.title}
             </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm">
+            <td className="px-6 py-4 whitespace-nowrap text-sm capitalize">
               {employee.employmentType}
             </td>
             <td className="px-6 py-4 whitespace-nowrap text-sm">

@@ -115,7 +115,7 @@ h6 {
   font-weight: 700;
   cursor: pointer;
   margin: 20px;
-  padding: 1rem 1.5rem;
+
   text-align: center;
   border: none;
   background-size: 300% 100%;
@@ -128,7 +128,6 @@ h6 {
 
 @media (max-width: 600px) {
   .btn-hover {
-    padding: 0.6rem 0.8rem;
     min-width: 140px;
     margin: 10px;
   }
@@ -448,39 +447,46 @@ h6 {
   left: 3.5rem;
   animation: lds-ellipsis3 0.4s infinite;
 }
-
-/* ---- neon box------  */
-.neon-box {
+.neon-container {
   position: relative;
-  border: 1px solid white; /* White border */
-  border-radius: 12px;
-  padding: 2rem;
-  background: black;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); /* Subtle glow */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  border-radius: 1rem;
 }
 
-.neon-box::before {
+.neon-container::before,
+.neon-container::after {
   content: "";
   position: absolute;
-  inset: -4px; /* Expands beyond the border */
-  border-radius: 14px;
-  background: linear-gradient(90deg, #ff00ff, #6600ff);
-  z-index: -1;
-  filter: blur(12px); /* Creates the glow */
-  opacity: 0.8;
-  animation: neonGlow 1.5s infinite alternate;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
 }
 
-@keyframes neonGlow {
-  0% {
-    filter: blur(8px);
-    opacity: 0.6;
-  }
-  100% {
-    filter: blur(16px);
-    opacity: 1;
-  }
+.neon-container::before {
+  border: 1.5px solid white;
+  box-shadow:
+    inset 0 0 10px #ff00ed,
+    inset 0 0 20px #1a62ff;
+  z-index: 2;
+  border-radius: 1rem;
 }
+
+.neon-container::after {
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
+  background: linear-gradient(45deg, #ff00ed, #1a62ff);
+  filter: blur(15px);
+  z-index: -1;
+  border-radius: 1rem;
+}
+
 /* ------ keyframes and animations ----- */
 @keyframes lds-ellipsis1 {
   0% {

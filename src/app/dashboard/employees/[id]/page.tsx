@@ -12,12 +12,14 @@ import { useAllStreams } from "@/hooks/useAllStream";
 import { Stream } from "@streamflow/stream";
 import { useEffect } from "react";
 import { Spinner } from "@/components";
+import { Address } from "@/components/Address";
+import { BookText, CreditCard } from "lucide-react";
 
 export default function EmployeeDetailPage() {
   const params = useParams();
   const router = useRouter();
   const employeeId = params.id as string;
-  const { streams } = useAllStreams();
+  const { streams, loadingStream, streamError } = useAllStreams();
 
   const paystreamStreams = streams?.filter(
     ([, stream]: [string, Stream]) =>
@@ -92,7 +94,9 @@ export default function EmployeeDetailPage() {
 
         <div className="grid grid-cols-2 gap-6">
           <div>
-            <h2 className="text-lg font-semibold mb-4">Employee Information</h2>
+            <h2 className="text-lg font-semibold mb-4 flex items-center">
+              <BookText size={16} className="mr-1" /> Employee Information
+            </h2>
             <div className="space-y-4">
               <div>
                 <p className="text-sm text-gray-500">Title</p>
@@ -110,11 +114,19 @@ export default function EmployeeDetailPage() {
           </div>
 
           <div>
-            <h2 className="text-lg font-semibold mb-4">Payment Information</h2>
+            <h2 className="text-lg font-semibold mb-4 flex items-center">
+              {" "}
+              <CreditCard size={16} className="mr-1" /> Payment Information
+            </h2>
             <div className="space-y-4">
               <div>
                 <p className="text-sm text-gray-500">Primary Wallet</p>
-                <p className="font-medium">{employee.walletAddress}</p>
+
+                <Address
+                  address={employee.walletAddress}
+                  type="account"
+                  length="long"
+                />
               </div>
               {employee.additionalWallets.length > 0 && (
                 <div>

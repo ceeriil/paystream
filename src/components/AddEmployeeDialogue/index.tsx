@@ -135,33 +135,41 @@ export function AddEmployeeDialog() {
           Add Employee
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[30rem] sm:rounded-[2rem] bg-[#121313]">
         <DialogHeader>
           <DialogTitle>Add New Employee</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="grid gap-2">
-            <Label htmlFor="name">Name</Label>
+            <Label htmlFor="name" className="font-medium">
+              Name
+            </Label>
             <Input
               id="name"
               name="name"
               placeholder="Enter employee name"
               value={formData.name}
               onChange={handleInputChange}
+              className="rounded-xl bg-[#171818] border-none placeholder:font-[300]"
             />
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="title">Title</Label>
+            <Label htmlFor="title" className="font-medium">
+              Title
+            </Label>
             <Input
               id="title"
               name="title"
               placeholder="Enter job title"
               value={formData.title}
               onChange={handleInputChange}
+              className="rounded-xl bg-[#171818] border-none placeholder:font-[300]"
             />
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="employmentType">Employment Type</Label>
+            <Label htmlFor="employmentType" className="font-medium">
+              Employment Type
+            </Label>
             <Select
               value={formData.employmentType}
               onValueChange={(value) =>
@@ -169,7 +177,9 @@ export function AddEmployeeDialog() {
                   target: { name: "employmentType", value },
                 })
               }>
-              <SelectTrigger id="employmentType">
+              <SelectTrigger
+                id="employmentType"
+                className="rounded-xl bg-[#171818] border-none">
                 <SelectValue placeholder="Select employment type" />
               </SelectTrigger>
               <SelectContent>
@@ -180,17 +190,22 @@ export function AddEmployeeDialog() {
             </Select>
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="walletAddress">Wallet Address</Label>
+            <Label htmlFor="walletAddress" className="font-medium">
+              Wallet Address
+            </Label>
             <Input
               id="walletAddress"
               name="walletAddress"
               placeholder="Enter wallet address"
               value={formData.walletAddress}
               onChange={handleInputChange}
+              className="rounded-xl bg-[#171818] border-none placeholder:font-[300]"
             />
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email" className="font-medium">
+              Email
+            </Label>
             <Input
               id="email"
               name="email"
@@ -198,10 +213,13 @@ export function AddEmployeeDialog() {
               placeholder="Enter email address"
               value={formData.email}
               onChange={handleInputChange}
+              className="rounded-xl bg-[#171818] border-none placeholder:font-[300]"
             />
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="estimatedSalary">Estimated Salary</Label>
+            <Label htmlFor="estimatedSalary" className="font-medium">
+              Estimated Salary
+            </Label>
             <Input
               id="estimatedSalary"
               name="estimatedSalary"
@@ -210,16 +228,20 @@ export function AddEmployeeDialog() {
               placeholder="Enter estimated salary"
               value={formData.estimatedSalary}
               onChange={handleInputChange}
+              className="rounded-xl bg-[#171818] border-none placeholder:font-[300]"
             />
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="employerNotes">Notes</Label>
+            <Label htmlFor="employerNotes" className="font-medium">
+              Notes
+            </Label>
             <Input
               id="employerNotes"
               name="employerNotes"
               placeholder="Enter notes (optional)"
               value={formData.employerNotes}
               onChange={handleInputChange}
+              className="rounded-xl bg-[#171818] border-none placeholder:font-[300]"
             />
           </div>
         </div>

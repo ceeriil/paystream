@@ -73,7 +73,7 @@ export const SectionFAQ = () => {
           </ul>
 
           {activeFaq && (
-            <div className="card-gradient-2 md:ml-[-3rem] h-[22rem] md:h-[31rem] p-6 py-12 md:pl-[4rem] text-center">
+            <div className="card-gradient-2 md:ml-[-3rem] min-h-[22rem] md:min-h-[31rem] p-6 py-12 md:pl-[4rem] text-center">
               <h2 className="font-medium text-xl"> {activeFaq.question}</h2>
               <p className="mt-6 text-xl font-light leading-[1.7]">
                 {activeFaq.content}

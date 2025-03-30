@@ -27,7 +27,7 @@ const Recipients = () => {
   return (
     <div>
       <h4 className="stepper_step_heading">Recipient Information</h4>
-      <div className="stepper_step_container">
+      <div className="my-8 gap-8 gap-y-4 lg:gap-y-8 grid sm:grid-cols-2">
         <div>
           <label
             htmlFor="paymentType"
@@ -37,6 +37,8 @@ const Recipients = () => {
           <Input
             id="tokenAmount"
             type="number"
+            placeholder="Enter Token Amount"
+            className="rounded-xl bg-[#171818] h-10 border-none"
             {...register("tokenAmount", { required: "Required" })}
           />
         </div>
@@ -51,7 +53,8 @@ const Recipients = () => {
             <Input
               id="recipientWallet"
               type="text"
-              className="pr-12"
+              placeholder="Enter Recipient Wallet Address"
+              className="pr-12 rounded-xl bg-[#171818] h-10 border-none"
               {...register("recipientWallet", { required: "Required" })}
             />
             <Popover open={open} onOpenChange={setOpen}>
@@ -120,6 +123,8 @@ const Recipients = () => {
           <Input
             id="recipientEmail"
             type="email"
+            className="rounded-xl bg-[#171818] h-10 border-none"
+            placeholder="Enter Recipient Email"
             {...register("recipientEmail", { required: "Required" })}
           />
         </div>
