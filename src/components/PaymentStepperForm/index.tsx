@@ -122,6 +122,8 @@ const PaymentStepperForm = () => {
 
     console.log(start);
 
+    /* TODO: update this so it set based on payment type */
+
     const createStreamParams = {
       recipient: recipientWallet,
       tokenId:

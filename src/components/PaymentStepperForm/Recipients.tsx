@@ -67,7 +67,7 @@ const Recipients = () => {
                   <Wallet className="h-5 w-5" />
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="p-2 shadow-lg rounded-md bg-black border-[#ffffff20] left-0 w-60">
+              <PopoverContent className="p-2 rounded-xl border-[#ffffff20] left-0 w-60 bg-[#121313]">
                 <div className="relative mb-2">
                   <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                   <Input
