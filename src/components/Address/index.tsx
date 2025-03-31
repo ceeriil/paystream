@@ -72,8 +72,7 @@ export const Address: React.FC<AddressProps> = ({
             setTimeout(() => {
               setAddressCopied(false);
             }, 800);
-          }}
-        >
+          }}>
           <DocumentDuplicateIcon
             className="ml-2.5 text-xl font-normal text-primary-content h-5 w-5 cursor-pointer"
             aria-hidden="true"

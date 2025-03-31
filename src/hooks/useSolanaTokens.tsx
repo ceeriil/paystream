@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { TokenListProvider, TokenInfo } from "@solana/spl-token-registry";
-import { useAppKitAccount, useAppKitProvider } from "@reown/appkit/react";
+import { useAppKitProvider } from "@reown/appkit/react";
 import {
   useAppKitConnection,
   type Provider,
@@ -64,7 +64,7 @@ function useSolanaTokens(): UseSolanaTokensResult {
 
         const tokenAccounts = await connection.getParsedTokenAccountsByOwner(
           publicKey as PublicKey,
-          { programId: TOKEN_PROGRAM_ID }
+          { programId: TOKEN_PROGRAM_ID },
         );
 
         const tokenList = await new TokenListProvider().resolve();
@@ -76,7 +76,7 @@ function useSolanaTokens(): UseSolanaTokensResult {
           .map((account) => {
             const tokenBalance = account.account.data.parsed.info.tokenAmount;
             const tokenInfo: TokenInfo | undefined = tokensData.find(
-              (t) => t.address === account.account.data.parsed.info.mint
+              (t) => t.address === account.account.data.parsed.info.mint,
             );
 
             return {
@@ -90,7 +90,7 @@ function useSolanaTokens(): UseSolanaTokensResult {
           .filter((token) => token.balance > 0);
 
         const filteredTokens = [solBalance, ...splTokens].filter(
-          (token) => token.balance > 0
+          (token) => token.balance > 0,
         );
 
         setTokens(filteredTokens);
@@ -113,7 +113,7 @@ function useSolanaTokens(): UseSolanaTokensResult {
           return [updatedSolBalance, ...existingTokens.slice(1)];
         });
       },
-      "confirmed"
+      "confirmed",
     );
 
     return () => {

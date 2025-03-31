@@ -15,6 +15,7 @@ interface StepperProps {
 }
 
 export function Stepper({ steps, currentStep }: StepperProps) {
+  console.log(currentStep);
   return (
     <nav aria-label="Progress">
       <ol role="list" className="flex items-center">
@@ -23,15 +24,13 @@ export function Stepper({ steps, currentStep }: StepperProps) {
             key={step.name}
             className={cn(
               stepIdx !== steps.length - 1 ? "pr-8 sm:pr-20" : "",
-              "relative"
-            )}
-          >
+              "relative",
+            )}>
             {step.status === "complete" ? (
               <>
                 <div
                   className="absolute inset-0 flex items-center"
-                  aria-hidden="true"
-                >
+                  aria-hidden="true">
                   <div className="h-0.5 w-full bg-primary" />
                 </div>
                 <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-[#ffffff20] hover:bg-primary">
@@ -43,14 +42,12 @@ export function Stepper({ steps, currentStep }: StepperProps) {
               <>
                 <div
                   className="absolute inset-0 flex items-center"
-                  aria-hidden="true"
-                >
+                  aria-hidden="true">
                   <div className="h-0.5 w-full bg-gray-200" />
                 </div>
                 <div
                   className="relative flex h-8 w-8 items-center justify-center rounded-full border-2 border-primary bg-white"
-                  aria-current="step"
-                >
+                  aria-current="step">
                   <span
                     className="h-2.5 w-2.5 rounded-full bg-primary"
                     aria-hidden="true"
@@ -62,8 +59,7 @@ export function Stepper({ steps, currentStep }: StepperProps) {
               <>
                 <div
                   className="absolute inset-0 flex items-center"
-                  aria-hidden="true"
-                >
+                  aria-hidden="true">
                   <div className="h-0.5 w-full bg-gray-200" />
                 </div>
                 <div className="group relative flex h-8 w-8 items-center justify-center rounded-full border-2 border-gray-300 bg-white hover:border-gray-400">

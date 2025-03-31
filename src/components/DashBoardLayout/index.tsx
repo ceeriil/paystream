@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import TestnetBanner from "../TestnetBanner";
@@ -84,11 +84,6 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   const { user } = useAuth();
 
   const network = (caipNetwork as { network?: string })?.network;
-
-  useEffect(() => {
-    console.log("Network", network);
-  });
-
   const handleSignSuccess = (signatureHex: string) => {
     console.log("Signature:", signatureHex);
   };

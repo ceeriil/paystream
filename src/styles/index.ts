@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import tailwindColors from 'tailwindcss/colors';
+import tailwindColors from "tailwindcss/colors";
 
 // @ts-ignore
-import { theme as tailwindTheme } from '../../tailwind.config';
+import { theme as tailwindTheme } from "../../tailwind.config";
 
 type TailwindColors = typeof tailwindColors;
 type CustomColors = typeof tailwindTheme.extend.colors;

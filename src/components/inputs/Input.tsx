@@ -83,8 +83,7 @@ const Input: React.FC<InputProps> = ({
           peer-focus:scale-75
           peer-focus:-translate-y-4
           ${errors[id] ? "text-rose-500" : "text-zinc-400"}
-        `}
-      >
+        `}>
         {label}
       </label>
     </div>

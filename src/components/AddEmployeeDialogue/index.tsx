@@ -69,16 +69,13 @@ export function AddEmployeeDialog() {
     try {
       setLoading(true);
 
-      console.log("Current user:", user);
       if (!user) {
         throw new Error("Not authenticated");
       }
       const token = await user.getIdToken();
-      console.log("Got token:", token ? "Token exists" : "No token");
 
       const validatedData = createEmployeeSchema.parse(formData);
 
-      console.log("Sending request to API...");
       const response = await fetch("/api/employees", {
         method: "POST",
         headers: {
@@ -89,12 +86,6 @@ export function AddEmployeeDialog() {
       });
 
       const data = await response.json();
-
-      console.log("API Response:", {
-        status: response.status,
-        ok: response.ok,
-        data,
-      });
 
       if (!response.ok) {
         throw new Error(data.error || "Failed to create employee");

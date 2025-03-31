@@ -31,8 +31,7 @@ export function DicebearAvatar({
   return (
     <div
       className={`rounded-full overflow-hidden bg-gray-100 ${className}`}
-      style={{ width: size, height: size }}
-    >
+      style={{ width: size, height: size }}>
       {avatarSvg && (
         <Image
           src={avatarSvg}

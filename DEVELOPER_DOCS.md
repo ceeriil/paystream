@@ -8,7 +8,7 @@ Paystream is built primarily with:
 
 - **Next.js** for the frontend
 - **Reown** for the wallet kit
-- **Streamflow** for handling payments ([Streamflow Docs](ADD_LINK_HERE))
+- **Streamflow** for handling payments ([Streamflow Docs](https://js-sdk-docs.streamflow.finance/))
 
 ## 📂 Key Components
 
@@ -43,5 +43,3 @@ Paystream is built primarily with:
 ## 🚀 Contributing
 
 If you encounter any issues or have suggestions, feel free to open a pull request or reach out for support!
-
-+-------------------------+ | User Picks Payment Details | +-------------------------+ | v +-------------------------+ | Adjust Form Based on Type | | (e.g., show cliff for freelance) | +-------------------------+ | v +-------------------------+ | Check Network (Testnet/Mainnet) | | Assign Mint Address Accordingly | +-------------------------+ | v +-------------------------+ | Validate Form with Zod | | (Ensure Correct Assertions) | +-------------------------+ | v +-------------------------+ | Check Wallet Connection | | (Show Modal if Not Connected) | +-------------------------+ | v +-------------------------+ | Convert Form Values to Match | | Streamflow Expected Types | +-------------------------+ | v +-------------------------+ | Set Configurable Streamflow Values | | (e.g., Commitment -> cancellable: false) | +-------------------------+ | v +-------------------------+ | Create Stream Params | | Process Transaction with Streamflow | +-------------------------+ | v +-------------------------+ | Transaction Success? | +-------------------------+ | | | Yes | No v v +-----------------+ +---------------------+ | Redirect to Dashboard | | Show Error Modal | +-----------------+ +---------------------+

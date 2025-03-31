@@ -10,7 +10,6 @@ import { useFetchEmployee } from "@/hooks/useFetchEmployee";
 import { PaymentsTable } from "@/components/PaymentsTable";
 import { useAllStreams } from "@/hooks/useAllStream";
 import { Stream } from "@streamflow/stream";
-import { useEffect } from "react";
 import { Spinner } from "@/components";
 import { Address } from "@/components/Address";
 import { BookText, CreditCard } from "lucide-react";
@@ -19,17 +18,17 @@ export default function EmployeeDetailPage() {
   const params = useParams();
   const router = useRouter();
   const employeeId = params.id as string;
-  const { streams, loadingStream, streamError } = useAllStreams();
+  const {
+    streams,
+    loading: loadingStream,
+    error: streamError,
+  } = useAllStreams();
 
   const paystreamStreams = streams?.filter(
     ([, stream]: [string, Stream]) =>
       stream.name?.toLowerCase().includes("paystream") &&
       stream.recipient === params.id,
   );
-
-  useEffect(() => {
-    console.log("stream for account", paystreamStreams);
-  });
 
   const { employee, loading, error } = useFetchEmployee(employeeId);
 
@@ -159,12 +158,15 @@ export default function EmployeeDetailPage() {
           switch (true) {
             case loadingStream:
               return <p>loading</p>;
+
             case !paystreamStreams || paystreamStreams.length === 0:
               return (
                 <div className="py-12 text-center flex flex-col items-center justify-center">
                   No payment streams available
                 </div>
               );
+            case !!streamError:
+              return <p>error: {streamError.message}</p>;
             default:
               return <PaymentsTable streams={paystreamStreams} />;
           }

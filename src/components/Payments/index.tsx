@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 import { Stream } from "@streamflow/stream";
 import { useAllStreams } from "@/hooks/useAllStream";
@@ -16,9 +16,6 @@ export const Payments = () => {
   const paystreamStreams = streams?.filter(([, stream]: [string, Stream]) =>
     stream.name?.toLowerCase().includes("paystream"),
   );
-  useEffect(() => {
-    console.log("stream for account", streams);
-  });
 
   /* fix this shit later. !important */
 

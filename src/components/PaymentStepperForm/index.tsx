@@ -75,8 +75,6 @@ const PaymentStepperForm = () => {
   }, [erroredInputName, walletProvider]);
 
   const onSubmit = async (formData: StepperFormValues) => {
-    console.log({ formData });
-
     if (!isConnected) {
       try {
         await walletProvider.connect;
@@ -120,8 +118,6 @@ const PaymentStepperForm = () => {
       new BN(numberOfIntervals),
     );
 
-    console.log(start);
-
     /* TODO: update this so it set based on payment type */
 
     const createStreamParams = {
@@ -144,10 +140,6 @@ const PaymentStepperForm = () => {
       withdrawalFrequency: unlockDurationInSeconds,
       partner: undefined,
     };
-
-    console.log(walletProvider, "wallet");
-
-    console.log("createStreamParams", createStreamParams, "stream ready");
 
     if (!solanaClient) {
       return; //refactor this or show error message later

@@ -5,7 +5,7 @@ import {
   differenceInMonths,
   differenceInSeconds,
   differenceInYears,
-} from 'date-fns';
+} from "date-fns";
 
 export const getDateCompare = (after: Date) => {
   const currDate = new Date();
