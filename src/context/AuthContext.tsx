@@ -46,7 +46,6 @@ export function AuthProvider({
   useEffect(() => {
     if (!isConnected && user) {
       signOut(auth);
-      console.log("signed out");
     }
   }, [isConnected, user, auth]);
 

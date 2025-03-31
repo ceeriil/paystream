@@ -14,8 +14,7 @@ export default function FaucetButton() {
           href="https://spl-token-faucet.com/?token-name=USDC-Dev"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center w-10 h-10 rounded-full bg-[#ffffff20] text-white hover:bg-[#ffffff35] transition border border-[#ffffff30]"
-        >
+          className="flex items-center justify-center w-10 h-10 rounded-full bg-[#ffffff20] text-white hover:bg-[#ffffff35] transition border border-[#ffffff30]">
           <Droplet size={20} />
         </Link>
       </TooltipTrigger>

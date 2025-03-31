@@ -32,7 +32,7 @@ const Configuration = () => {
   return (
     <div>
       <h4 className="stepper_step_heading">Configuration</h4>
-      <div className="stepper_step_container">
+      <div className=" my-8 gap-8 gap-y-4 lg:gap-y-8 grid sm:grid-cols-2">
         <div>
           <label
             htmlFor="paymentType"
@@ -47,7 +47,7 @@ const Configuration = () => {
             render={({ field: { onChange, value }, fieldState: { error } }) => (
               <div>
                 <Select value={value} onValueChange={onChange}>
-                  <SelectTrigger>
+                  <SelectTrigger className=" bg-[#171818] h-10 border-none rounded-xl">
                     <SelectValue placeholder="Select payment type" />
                   </SelectTrigger>
                   <SelectContent>
@@ -84,7 +84,7 @@ const Configuration = () => {
             render={({ field: { value }, fieldState: { error } }) => (
               <div>
                 <Select value={value || tokens[0].mint} disabled>
-                  <SelectTrigger>
+                  <SelectTrigger className=" bg-[#171818] h-10 border-none rounded-xl">
                     <SelectValue>{tokens[0].name}</SelectValue>
                   </SelectTrigger>
                 </Select>
@@ -111,6 +111,7 @@ const Configuration = () => {
               type="number"
               min="0"
               max="100"
+              className="rounded-xl bg-[#171818] h-10 border-none"
               value={cliffAmount}
               {...register("cliffAmount", {
                 required: "Cliff amount is required for this payment type",
@@ -136,6 +137,8 @@ const Configuration = () => {
             <Input
               id="duration"
               type="number"
+              placeholder="0"
+              className=" bg-[#171818] h-10 border-none rounded-xl"
               {...register("duration", { required: "Required" })}
             />
 
@@ -149,7 +152,7 @@ const Configuration = () => {
               }) => (
                 <div>
                   <Select value={value} onValueChange={onChange}>
-                    <SelectTrigger>
+                    <SelectTrigger className=" bg-[#171818] h-10 border-none rounded-xl">
                       <SelectValue placeholder="Select unit" />
                     </SelectTrigger>
                     <SelectContent>
@@ -185,7 +188,7 @@ const Configuration = () => {
             render={({ field: { onChange, value }, fieldState: { error } }) => (
               <div>
                 <Select value={value} onValueChange={onChange}>
-                  <SelectTrigger>
+                  <SelectTrigger className=" bg-[#171818] h-10 border-none rounded-xl">
                     <SelectValue placeholder="Select unlock schedule" />
                   </SelectTrigger>
                   <SelectContent>
@@ -206,8 +209,7 @@ const Configuration = () => {
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
-          {/* Start Date */}
+        <div className="grid sm:grid-cols-2 gap-4">
           <div>
             <label
               htmlFor="startDate"
@@ -222,15 +224,15 @@ const Configuration = () => {
             />
           </div>
 
-          {/* Start Time */}
           <div>
             <label
               htmlFor="startTime"
-              className="text-sm text-neutral-300 mb-2 inline-block">
+              className="text-sm text-neutral-300 mb-2 inline-block ">
               Start Time
             </label>
             <Input
               id="startTime"
+              className=" bg-[#171818] h-10 border-none rounded-xl "
               type="time"
               {...register("startTime", { required: "Required" })}
             />

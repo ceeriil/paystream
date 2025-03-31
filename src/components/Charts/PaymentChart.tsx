@@ -81,8 +81,7 @@ export function PaymentChart({ timerange }: SalaryChartProps) {
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart
           data={data}
-          margin={{ top: 5, right: 10, left: 10, bottom: 20 }}
-        >
+          margin={{ top: 5, right: 10, left: 10, bottom: 20 }}>
           <defs>
             <linearGradient id="colorAmount" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#4f46e5" stopOpacity={0.3} />

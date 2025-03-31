@@ -11,5 +11,4 @@ export const STEPPER_FORM_KEYS = {
   ],
   2: ["tokenAmount", "recipientWallet", "recipientEmail"],
   3: [],
-
 } as const;

@@ -7,8 +7,7 @@ export const ArrowLink = () => {
       height="20"
       viewBox="0 0 21 20"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+      xmlns="http://www.w3.org/2000/svg">
       <path
         d="M17.3178 17.8335H3.56908"
         stroke="white"

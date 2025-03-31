@@ -5,12 +5,12 @@ export const SectionRoadmap = () => {
     <section className="mb-32 px-3 md:px-16 roadmap">
       <div className="grid justify-between mb-32 mt-12 w-[90%] mx-auto items-center md:grid-cols-[50%,50%] ">
         <div>
-          <h2 className="md:text-[3.5rem] leading-[1.4] text-[2.8rem] gradient-text md:w-[80%]">
+          <h2 className="md:text-[3.5rem] lg:leading-[1.4] leading-[1.3] text-3xl gradient-text md:w-[80%] text-center lg:text-left">
             Let PayStream Solve the Problem
           </h2>
         </div>
         <div className="md:ml-24 mt-5 md:mt-0">
-          <p className="text-2xl leading-[1.7] ">
+          <p className="lg:text-2xl text-xl leading-[1.7] text-center lg:text-left ">
             Heres how you can simplify payroll management and free yourself to
             focus on what matters:
           </p>

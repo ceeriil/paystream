@@ -21,7 +21,6 @@ import {
   convertTimestampToFormattedDate,
   calculateNextWithdrawnTime,
 } from "@/helpers";
-import { useEffect } from "react";
 
 export default function PaymentDetailPage() {
   const params = useParams();
@@ -29,8 +28,6 @@ export default function PaymentDetailPage() {
   const streamId = params.id as string;
 
   const { stream, loading, error } = useOneStream(streamId);
-
-  useEffect(() => console.log(stream), [stream]);
 
   if (loading) {
     return (

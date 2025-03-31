@@ -38,12 +38,10 @@ export const useSolanaClient = () => {
     (caipNetwork as { network?: string })?.network || "solana-devnet";
 
   const [solanaClient, setSolanaClient] = useState<SolanaStreamClient | null>(
-    null
+    null,
   );
 
   useEffect(() => {
-    console.log("Network changed to:", network);
-
     const newRpcUrl =
       network === "solana-mainnet"
         ? "https://mainnet.helius-rpc.com/?api-key=d6b842be-5729-49db-a0b0-4a19822b3533"
@@ -52,8 +50,6 @@ export const useSolanaClient = () => {
     const newSolanaClient = createSolanaClient(newRpcUrl, getCluster(network));
     setSolanaClient(newSolanaClient);
   }, [network]);
-
-  console.log("Solana Client updated for network:", network);
 
   return { solanaClient };
 };
@@ -73,7 +69,7 @@ export const createStream = async (
   streamParams: ICreateStreamData,
   solanaParams: ICreateSolanaExt,
   onSuccess: (stream: ICreateResult) => void,
-  onError: (error: unknown) => void
+  onError: (error: unknown) => void,
 ): Promise<ICreateResult | undefined> => {
   try {
     const stream = await solanaClient.create(streamParams, solanaParams);
@@ -96,7 +92,7 @@ export const createStream = async (
  */
 export const getAllStreams = async (
   solanaClient: SolanaStreamClient,
-  address: string
+  address: string,
 ): Promise<[string, Stream][] | undefined> => {
   try {
     const streams = await solanaClient.get({
@@ -120,7 +116,7 @@ export const getAllStreams = async (
  */
 export const getOneStream = async (
   solanaClient: SolanaStreamClient,
-  id: string
+  id: string,
 ): Promise<Stream | undefined> => {
   try {
     const data: IGetOneData = { id };
@@ -148,7 +144,7 @@ export const cancelStream = async (
   cancelStreamParams: ICancelData,
   solanaParams: { invoker: SignerWalletAdapter | Keypair },
   onSuccess: (stream: ITransactionResult) => void,
-  onError: (error: unknown) => void
+  onError: (error: unknown) => void,
 ): Promise<void> => {
   try {
     const stream = await solanaClient.cancel(cancelStreamParams, solanaParams);

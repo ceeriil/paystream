@@ -112,7 +112,7 @@ export const PaymentsTable = ({ streams }: { streams: any }) => {
       </thead>
       <tbody className="divide-y divide-[#272727]">
         {getSortedStreams().map(([id, stream]: [string, Stream]) => (
-          <tr key={id} className="hover:bg-black">
+          <tr key={id} className="hover:bg-[#ffffff15]">
             <td className="px-6 py-4 whitespace-nowrap text-sm ">
               <div className="flex ">
                 <Image

@@ -6,7 +6,7 @@ if (process.env.NODE_ENV === "test") {
   // we might want to run tests against the Staging firebase instance.
   throw new Error(
     ` This will connect to the production firestore. 
-      Make sure db/firebase.ts is updated before testing against Firebase`
+      Make sure db/firebase.ts is updated before testing against Firebase`,
   );
 }
 
@@ -28,7 +28,7 @@ if (!admin.apps.length) {
 
     if (firebaseServiceAccountKey && storageBucket) {
       const serviceAccount = JSON.parse(
-        Buffer.from(firebaseServiceAccountKey, "base64").toString("utf8")
+        Buffer.from(firebaseServiceAccountKey, "base64").toString("utf8"),
       );
 
       console.log("Using Firebase live DB");

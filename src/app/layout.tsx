@@ -4,6 +4,7 @@ import { Urbanist } from "next/font/google";
 import type { ChildrenProps } from "@/types";
 import { Toaster } from "@/components/ui/toaster";
 require("@solana/wallet-adapter-react-ui/styles.css");
+import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata = {
   title: "Paystream",
@@ -22,11 +23,18 @@ const urbanist = Urbanist({
 export default async function RootLayout({ children }: ChildrenProps) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body
-        className={`${urbanist.className} h-full flex flex-col justify-between bg-[#000] text-foreground`}>
-        {children}
-        <Toaster />
-      </body>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="dark"
+        enableSystem={false}
+        disableTransitionOnChange
+        forcedTheme="dark">
+        <body
+          className={`${urbanist.className} h-full flex flex-col justify-between bg-[#000] text-foreground`}>
+          {children}
+          <Toaster />
+        </body>
+      </ThemeProvider>
     </html>
   );
 }

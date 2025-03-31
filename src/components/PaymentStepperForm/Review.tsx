@@ -25,7 +25,7 @@ const Review = () => {
     <div>
       <h4 className="stepper_step_heading">Review Contract</h4>
       <div className="stepper_step_container">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 gap-4">
           <div>
             <label className="text-sm font-medium text-muted-foreground">
               Start Date
@@ -42,7 +42,7 @@ const Review = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 gap-4">
           <div>
             <label className="text-sm font-medium text-muted-foreground">
               Amount per {formValues.durationUnit || "period"}

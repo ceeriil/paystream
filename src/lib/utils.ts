@@ -26,7 +26,7 @@ export const composeFormValidation = (
   return (value: any) =>
     validators.reduce(
       (error: string | undefined, validator) => error || validator(value),
-      undefined
+      undefined,
     );
 };
 
@@ -72,7 +72,7 @@ import nacl from "tweetnacl";
 export const verifyMessage = (
   publicKey: string,
   signatureHex: string,
-  nonce: string
+  nonce: string,
 ) => {
   try {
     const message = `Sign this message to authenticate to Paystream. This request will not trigger a blockchain transaction or cost any gas fees. iat: ${nonce}`;
@@ -85,7 +85,7 @@ export const verifyMessage = (
     const isValid = nacl.sign.detached.verify(
       encodedMessage,
       signatureBuffer,
-      publicKeyBytes
+      publicKeyBytes,
     );
 
     return isValid;

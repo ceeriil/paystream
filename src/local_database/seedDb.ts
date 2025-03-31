@@ -19,7 +19,7 @@ export async function seedDatabase() {
 
   // Use Promise.all with map instead of forEach
   await Promise.all(
-    Object.entries(seedEmployees.employees).map(async ([_, employeeData]) => {
+    Object.entries(seedEmployees.employees).map(async ([, employeeData]) => {
       const {
         name,
         title,
@@ -50,7 +50,7 @@ export async function seedDatabase() {
   // Use Promise.all with map for organizations too
   await Promise.all(
     Object.entries(seedOrganizations.organizations).map(
-      async ([_, organizationsData]) => {
+      async ([, organizationsData]) => {
         const { name, walletAddress } = organizationsData as Organization & {
           id: string;
         };

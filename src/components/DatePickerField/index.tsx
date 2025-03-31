@@ -38,14 +38,15 @@ export const DatePickerField: React.FC<DatePickerFieldProps> = ({
       }) => (
         <div>
           <Popover>
-            <PopoverTrigger asChild>
+            <PopoverTrigger
+              asChild
+              className=" bg-[#171818] h-10 border-none rounded-xl">
               <Button
                 variant="outline"
                 className={cn(
-                  "w-[240px] justify-start text-left font-normal",
+                  "w-[240px] justify-start text-left font-normal dark:bg-[#171818] ",
                   !value && "text-muted-foreground",
-                )}
-              >
+                )}>
                 <CalendarIcon className="mr-2 h-4 w-4" />
                 {value ? (
                   format(new Date(value), "PPP")

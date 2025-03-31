@@ -9,14 +9,18 @@ export const MainFooter = () => {
           <h2 className="text-3xl font-bold uppercase">Paystream.</h2>
           <nav className="md:mt-0 mt-6">
             <ul>
-              <li className="mr-6 inline-block">
+              <li className="mr-6 inline-block hover:text-[#1a62ff]">
                 <Link href="#">Home</Link>
               </li>
-              <li className="mr-6 inline-block">
+              <li className="mr-6 inline-block  hover:text-[#1a62ff]">
                 <Link href="/dashboard">App</Link>
               </li>
-              <li className="inline-block">
-                <Link href="#">Documentation</Link>
+              <li className="inline-block  hover:text-[#1a62ff]">
+                <Link
+                  href="https://paystream.gitbook.io/paystream"
+                  target="blank_">
+                  Documentation
+                </Link>
               </li>
             </ul>
           </nav>

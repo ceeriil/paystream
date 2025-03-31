@@ -43,7 +43,7 @@ export async function POST(request: Request) {
     console.error("Error verifying message or creating token:", error);
     return NextResponse.json(
       { error: "Internal server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

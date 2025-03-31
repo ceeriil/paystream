@@ -35,7 +35,6 @@ export const PaymentTypePieChart = () => {
               ))}
             </Pie>
             <Tooltip content={<CustomTooltip />} />
-
           </PieChart>
         </ResponsiveContainer>
 

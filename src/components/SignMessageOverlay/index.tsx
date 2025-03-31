@@ -48,7 +48,7 @@ export const SignMessageOverlay: React.FC<SignMessageOverlayProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-[#ffffff14] backdrop-blur-sm flex items-center justify-center z-50 text-center ">
+    <div className="fixed inset-0 bg-[#ffffff14] backdrop-blur-sm flex items-center justify-center z-50 text-center  ">
       <div className="bg-[#121212] p-6 rounded-2xl border border-[#272727]">
         <h2 className="text-xl font-semibold mb-4">Sign Message</h2>
         <p className="mb-4">
@@ -57,7 +57,7 @@ export const SignMessageOverlay: React.FC<SignMessageOverlayProps> = ({
         <div className="flex space-x-2">
           <Button
             onClick={handleClose}
-            className="px-4 flex-1 py-2 rounded-md"
+            className="px-4 flex-1 py-2 rounded-md dark"
             variant="secondary">
             Cancel
           </Button>

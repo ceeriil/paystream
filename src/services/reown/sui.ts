@@ -1,9 +1,4 @@
 import { defineChain } from "@reown/appkit/networks";
-import type {
-  Wallet,
-  WalletAccount,
-  WalletWithRequiredFeatures,
-} from "@mysten/wallet-standard";
 import { SuietWalletAdapter } from "@suiet/wallet-adapter";
 
 export const suiDevnet = defineChain({

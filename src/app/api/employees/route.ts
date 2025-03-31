@@ -18,8 +18,6 @@ const createEmployeeSchema = z.object({
 async function getOrganizationIdFromToken(request: Request) {
   const authHeader = request.headers.get("Authorization");
 
-  console.log(authHeader, "ath");
-
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     throw new Error("Unauthorized - Missing or invalid token");
   }
@@ -28,7 +26,7 @@ async function getOrganizationIdFromToken(request: Request) {
 
   try {
     const decodedToken = await admin.auth().verifyIdToken(token);
-    console.log(decodedToken.uid, "decoded");
+
     return decodedToken.uid;
   } catch (error) {
     throw new Error("Unauthorized - Invalid token");
@@ -38,10 +36,8 @@ async function getOrganizationIdFromToken(request: Request) {
 export async function GET(request: Request) {
   try {
     const organizationId = await getOrganizationIdFromToken(request);
-    console.log(organizationId, "org id");
-    const employees = await findAllEmployees(organizationId);
 
-    console.log("emppp", employees);
+    const employees = await findAllEmployees(organizationId);
 
     return NextResponse.json({ employees });
   } catch (error) {

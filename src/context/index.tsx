@@ -59,8 +59,7 @@ function ContextProvider({
   return (
     <WagmiProvider
       config={wagmiAdapter.wagmiConfig as Config}
-      initialState={initialState}
-    >
+      initialState={initialState}>
       <QueryClientProvider client={queryClient}>
         <AuthProvider>{children}</AuthProvider>
       </QueryClientProvider>

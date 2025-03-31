@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import TestnetBanner from "../TestnetBanner";
@@ -84,11 +84,6 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   const { user } = useAuth();
 
   const network = (caipNetwork as { network?: string })?.network;
-
-  useEffect(() => {
-    console.log("Network", network);
-  });
-
   const handleSignSuccess = (signatureHex: string) => {
     console.log("Signature:", signatureHex);
   };
@@ -98,10 +93,12 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
       <div className="flex min-h-screen w-full dark">
         <Sidebar className="bg-black border-[#272727]">
           <SidebarHeader className="border-[#272727] border-b">
-            <div className="flex items-center px-6  pb-[0.4rem] pt-[0.4rem] ">
+            <Link
+              href={"/"}
+              className="flex items-center px-6  pb-[0.4rem] pt-[0.4rem] ">
               <Image alt="app logo" src="/logo.png" width={20} height={20} />
               <span className="text-xl font-semibold ml-2">PayStream</span>
-            </div>
+            </Link>
           </SidebarHeader>
           <SidebarContent>
             <SidebarMenu className="space-y-4 p-4 pt-6">
